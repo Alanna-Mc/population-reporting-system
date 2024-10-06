@@ -15,3 +15,13 @@ This project aims to design and implement a system that allows easy access to po
 - Maven
 - Docker
 - Git/GitHub
+
+
+#### GitHub Workflow Status
+![GitHub Workflow Status (main)](https://img.shields.io/github/actions/workflow/status/Alanna-Mc/population-reporting-system/main.yml?branch=main)
+
+### License Status
+[![LICENSE](https://img.shields.io/github/license/Alanna-Mc/population-reporting-system.svg?style=flat-square)](https://github.com/Alanna-Mc/population-reporting-system/blob/main/LICENSE)
+
+### Release Status
+[![Releases](https://img.shields.io/github/release/Alanna-Mc/population-reporting-system/all.svg?style=flat-square)](https://github.com/Alanna-Mc/population-reporting-system/releases)
