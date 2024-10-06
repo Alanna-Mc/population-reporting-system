@@ -1,4 +1,10 @@
 FROM openjdk:latest
-COPY ./target/classes/com /tmp/com
+
+# Copy the correct JAR file
+COPY ./target/population-reporting-system-0.1.0.1-jar-with-dependencies.jar /tmp
+
+# Set the working directory
 WORKDIR /tmp
-ENTRYPOINT ["java", "com.napier.sem.App"]
+
+# Run the JAR file
+ENTRYPOINT ["java", "-jar", "population-reporting-system-0.1.0.1-jar-with-dependencies.jar"]
