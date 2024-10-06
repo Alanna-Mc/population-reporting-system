@@ -12,5 +12,4 @@ COPY world.sql /docker-entrypoint-initdb.d/
 # This is specific to MySQL.
 COPY world.sql /docker-entrypoint-initdb.d
 
-# Set the root password
-#ENV MYSQL_ROOT_PASSWORD=my-secret-pw
+
