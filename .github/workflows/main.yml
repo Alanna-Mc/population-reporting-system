@@ -21,5 +21,3 @@ jobs:
       - name: Run Docker Compose
         run: docker compose up --abort-on-container-exit
 
-      - name: View Logs
-        run: docker compose logs
