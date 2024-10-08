@@ -19,7 +19,7 @@ public class App
 
         // Connection to the database
         Connection con = null;
-        int retries = 100;
+        int retries = 10;
         for (int i = 0; i < retries; ++i)
         {
             System.out.println("Connecting to database...");
@@ -58,5 +58,7 @@ public class App
                 System.out.println("Error closing connection to database");
             }
         }
+
+        System.exit(0);  // Exit after execution
     }
 }
