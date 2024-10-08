@@ -1,0 +1,30 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+User as User
+
+rectangle "HR System" {
+
+usecase UC1 as "Use Case 1"
+usecase UC2 as "Use Case 2"
+usecase UC3 as "Use Case 3"
+usecase UC4 as "Use Case 4"
+usecase UC5 as "Use Case 5"
+usecase UC6 as "Use Case 6"
+usecase UC7 as "Use Case 7"
+usecase UC8 as "Use Case 8"
+usecase UC9 as "Use Case 9"
+
+note right of UC1 : Report on the countries in chosen area \n(World, Continent or Region), \nsorted by population from largest to \nsmallest, is produced.
+note right of UC2 : As an analyst I want to produce on the \ntop N populated countries in \nthe selected area (World, Continent or Region), \nwith N being supplied by me, so that the countries \nwith the highest populations can be examined.
+
+
+
+User ..> UC1
+User ..> UC2
+}
+
+
+
+
+
+@enduml
