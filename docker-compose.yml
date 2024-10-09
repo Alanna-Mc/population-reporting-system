@@ -1,19 +1,11 @@
 version: '3'
 services:
-  # Application Dockerfile is in same folder which is .
+  # Build the application container using the Dockerfile in the same directory
   app:
     build: .
 
-  # db is in db folder
+  # Build the database container using the Dockerfile in the db directory
   db:
       build: db/.
       command: --default-authentication-plugin=mysql_native_password
       restart: always
-    #image: mysql:8.3
-   # environment:
-   #   MYSQL_ROOT_PASSWORD: my-secret-pw
-   #   MYSQL_DATABASE: world
-   # volumes:
-      #  - ./db/world.sql:/docker-entrypoint-initdb.d/world.sql
-   # ports:
-    #  - "3306:3306"

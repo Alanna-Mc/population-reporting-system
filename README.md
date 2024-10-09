@@ -5,7 +5,17 @@ This project aims to design and implement a system that allows easy access to po
 
 ## Table of Contents
 
+- [Project Overview](#project-overview)
 - [Technologies Used](#technologies-used)
+
+## Project Overview
+
+The **Population Reporting System** is designed to allow users to generate reports on population statistics from a MySQL database. 
+The system connects to the database, retrieves population data, and provides easy-to-read reports on various metrics, 
+including country, city, and language statistics. This project demonstrates the integration of Java with an SQL database, 
+using Docker for containerisation and Maven for build management.
+
+Continuous Integration (CI) workflows have been set up using GitHub Actions to ensure stable builds and testing of the project.
 
 
 ## Technologies Used
