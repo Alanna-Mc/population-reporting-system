@@ -1,10 +1,13 @@
 @startuml
 'https://plantuml.com/use-case-diagram
+'create user and database
 User as User
 Database as Database
 
+' create a rectangle that represents the application
 rectangle "System" {
 
+' creates the use case that the user interacts with
 usecase UC1 as "Use Case 1"
 usecase UC2 as "Use Case 2"
 usecase UC3 as "Use Case 3"
@@ -15,6 +18,7 @@ usecase UC7 as "Use Case 7"
 usecase UC8 as "Use Case 8"
 usecase UC9 as "Use Case 9"
 
+' explains the use cases in note format
 note right of UC1 : Report on the countries in chosen area \n(World, Continent or Region), \nsorted by population from largest to \nsmallest, is produced.
 note right of UC2 : As an analyst I want to produce on the \ntop N populated countries in \nthe selected area (World, Continent or Region), \nwith N being supplied by me, so that the countries \nwith the highest populations can be examined.
 note right of UC3 : As an analyst I want to produce a \nreport on all cities in a chosen area \n(World, Continent, Region, Country, District), \nsorted by population from largest to smallest, \nso that future office locations can be examined
@@ -25,7 +29,7 @@ note right of UC7 : As an analyst I want to produce \na report detailing the pop
 note right of UC8 : As an analyst I want to produce \na report detailing the total population of a selected \narea (World, Continent, Region, Country, District or City) \nso this information can be passed to \nthe relevant people when requested.
 note right of UC9 : As an analyst I want to produce \na report that details the number of people \n(including the percentage of global population they represent) \nthat speak Chinese, English, Hindi, Spanish and Arabic from \nlargest to smallest so that these statistics can be \nanalysed for marketing purposes.
 
-
+' connects the user to the use cases
 User --> UC1
 User --> UC2
 User --> UC3
@@ -35,6 +39,7 @@ User --> UC6
 User --> UC7
 User --> UC8
 User --> UC9
+' connects the use case to the database
 UC1 ..> Database
 UC2 ..> Database
 UC3 ..> Database
