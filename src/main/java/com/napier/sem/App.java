@@ -10,6 +10,7 @@ public class App
         {
             // Load Database driver
             Class.forName("com.mysql.cj.jdbc.Driver");
+            System.out.println("Driver loaded successfully");
         }
         catch (ClassNotFoundException e)
         {
@@ -28,7 +29,7 @@ public class App
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://population-db:3306/world?useSSL=false", "root", "my-secret-pw");
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "my-secret-pw");
                 System.out.println("Successfully connected");
                 // Wait a bit
                 Thread.sleep(10000);
@@ -52,6 +53,7 @@ public class App
             {
                 // Close connection
                 con.close();
+                System.out.println("Connection closed");
             }
             catch (Exception e)
             {
@@ -59,6 +61,5 @@ public class App
             }
         }
 
-        System.exit(0);  // Exit after execution
     }
 }
