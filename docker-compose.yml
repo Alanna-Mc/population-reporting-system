@@ -1,0 +1,11 @@
+version: '3'
+services:
+  # Build the application container using the Dockerfile in the same directory
+  app:
+    build: .
+
+  # Build the database container using the Dockerfile in the db directory
+  db:
+      build: db/.
+      command: --default-authentication-plugin=mysql_native_password
+      restart: always
