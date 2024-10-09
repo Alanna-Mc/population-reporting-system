@@ -1,8 +1,9 @@
 @startuml
 'https://plantuml.com/use-case-diagram
 User as User
+Database as Database
 
-rectangle "HR System" {
+rectangle "System" {
 
 usecase UC1 as "Use Case 1"
 usecase UC2 as "Use Case 2"
@@ -16,12 +17,36 @@ usecase UC9 as "Use Case 9"
 
 note right of UC1 : Report on the countries in chosen area \n(World, Continent or Region), \nsorted by population from largest to \nsmallest, is produced.
 note right of UC2 : As an analyst I want to produce on the \ntop N populated countries in \nthe selected area (World, Continent or Region), \nwith N being supplied by me, so that the countries \nwith the highest populations can be examined.
+note right of UC3 : As an analyst I want to produce a \nreport on all cities in a chosen area \n(World, Continent, Region, Country, District), \nsorted by population from largest to smallest, \nso that future office locations can be examined
+note right of UC4 : As an analyst I want to produce \nthe top `N` populated cities in the selected \narea (World, Continent, Region, Country or District), \nwith `N` being supplied by me, so that the \ncities with the highest populations in a given area can be examined.
+note right of UC5 : As an analyst I want to produce \na report on all capital cities in a chosen \narea (World, Continent or Region), sorted by population \nfrom largest to smallest, so that possible \nfuture markets can be explored.
+note right of UC6 : As an analyst I want to produce \non the top `N` populated capital cities in \nthe selected area (World, Continent or Region), with `N` \nbeing supplied by me, so that the capital \ncities with the highest populations in a given area can be examined.
+note right of UC7 : As an analyst I want to produce \na report detailing the population of people \nliving in cities, and those not living in cities within \na chosen area (Continent, Region or Country), \nso that urbanisation in the selected area can be examined.
+note right of UC8 : As an analyst I want to produce \na report detailing the total population of a selected \narea (World, Continent, Region, Country, District or City) \nso this information can be passed to \nthe relevant people when requested.
+note right of UC9 : As an analyst I want to produce \na report that details the number of people \n(including the percentage of global population they represent) \nthat speak Chinese, English, Hindi, Spanish and Arabic from \nlargest to smallest so that these statistics can be \nanalysed for marketing purposes.
 
 
-
-User ..> UC1
-User ..> UC2
+User --> UC1
+User --> UC2
+User --> UC3
+User --> UC4
+User --> UC5
+User --> UC6
+User --> UC7
+User --> UC8
+User --> UC9
+UC1 ..> Database
+UC2 ..> Database
+UC3 ..> Database
+UC4 ..> Database
+UC5 ..> Database
+UC6 ..> Database
+UC7 ..> Database
+UC8 ..> Database
+UC9 ..> Database
 }
+
+
 
 
 
