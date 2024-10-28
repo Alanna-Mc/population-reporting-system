@@ -1,86 +1,51 @@
 package com.napier.sem;
 
-import java.sql.*;
+import java.util.ArrayList;
 
 /**
- * The main class for connecting to and interacting with the MySQL database.
+ * Main application class.
  */
 public class App
 {
-    // Connection to MySQL database
-    private Connection con = null;
+    // Declare instance variables for App class
+    private DatabaseHandler dbHandler;
+    private ReportHandler reportsHandler;
+
 
     /**
-     * Connects to the MySQL database.
-     * This method attempts to load the MySQL driver and connect to the database.
-     * It will retry the connection if the initial attempts fail.
+     * Constructor method to create instance of App
      */
-    public void connect() {
-        try {
-            // Load MySQL driver to connect to the database
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            System.out.println("Driver loaded successfully");
-        } catch (ClassNotFoundException e) {
-            // If the driver class is not found, print error and exit the program
-            System.out.println("Could not load SQL driver");
-            System.exit(-1);
-        }
+    public App() {
+        // Initialise variables
+        dbHandler = new DatabaseHandler();
+        reportsHandler = new ReportHandler();
 
-        int retries = 30; // Number of retries to connect to the database
-        for (int i = 0; i < retries; ++i) {
-            System.out.println("Connecting to database...");
-            try {
-                // Wait for 30 seconds to give the database time to start up
-                Thread.sleep(30000);
-                // Attempt to connect to the database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "my-secret-pw");
-                System.out.println("Successfully connected");
-                // Exit the loop once connection is successful
-                break;
-            } catch (SQLException sqle) {
-                // If connection fails, print the attempt number and error message
-                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
-                System.out.println(sqle.getMessage());
-            } catch (InterruptedException ie) {
-                System.out.println("Thread interrupted? Should not happen.");
-            }
-        }
     }
-
     /**
-     * Disconnects from the MySQL database.
-     * This method closes the current database connection if it exists.
-     */
-        public void disconnect()
-    {
-        if (con != null)
-        {
-            try
-            {
-                // Close connection
-                con.close();
-                System.out.println("Connection closed");
-            }
-            catch (Exception e)
-            {
-                // Display Error
-                System.out.println("Error closing connection to database");
-            }
-        }
-    }
-
-    /**
-     *
+     * Main method to run the application.
      */
     public static void main(String[] args)
     {
-        // Create new Application
         App a = new App();
 
+        // Hardcoded user input value for N
+        int n = 10;
+        System.out.println("You selected top " + n + " countries:");
+
         // Connect to database
-        a.connect();
+        a.dbHandler.connect();
+
+        // Get the top N populated countries
+        ArrayList<Country> countries = a.dbHandler.getTopNPopulatedCountries(n);
+
+        // Display the report using ReportsHandler
+        a.reportsHandler.displayTopCountries(countries, n);
+
+        // Line break
+        System.out.println("/n");
 
         // Disconnect from database
-        a.disconnect();
+        a.dbHandler.disconnect();
+
     }
 }
