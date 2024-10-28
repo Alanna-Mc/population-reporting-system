@@ -19,9 +19,12 @@ public class ReportHandler {
         }
 
         System.out.println("Top " + n + " Populated Countries:");
-        System.out.println("Name |Population");
+        System.out.println("Name | Population");
 
         for (Country country : countries) {
+            if (country == null) {
+                continue;
+            }
             System.out.println(
                     country.name + " | " +
                     country.population
