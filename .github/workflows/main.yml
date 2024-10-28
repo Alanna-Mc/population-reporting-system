@@ -20,11 +20,12 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
 
-      # Step 3: Build the project using Maven
-      - name: Build with Maven
-        run: mvn package
+      # Step 3: Run unit tests
+      - name: Run Unit Tests
+        run: mvn -Dtest=com.napier.sem.AppTest test
 
-      # Step 4: Run Docker Compose to build and start containers
+      # Step 4: Package the project and run docker compose
       - name: Run Docker Compose
         run: |
+          mvn package -DskipTests
           docker compose up --abort-on-container-exit
