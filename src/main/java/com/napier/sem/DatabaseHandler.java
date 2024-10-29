@@ -65,6 +65,46 @@ public class DatabaseHandler {
     }
 
     /**
+     * Get all the countries in the world, ordered by population
+     * @return An ArrayList of Country objects ordered by largest to smallest population
+     */
+    public ArrayList<Country> getAllCountries() {
+        return getCountries(
+                "SELECT Code, Name, Continent, Region, Population, Capital " +
+                        "FROM country " +
+                        "ORDER BY Population DESC"
+        );
+    }
+
+    /**
+     * Get all the countries in given continent
+     * @param continent to filter the countries by
+     * @return An ArrayList of Country objects ordered by largest to smallest population
+     */
+    public ArrayList<Country> getAllCountriesInContinent(String continent) {
+        return getCountries(
+                "SELECT Code, Name, Continent, Region, Population, Capital " +
+                        "FROM country " +
+                        "WHERE Continent = '" + continent + "' " +
+                        "ORDER BY Population DESC"
+        );
+    }
+
+    /**
+     * Get all countries in given region
+     * @param region to filter countries by
+     * @return An ArrayList of Country objects ordered by largest to smallest population
+     */
+    public ArrayList<Country> getAllCountriesInRegion(String region) {
+        return getCountries(
+                "SELECT Code, Name, Continent, Region, Population, Capital " +
+                        "FROM country " +
+                        "WHERE Region = '" + region + "' " +
+                        "ORDER BY Population DESC"
+        );
+    }
+
+    /**
      * Get the top N populated countries globally.
      * @param n The number of top populated countries to retrieve.
      * @return An ArrayList of Country objects representing the top N populated countries globally.
