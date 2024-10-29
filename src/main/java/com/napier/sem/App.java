@@ -32,7 +32,7 @@ public class App
         a.dbHandler.connect();
 
         // Hard coded values
-        int n = 3;
+        int n = 10;
         String continent = "Europe";
         String region = "Eastern Europe";
 
