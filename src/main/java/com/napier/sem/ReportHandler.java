@@ -17,17 +17,17 @@ public class ReportHandler {
             System.out.println("No data available.");
             return;
         }
-
-        System.out.println("Top " + n + " Populated Countries:");
-        System.out.println("Name | Population");
+        System.out.println("Code | Name | Continent | Region | Population | Capital");
 
         for (Country country : countries) {
-            if (country == null) {
-                continue;
-            }
+            if (country == null) continue;
             System.out.println(
+                    country.code + " | " +
                     country.name + " | " +
-                    country.population
+                    country.continent + " | " +
+                    country.region + " | " +
+                    country.population + " | " +
+                    (country.capital != null ? country.capital : "N/A")
             );
         }
     }

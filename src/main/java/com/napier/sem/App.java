@@ -28,21 +28,34 @@ public class App
     {
         App a = new App();
 
-        // Hardcoded user input value for N
-        int n = 10;
-        System.out.println("You selected top " + n + " countries:");
-
         // Connect to database
         a.dbHandler.connect();
 
+        // Hard coded values
+        int n = 10;
+        String continent = "Europe";
+        String region = "Eastern Europe";
+
+
+        // Get the top N populated countries: globally, by continent and by region
+        ArrayList<Country> globalCountries = a.dbHandler.getTopNPopulatedCountries(n);
+
+        ArrayList<Country> continentCountries = a.dbHandler.getTopNPopulatedCountriesInContinent(n, continent);
+
+        ArrayList<Country> regionCountries = a.dbHandler.getTopNPopulatedCountriesInRegion(n, region);
+
+        // Display each report
         // Get the top N populated countries
-        ArrayList<Country> countries = a.dbHandler.getTopNPopulatedCountries(n);
+        System.out.println("\nTop " + n + " Countries Globally:");
+        a.reportsHandler.displayTopCountries(globalCountries, n);
 
-        // Display the report using ReportsHandler
-        a.reportsHandler.displayTopCountries(countries, n);
+        // Get the top N populated countries by continent
+        System.out.println("\nTop " + n + " Countries in " + continent + ":");
+        a.reportsHandler.displayTopCountries(continentCountries, n);
 
-        // Line break
-        System.out.println("/n");
+        // Get the top N populated countries by region
+        System.out.println("\nTop " + n + " Countries in " + region + ":");
+        a.reportsHandler.displayTopCountries(regionCountries, n);
 
         // Disconnect from database
         a.dbHandler.disconnect();

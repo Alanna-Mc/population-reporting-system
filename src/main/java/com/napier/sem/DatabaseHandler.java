@@ -64,49 +64,79 @@ public class DatabaseHandler {
         }
     }
 
+    /**
+     * Get the top N populated countries globally.
+     * @param n The number of top populated countries to retrieve.
+     * @return An ArrayList of Country objects representing the top N populated countries globally.
+     */
+    public ArrayList<Country> getTopNPopulatedCountries(int n) {
+        return getCountries(
+                "SELECT Code, Name, Continent, Region, Population, Capital " +
+                "FROM country " +
+                "ORDER BY Population DESC " +
+                "LIMIT " + n
+        );
+    }
 
-/**
- * Method to get the top N populated countries from the database.
- * @param n The number of top populated countries to retrieve.
- * @return A list of top N populated countries.
- */
-        public ArrayList<Country> getTopNPopulatedCountries(int n)
-        {
-            try {
-                // Create an SQL statement
-                Statement stmt = con.createStatement();
+    /**
+     * Get the top N populated countries in a chosen continent.
+     * @param n The number of top populated countries to retrieve.
+     * @param continent The continent to filter countries by.
+     * @return An ArrayList of Country objects representing the top N populated countries in the specified continent.
+     */
+    public ArrayList<Country> getTopNPopulatedCountriesInContinent(int n, String continent) {
+        return getCountries(
+                "SELECT Code, Name, Continent, Region, Population, Capital " +
+                "FROM country " +
+                "WHERE Continent = '" + continent + "' " +
+                "ORDER BY Population DESC " +
+                "LIMIT " + n
+        );
+    }
 
-                // Create the SQL query to get the top N populated countries
-                String strSelect =
-                        "SELECT Name, Population " +
-                                "FROM country " +
-                                "ORDER BY Population DESC " +
-                                "LIMIT " + n; // Maximum number of records to return
+    /**
+     * Get the top N populated countries in a chosen region.
+     * @param n The number of top populated countries to retrieve.
+     * @param region The region to filter countries by.
+     * @return An ArrayList of Country objects representing the top N populated countries in the specified region.
+     */
+    public ArrayList<Country> getTopNPopulatedCountriesInRegion(int n, String region) {
+        return getCountries(
+                "SELECT Code, Name, Continent, Region, Population, Capital " +
+                "FROM country " +
+                "WHERE Region = '" + region + "' " +
+                "ORDER BY Population DESC " +
+                "LIMIT " + n
+        );
+    }
 
-                // Execute the SQL query
-                ResultSet rset = stmt.executeQuery(strSelect);
+    /**
+     * Helper function to execute country queries and return results.
+     * @param query The SQL query to execute for retrieving countries.
+     * @return An ArrayList of Country objects based on the executed query.
+     */
+    private ArrayList<Country> getCountries(String query) {
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rset = stmt.executeQuery(query);
+            ArrayList<Country> countries = new ArrayList<>();
 
-                // Create a list to store the result
-                ArrayList<Country> countries = new ArrayList<>();
-
-                // Loop through the result set
-                while (rset.next()) {
-                    // Create a new Country object for each record
-                    Country country = new Country();
-                    country.name = rset.getString("Name");
-                    country.population = rset.getInt("Population");
-
-                    // Add the country to the list
-                    countries.add(country);
-                }
-
-                // Return the list of countries
-                return countries;
-
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                System.out.println("Failed to get top N populated countries.");
-                return null;
+            while (rset.next()) {
+                Country country = new Country();
+                country.code = rset.getString("Code");
+                country.name = rset.getString("Name");
+                country.continent = rset.getString("Continent");
+                country.region = rset.getString("Region");
+                country.population = rset.getInt("Population");
+                country.capital = rset.getInt("Capital");
+                countries.add(country);
             }
+            return countries;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to retrieve countries.");
+            return null;
         }
     }
+
+}

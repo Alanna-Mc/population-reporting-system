@@ -6,6 +6,11 @@ package com.napier.sem;
 public class Country
 {
     /**
+     * Country code
+     */
+    public String code;
+
+    /**
      * Country name
      */
     public String name;
