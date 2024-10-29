@@ -10,9 +10,8 @@ public class ReportHandler {
     /**
      * Displays the top N populated countries.
      * @param countries A list of Country objects representing the top N populated countries.
-     * @param n The number of top countries to display.
      */
-    public void displayTopCountries(ArrayList<Country> countries, int n) {
+    public void displayCountries(ArrayList<Country> countries) {
         if (countries == null || countries.isEmpty()) {
             System.out.println("No data available.");
             return;

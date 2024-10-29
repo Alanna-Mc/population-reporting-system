@@ -18,14 +18,14 @@ class AppTest
         @Test
         void displayTopCountriesTestNull() {
             // Test handling of null input
-            reportHandler.displayTopCountries(null, 10);
+            reportHandler.displayCountries(null);
         }
 
         // Country list is Empty
         @Test
         void displayTopCountriesTestEmpty() {
             ArrayList<Country> countries = new ArrayList<>();
-            reportHandler.displayTopCountries(countries, 10);
+            reportHandler.displayCountries(countries);
         }
 
         // Country Contains null
@@ -33,7 +33,7 @@ class AppTest
         void displayTopCountriesTestContainsNull() {
             ArrayList<Country> countries = new ArrayList<>();
             countries.add(null);
-            reportHandler.displayTopCountries(countries, 10);
+            reportHandler.displayCountries(countries);
         }
 
         // Country Contains All Non-null
@@ -61,6 +61,6 @@ class AppTest
             countries.add(country1);
             countries.add(country2);
 
-            reportHandler.displayTopCountries(countries, 2);
+            reportHandler.displayCountries(countries);
         }
 }
