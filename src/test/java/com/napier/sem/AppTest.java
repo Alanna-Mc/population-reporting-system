@@ -17,42 +17,50 @@ class AppTest
         // Country is null
         @Test
         void displayTopCountriesTestNull() {
-        // Test handling of null input
-        reportHandler.displayTopCountries(null, 10);
-    }
+            // Test handling of null input
+            reportHandler.displayTopCountries(null, 10);
+        }
 
         // Country list is Empty
         @Test
         void displayTopCountriesTestEmpty() {
-        ArrayList<Country> countries = new ArrayList<>();
-        reportHandler.displayTopCountries(countries, 10);
-
-    }
+            ArrayList<Country> countries = new ArrayList<>();
+            reportHandler.displayTopCountries(countries, 10);
+        }
 
         // Country Contains null
         @Test
         void displayTopCountriesTestContainsNull() {
-        ArrayList<Country> countries = new ArrayList<>();
-        countries.add(null);
-        reportHandler.displayTopCountries(countries, 10);
-    }
+            ArrayList<Country> countries = new ArrayList<>();
+            countries.add(null);
+            reportHandler.displayTopCountries(countries, 10);
+        }
 
         // Country Contains All Non-null
         @Test
         void displayTopCountriesTestNormal() {
-        ArrayList<Country> countries = new ArrayList<>();
-        // Create data
-        Country country1 = new Country();
-        country1.name = "A_Country";
-        country1.population = 1000000;
-        Country country2 = new Country();
-        country2.name = "Another_Country";
-        country2.population = 800000;
+            ArrayList<Country> countries = new ArrayList<>();
+            // Create data
+            Country country1 = new Country();
+            country1.code = "ABC";
+            country1.name = "A_Country";
+            country1.population = 1000000;
+            country1.continent = "A_Continent";
+            country1.capital = 1;
+            country1.region = "A_Region";
 
-        // Add to list
-        countries.add(country1);
-        countries.add(country2);
+            Country country2 = new Country();
+            country2.code = "DEF";
+            country2.name = "Another_Country";
+            country2.population = 800000;
+            country2.continent = "Another_Continent";
+            country2.capital = 11;
+            country2.region = "Another_Region";
 
-        reportHandler.displayTopCountries(countries, 2);
-    }
+            // Add to list
+            countries.add(country1);
+            countries.add(country2);
+
+            reportHandler.displayTopCountries(countries, 2);
+        }
 }

@@ -37,7 +37,7 @@ public class App
         String region = "Eastern Europe";
 
 
-        // Get the top N populated countries: globally, by continent and by region
+        // Get the top N populated countries: globally and by selected continent and region
         ArrayList<Country> globalCountries = a.dbHandler.getTopNPopulatedCountries(n);
 
         ArrayList<Country> continentCountries = a.dbHandler.getTopNPopulatedCountriesInContinent(n, continent);
