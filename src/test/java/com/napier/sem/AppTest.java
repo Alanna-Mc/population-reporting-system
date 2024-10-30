@@ -46,7 +46,7 @@ class AppTest
             country1.name = "A_Country";
             country1.population = 1000000;
             country1.continent = "A_Continent";
-            country1.capital = 1;
+            country1.capital = "Capital 1";
             country1.region = "A_Region";
 
             Country country2 = new Country();
@@ -54,7 +54,7 @@ class AppTest
             country2.name = "Another_Country";
             country2.population = 800000;
             country2.continent = "Another_Continent";
-            country2.capital = 11;
+            country2.capital = "Capital 2";
             country2.region = "Another_Region";
 
             // Add to list

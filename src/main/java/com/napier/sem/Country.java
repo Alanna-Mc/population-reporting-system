@@ -33,5 +33,5 @@ public class Country
     /**
      * Country capital
      */
-    public Integer capital;
+    public String capital;
 }

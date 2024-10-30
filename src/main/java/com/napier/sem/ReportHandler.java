@@ -16,12 +16,12 @@ public class ReportHandler {
             System.out.println("No data available.");
             return;
         }
-        System.out.printf("%-4s %-45s %-15s %-30s %-12s %-36s%n", "Code", "Name", "Continent", "Region", "Population", "Capital");
+        System.out.printf("%-5s %-45s %-15s %-30s %-12s %-30s%n", "Code", "Name", "Continent", "Region", "Population", "Capital");
 
         for (Country country : countries) {
             if (country == null) continue;
             String country_string =
-                    String.format("%-4s %-45s %-15s %-30s %-12s %-36s",
+                    String.format("%-5s %-45s %-15s %-30s %-12s %-30s",
                             country.code, country.name, country.continent, country.region, country.population, country.capital);
             System.out.println(country_string);
 

@@ -70,9 +70,11 @@ public class DatabaseHandler {
      */
     public ArrayList<Country> getAllCountries() {
         return getCountries(
-                "SELECT Code, Name, Continent, Region, Population, Capital " +
+                "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name AS Capital " +
                         "FROM country " +
+                        "INNER JOIN city ON country.Capital = city.ID WHERE country.capital IS NOT NULL " +
                         "ORDER BY Population DESC"
+
         );
     }
 
@@ -83,8 +85,9 @@ public class DatabaseHandler {
      */
     public ArrayList<Country> getAllCountriesInContinent(String continent) {
         return getCountries(
-                "SELECT Code, Name, Continent, Region, Population, Capital " +
+                "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name AS Capital " +
                         "FROM country " +
+                        "INNER JOIN city ON country.Capital = city.ID " +
                         "WHERE Continent = '" + continent + "' " +
                         "ORDER BY Population DESC"
         );
@@ -97,8 +100,9 @@ public class DatabaseHandler {
      */
     public ArrayList<Country> getAllCountriesInRegion(String region) {
         return getCountries(
-                "SELECT Code, Name, Continent, Region, Population, Capital " +
+                "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name AS Capital " +
                         "FROM country " +
+                        "INNER JOIN city ON country.Capital = city.ID " +
                         "WHERE Region = '" + region + "' " +
                         "ORDER BY Population DESC"
         );
@@ -111,8 +115,9 @@ public class DatabaseHandler {
      */
     public ArrayList<Country> getTopNPopulatedCountries(int n) {
         return getCountries(
-                "SELECT Code, Name, Continent, Region, Population, Capital " +
+                "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name AS Capital " +
                 "FROM country " +
+                        "INNER JOIN city ON country.Capital = city.ID " +
                 "ORDER BY Population DESC " +
                 "LIMIT " + n
         );
@@ -126,8 +131,9 @@ public class DatabaseHandler {
      */
     public ArrayList<Country> getTopNPopulatedCountriesInContinent(int n, String continent) {
         return getCountries(
-                "SELECT Code, Name, Continent, Region, Population, Capital " +
+                "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name AS Capital " +
                 "FROM country " +
+                        "INNER JOIN city ON country.Capital = city.ID " +
                 "WHERE Continent = '" + continent + "' " +
                 "ORDER BY Population DESC " +
                 "LIMIT " + n
@@ -142,8 +148,9 @@ public class DatabaseHandler {
      */
     public ArrayList<Country> getTopNPopulatedCountriesInRegion(int n, String region) {
         return getCountries(
-                "SELECT Code, Name, Continent, Region, Population, Capital " +
+                "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name AS Capital " +
                 "FROM country " +
+                        "INNER JOIN city ON country.Capital = city.ID " +
                 "WHERE Region = '" + region + "' " +
                 "ORDER BY Population DESC " +
                 "LIMIT " + n
@@ -168,7 +175,7 @@ public class DatabaseHandler {
                 country.continent = rset.getString("Continent");
                 country.region = rset.getString("Region");
                 country.population = rset.getInt("Population");
-                country.capital = rset.getInt("Capital");
+                country.capital = rset.getString("Capital");
                 countries.add(country);
             }
             return countries;
