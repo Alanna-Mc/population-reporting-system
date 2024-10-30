@@ -72,7 +72,7 @@ public class DatabaseHandler {
         return getCountries(
                 "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name AS Capital " +
                         "FROM country " +
-                        "INNER JOIN city ON country.Capital = city.ID WHERE country.capital " +
+                        "INNER JOIN city ON country.Capital = city.ID " +
                         "ORDER BY Population DESC"
 
         );
