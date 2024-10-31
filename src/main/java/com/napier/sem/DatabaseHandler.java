@@ -7,6 +7,8 @@ import java.util.ArrayList;
  * Class for managing database connections and SQL statement.
  */
 public class DatabaseHandler {
+
+    //region <DATABASE CONNECTION REGION>
     // Connection to MySQL database
     private Connection con = null;
 
@@ -63,7 +65,9 @@ public class DatabaseHandler {
             }
         }
     }
+    //endregion
 
+    //region <COUNTRY REPORTS REGION>
     /**
      * Get all the countries in the world, ordered by population
      * @return An ArrayList of Country objects ordered by largest to smallest population
@@ -74,7 +78,6 @@ public class DatabaseHandler {
                         "FROM country " +
                         "INNER JOIN city ON country.Capital = city.ID " +
                         "ORDER BY Population DESC"
-
         );
     }
 
@@ -185,5 +188,5 @@ public class DatabaseHandler {
             return null;
         }
     }
-
+    //endregion
 }

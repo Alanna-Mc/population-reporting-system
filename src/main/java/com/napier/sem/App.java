@@ -19,7 +19,6 @@ public class App
         // Initialise variables
         dbHandler = new DatabaseHandler();
         reportsHandler = new ReportHandler();
-
     }
     /**
      * Main method to run the application.
