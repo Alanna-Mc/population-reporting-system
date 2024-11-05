@@ -200,7 +200,7 @@ public class DatabaseHandler {
         return getCities(
                 "SELECT city.Name, city.CountryCode, city.District, city.Population" +
                         "FROM city" +
-                        "ORDER BY Population DESC"
+                        "ORDER BY city.Population DESC"
         );
     }
 
@@ -213,9 +213,9 @@ public class DatabaseHandler {
         return getCities(
                 "SELECT city.Name, city.CountryCode, city.District, city.Population" +
                         "FROM city" +
-                        "INNER JOIN city ON country.Code = city.CountryCode " +
-                        "WHERE Continent = '" + continent + "' " +
-                        "ORDER BY Population DESC"
+                        "INNER JOIN Country ON country.Code = city.CountryCode" +
+                        "WHERE Continent = '" + continent + "'" +
+                        "ORDER BY city.Population DESC"
         );
     }
 
@@ -228,9 +228,9 @@ public class DatabaseHandler {
         return getCities(
                 "SELECT city.Name, city.CountryCode, city.District, city.Population" +
                         "FROM city" +
-                        "INNER JOIN city ON country.Code = city.CountryCode " +
-                        "WHERE region = '" + region + "' " +
-                        "ORDER BY Population DESC"
+                        "INNER JOIN Country ON country.Code = city.CountryCode" +
+                        "WHERE region = '" + region + "'" +
+                        "ORDER BY city.Population DESC"
         );
     }
 
@@ -243,8 +243,8 @@ public class DatabaseHandler {
         return getCities(
                 "SELECT city.Name, city.CountryCode, city.District, city.Population" +
                         "FROM city" +
-                        "WHERE district = '" + district + "' " +
-                        "ORDER BY Population DESC"
+                        "WHERE district = '" + district + "'" +
+                        "ORDER BY city.Population DESC"
         );
     }
 
@@ -258,7 +258,7 @@ public class DatabaseHandler {
                 "SELECT city.Name, city.CountryCode, city.District, city.Population" +
                         "FROM city" +
                         "WHERE country = '" + country + "' " +
-                        "ORDER BY Population DESC"
+                        "ORDER BY city.Population DESC"
         );
     }
 
@@ -275,10 +275,10 @@ public class DatabaseHandler {
 
             while (rset.next()) {
                 City city = new City();
-                City.name = rset.getString("Name");
-                City.country = rset.getString("CountryCode");
-                City.district = rset.getString("District");
-                City.population = rset.getInt("Population");
+                city.name = rset.getString("Name");
+                city.country = rset.getString("CountryCode");
+                city.district = rset.getString("District");
+                city.population = rset.getInt("Population");
                 cities.add(city);
             }
             return cities;

@@ -3,34 +3,35 @@ package com.napier.sem;
 /**
  * Represents a City
  */
-public class City {
+public class City
+{
     /**
      * City Name
      */
-    public static String name;
+    public String name;
 
     /**
      * City Country
      */
-    public static String country;
+    public String country;
 
     /**
      * City District
      */
-    public static String district;
+    public String district;
 
     /**
      * City population
      */
-    public static int population;
+    public int population;
 
     /**
      * City continent
      */
-    public static String continent;
+    public String continent;
 
     /**
      * City region
      */
-    public static String region;
+    public String region;
 }
