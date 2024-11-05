@@ -64,18 +64,21 @@ class AppTest
             reportHandler.displayCountries(countries);
         }
 
+        //City is null
         @Test
         void displayCitiesTestNull() {
             // Test handling of null input
             reportHandler.displayCities(null);
         }
 
+        //City list in empty
         @Test
         void displayCitiesTestEmpty() {
             ArrayList<City> city = new ArrayList<>();
             reportHandler.displayCities(city);
         }
 
+        // City Contains null
         @Test
         void displayCitiesTestContainsNull() {
             ArrayList<City> city = new ArrayList<>();
@@ -83,6 +86,7 @@ class AppTest
             reportHandler.displayCities(city);
         }
 
+        // City Contains All Non-null
         @Test
         void displayCitiesTestNormal() {
             ArrayList<City> cities = new ArrayList<>();

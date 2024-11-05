@@ -192,6 +192,10 @@ public class DatabaseHandler {
     //endregion
 
     //region <CITY REPORT REGION>
+    /**
+     * Get all the cities in the world, ordered by population
+     * @return An ArrayList of Country objects ordered by largest to smallest population
+     */
     public ArrayList<City> getAllCites() {
         return getCities(
                 "SELECT city.Name, city.CountryCode, city.District, city.Population" +
@@ -200,6 +204,11 @@ public class DatabaseHandler {
         );
     }
 
+    /**
+     * get all cities a continent, ordered by population
+     * @param continent to filter city by
+     * @return An ArrayList of City objects ordered by largest to smallest population
+     */
     public ArrayList<City> getAllCityInContinent(String continent) {
         return getCities(
                 "SELECT city.Name, city.CountryCode, city.District, city.Population" +
@@ -210,6 +219,11 @@ public class DatabaseHandler {
         );
     }
 
+    /**
+     * get all cities a continent, ordered by population
+     * @param region to filter city by
+     * @return An ArrayList of City objects ordered by largest to smallest population
+     */
     public ArrayList<City> getAllCityInRegion(String region) {
         return getCities(
                 "SELECT city.Name, city.CountryCode, city.District, city.Population" +
@@ -220,6 +234,11 @@ public class DatabaseHandler {
         );
     }
 
+    /**
+     * get all cities a continent, ordered by population
+     * @param district to filter city by
+     * @return An ArrayList of City objects ordered by largest to smallest population
+     */
     public ArrayList<City> getAllCityInDistrict(String district) {
         return getCities(
                 "SELECT city.Name, city.CountryCode, city.District, city.Population" +
@@ -229,6 +248,11 @@ public class DatabaseHandler {
         );
     }
 
+    /**
+     * get all cities a continent, ordered by population
+     * @param country to filter city by
+     * @return An ArrayList of City objects ordered by largest to smallest population
+     */
     public ArrayList<City> getAllCityInCountry(String country) {
         return getCities(
                 "SELECT city.Name, city.CountryCode, city.District, city.Population" +
@@ -238,7 +262,11 @@ public class DatabaseHandler {
         );
     }
 
-
+    /**
+     * function to execute city queries and return results.
+     * @param query The SQL query to execute for retrieving Cities.
+     * @return An ArrayList of City objects based on the executed query.
+     */
     private ArrayList<City> getCities(String query) {
         try {
             Statement stmt = con.createStatement();
@@ -248,7 +276,7 @@ public class DatabaseHandler {
             while (rset.next()) {
                 City city = new City();
                 City.name = rset.getString("Name");
-                City.country = rset.getString("Name");
+                City.country = rset.getString("CountryCode");
                 City.district = rset.getString("District");
                 City.population = rset.getInt("Population");
                 cities.add(city);
