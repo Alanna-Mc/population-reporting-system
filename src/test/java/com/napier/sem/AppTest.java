@@ -63,4 +63,50 @@ class AppTest
 
             reportHandler.displayCountries(countries);
         }
-}
+
+        @Test
+        void displayCitiesTestNull() {
+            // Test handling of null input
+            reportHandler.displayCities(null);
+        }
+
+        @Test
+        void displayCitiesTestEmpty() {
+            ArrayList<City> city = new ArrayList<>();
+            reportHandler.displayCities(city);
+        }
+
+        @Test
+        void displayCitiesTestContainsNull() {
+            ArrayList<City> city = new ArrayList<>();
+            city.add(null);
+            reportHandler.displayCities(city);
+        }
+
+        @Test
+        void displayCitiesTestNormal() {
+            ArrayList<City> cities = new ArrayList<>();
+            // Create data
+            City City1 = new City();
+            City1.name = "A_Country";
+            City1.country = "ABC";
+            City1.district = "A_District";
+            City1.population = 1000000;
+
+            City City2 = new City();
+            City2.name = "B_Country";
+            City2.country = "DEF";
+            City2.district = "B_District";
+            City2.population = 600000;
+
+            // Add to list
+            cities.add(City1);
+            cities.add(City2);
+
+            reportHandler.displayCities(cities);
+        }
+
+
+    }
+
+

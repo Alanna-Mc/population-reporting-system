@@ -27,4 +27,21 @@ public class ReportHandler {
 
         }
     }
+
+    public void displayCities(ArrayList<City> cities) {
+        if (cities == null || cities.isEmpty()) {
+            System.out.println("No data available.");
+            return;
+        }
+        System.out.printf("%-5s %-45s %-15s %-30sn", "Name", "Country", "District", "Population");
+
+        for (City city : cities) {
+            if (city == null) continue;
+            String city_string =
+                    String.format("%-5s %-45s %-15s %-30s",
+                            City.name, City.country, City.district, City.population);
+            System.out.println(city_string);
+
+        }
+    }
 }

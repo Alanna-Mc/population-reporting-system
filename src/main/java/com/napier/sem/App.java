@@ -34,6 +34,10 @@ public class App
         int n = 10;
         String continent = "Europe";
         String region = "Eastern Europe";
+        City.continent = "North America";
+        City.region = "Western Europe";
+        String country = "USA";
+        String district = "Scotland";
 
         // Get all the countries in the world, given continent or given region
         ArrayList<Country> allGlobalCountries = a.dbHandler.getAllCountries();
@@ -69,6 +73,35 @@ public class App
         // Get the top N populated countries by region
         System.out.println("\nTop " + n + " Countries in " + region + ":");
         a.reportsHandler.displayCountries(regionCountries);
+
+
+        // Get all the Cities in the world, given continent, region, country or district
+        ArrayList<City> allGlobalCities = a.dbHandler.getAllCites();
+        ArrayList<City> allContinentCities = a.dbHandler.getAllCityInContinent(City.continent);
+        ArrayList<City> allRegionCities = a.dbHandler.getAllCityInRegion(City.region);
+        ArrayList<City> allDistrictCities = a.dbHandler.getAllCityInDistrict(district);
+        ArrayList<City> allCountryCities = a.dbHandler.getAllCityInCountry(country);
+
+        // display all the Cities in the world
+        System.out.println("\nAll Cities in the world:");
+        a.reportsHandler.displayCities(allGlobalCities);
+
+        // display all Cities  in a given continent report
+        System.out.println("\nAll Cities in " + City.continent + ":");
+        a.reportsHandler.displayCities(allContinentCities);
+
+        // display all Cities in a given region report
+        System.out.println("\nAll Cities in " + City.region + ":");
+        a.reportsHandler.displayCities(allRegionCities);
+
+        // display all Cities  in a given district report
+        System.out.println("\nAll Cities in " + district + ":");
+        a.reportsHandler.displayCities(allDistrictCities);
+
+        // display all Cities in a given country report
+        System.out.println("\nAll Cities in " + country + ":");
+        a.reportsHandler.displayCities(allCountryCities);
+
 
         // Disconnect from database
         a.dbHandler.disconnect();

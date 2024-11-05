@@ -188,5 +188,77 @@ public class DatabaseHandler {
             return null;
         }
     }
+
+    //endregion
+
+    //region <CITY REPORT REGION>
+    public ArrayList<City> getAllCites() {
+        return getCities(
+                "SELECT city.Name, city.CountryCode, city.District, city.Population" +
+                        "FROM city" +
+                        "ORDER BY Population DESC"
+        );
+    }
+
+    public ArrayList<City> getAllCityInContinent(String continent) {
+        return getCities(
+                "SELECT city.Name, city.CountryCode, city.District, city.Population" +
+                        "FROM city" +
+                        "INNER JOIN city ON country.Code = city.CountryCode " +
+                        "WHERE Continent = '" + continent + "' " +
+                        "ORDER BY Population DESC"
+        );
+    }
+
+    public ArrayList<City> getAllCityInRegion(String region) {
+        return getCities(
+                "SELECT city.Name, city.CountryCode, city.District, city.Population" +
+                        "FROM city" +
+                        "INNER JOIN city ON country.Code = city.CountryCode " +
+                        "WHERE Continent = '" + region + "' " +
+                        "ORDER BY Population DESC"
+        );
+    }
+
+    public ArrayList<City> getAllCityInDistrict(String district) {
+        return getCities(
+                "SELECT city.Name, city.CountryCode, city.District, city.Population" +
+                        "FROM city" +
+                        "WHERE Continent = '" + district + "' " +
+                        "ORDER BY Population DESC"
+        );
+    }
+
+    public ArrayList<City> getAllCityInCountry(String country) {
+        return getCities(
+                "SELECT city.Name, city.CountryCode, city.District, city.Population" +
+                        "FROM city" +
+                        "WHERE Continent = '" + country + "' " +
+                        "ORDER BY Population DESC"
+        );
+    }
+
+
+    private ArrayList<City> getCities(String query) {
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rset = stmt.executeQuery(query);
+            ArrayList<City> cities = new ArrayList<>();
+
+            while (rset.next()) {
+                City city = new City();
+                City.name = rset.getString("Name");
+                City.country = rset.getString("Name");
+                City.district = rset.getString("District");
+                City.population = rset.getInt("Population");
+                cities.add(city);
+            }
+            return cities;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to retrieve cities.");
+            return null;
+        }
+    }
     //endregion
 }
