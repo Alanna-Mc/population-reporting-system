@@ -229,7 +229,7 @@ public class DatabaseHandler {
                 "SELECT city.Name, city.CountryCode, city.District, city.Population" +
                         "FROM city" +
                         "INNER JOIN city ON country.Code = city.CountryCode " +
-                        "WHERE Continent = '" + region + "' " +
+                        "WHERE region = '" + region + "' " +
                         "ORDER BY Population DESC"
         );
     }
@@ -243,7 +243,7 @@ public class DatabaseHandler {
         return getCities(
                 "SELECT city.Name, city.CountryCode, city.District, city.Population" +
                         "FROM city" +
-                        "WHERE Continent = '" + district + "' " +
+                        "WHERE district = '" + district + "' " +
                         "ORDER BY Population DESC"
         );
     }
@@ -257,7 +257,7 @@ public class DatabaseHandler {
         return getCities(
                 "SELECT city.Name, city.CountryCode, city.District, city.Population" +
                         "FROM city" +
-                        "WHERE Continent = '" + country + "' " +
+                        "WHERE country = '" + country + "' " +
                         "ORDER BY Population DESC"
         );
     }
