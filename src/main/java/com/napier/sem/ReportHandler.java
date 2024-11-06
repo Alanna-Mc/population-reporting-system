@@ -33,13 +33,13 @@ public class ReportHandler {
             System.out.println("No data available.");
             return;
         }
-        System.out.printf("%-5s %-45s %-15s %-30sn", "Name", "Country", "District", "Population");
+        System.out.printf("%-45s %-30s %-30s %-10s%n", "Name", "Country", "District", "Population");
 
         for (City city : cities) {
             if (city == null) continue;
             String city_string =
-                    String.format("%-5s %-45s %-15s %-30s",
-                            City.name, City.country, City.district, City.population);
+                    String.format("%-45s %-30s %-30s %-10s",
+                            city.name, city.country, city.district, city.population);
             System.out.println(city_string);
 
         }

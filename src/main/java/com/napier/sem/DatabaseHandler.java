@@ -196,11 +196,11 @@ public class DatabaseHandler {
      * Get all the cities in the world, ordered by population
      * @return An ArrayList of Country objects ordered by largest to smallest population
      */
-    public ArrayList<City> getAllCites() {
+    public ArrayList<City> getAllCities() {
         return getCities(
-                "SELECT city.Name, city.CountryCode, city.District, city.Population" +
-                        "FROM city" +
-                        "ORDER BY city.Population DESC"
+                "Select Name, country.Name as Country, District, Population From city "
+                        + "Inner Join country on city.CountryCode = country.Code "
+                        + "ORDER BY city.Population DESC"
         );
     }
 
@@ -211,10 +211,9 @@ public class DatabaseHandler {
      */
     public ArrayList<City> getAllCityInContinent(String continent) {
         return getCities(
-                "SELECT city.Name, city.CountryCode, city.District, city.Population" +
-                        "FROM city" +
-                        "INNER JOIN Country ON country.Code = city.CountryCode" +
-                        "WHERE Continent = '" + continent + "'" +
+                "Select city.Name, country.Name as Country, city.District, city.Population From city " +
+                        "Inner Join country On city.CountryCode = country.Code " +
+                        "Where country.Continent = '" + continent + "' " +
                         "ORDER BY city.Population DESC"
         );
     }
@@ -226,10 +225,9 @@ public class DatabaseHandler {
      */
     public ArrayList<City> getAllCityInRegion(String region) {
         return getCities(
-                "SELECT city.Name, city.CountryCode, city.District, city.Population" +
-                        "FROM city" +
-                        "INNER JOIN Country ON country.Code = city.CountryCode" +
-                        "WHERE region = '" + region + "'" +
+                "Select city.Name, country.Name as Country, city.District, city.Population From city " +
+                        "Inner Join country ON city.countryCode = country.Code " +
+                        "Where country.Region = '" + region + "' " +
                         "ORDER BY city.Population DESC"
         );
     }
@@ -241,9 +239,9 @@ public class DatabaseHandler {
      */
     public ArrayList<City> getAllCityInDistrict(String district) {
         return getCities(
-                "SELECT city.Name, city.CountryCode, city.District, city.Population" +
-                        "FROM city" +
-                        "WHERE district = '" + district + "'" +
+                "Select city.Name, country.Name as Country, city.district, city.Population From city " +
+                        "Inner Join country ON city.CountryCode = country.Code " +
+                        "Where city.district = '" + district + "' " +
                         "ORDER BY city.Population DESC"
         );
     }
@@ -255,9 +253,9 @@ public class DatabaseHandler {
      */
     public ArrayList<City> getAllCityInCountry(String country) {
         return getCities(
-                "SELECT city.Name, city.CountryCode, city.District, city.Population" +
-                        "FROM city" +
-                        "WHERE country = '" + country + "' " +
+                "Select city.Name, country.Name as Country, city.District, city.Population From city " +
+                        "Inner Join country ON city.CountryCode = country.Code " +
+                        "Where city.CountryCode = '" + country + "' " +
                         "ORDER BY city.Population DESC"
         );
     }
@@ -276,7 +274,7 @@ public class DatabaseHandler {
             while (rset.next()) {
                 City city = new City();
                 city.name = rset.getString("Name");
-                city.country = rset.getString("CountryCode");
+                city.country = rset.getString("Country");
                 city.district = rset.getString("District");
                 city.population = rset.getInt("Population");
                 cities.add(city);

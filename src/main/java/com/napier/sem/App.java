@@ -74,7 +74,7 @@ public class App
 
 
         // Get all the Cities in the world, given continent, region, country or district
-        ArrayList<City> allGlobalCities = a.dbHandler.getAllCites();
+        ArrayList<City> allGlobalCities = a.dbHandler.getAllCities();
         ArrayList<City> allContinentCities = a.dbHandler.getAllCityInContinent(continent);
         ArrayList<City> allRegionCities = a.dbHandler.getAllCityInRegion(region);
         ArrayList<City> allDistrictCities = a.dbHandler.getAllCityInDistrict(district);
