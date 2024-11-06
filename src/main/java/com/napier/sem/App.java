@@ -37,6 +37,7 @@ public class App
         String country = "USA";
         String district = "Scotland";
 
+        //region <GENERATE COUNTRY REPORTS>
         // Get all the countries in the world, given continent or given region
         ArrayList<Country> allGlobalCountries = a.dbHandler.getAllCountries();
         ArrayList<Country> allContinentCountries = a.dbHandler.getAllCountriesInContinent(continent);
@@ -71,14 +72,21 @@ public class App
         // Get the top N populated countries by region
         System.out.println("\nTop " + n + " Countries in " + region + ":");
         a.reportsHandler.displayCountries(regionCountries);
+        //endregion
 
-
+        //region <GENERATE CITY REPORTS>
         // Get all the Cities in the world, given continent, region, country or district
         ArrayList<City> allGlobalCities = a.dbHandler.getAllCities();
         ArrayList<City> allContinentCities = a.dbHandler.getAllCityInContinent(continent);
         ArrayList<City> allRegionCities = a.dbHandler.getAllCityInRegion(region);
         ArrayList<City> allDistrictCities = a.dbHandler.getAllCityInDistrict(district);
         ArrayList<City> allCountryCities = a.dbHandler.getAllCityInCountry(country);
+
+        ArrayList<City> globalCities = a.dbHandler.getTopNPopulatedCities(n);
+        ArrayList<City> continentCities = a.dbHandler.getTopNPopulatedCitiesInContinent(n, continent);
+        ArrayList<City> regionCities = a.dbHandler.getTopNPopulatedCitiesInRegion(n, region);
+        ArrayList<City> districtCities = a.dbHandler.getTopNPopulatedCitiesInDistrict(n, district);
+        ArrayList<City> countryCities = a.dbHandler.getTopNPopulatedCitiesInCountry(n, country);
 
         // display all the Cities in the world
         System.out.println("\nAll Cities in the world:");
@@ -99,6 +107,27 @@ public class App
         // display all Cities in a given country report
         System.out.println("\nAll Cities in " + country + ":");
         a.reportsHandler.displayCities(allCountryCities);
+
+        // display Top N Cities in the world
+        System.out.println("\nTop " + n + " Cities in the world:");
+        a.reportsHandler.displayCities(globalCities);
+
+        // display Top N Cities  in a given continent report
+        System.out.println("\nTop " + n + " Cities in " + continent + ":");
+        a.reportsHandler.displayCities(continentCities);
+
+        // display Top N Cities in a given region report
+        System.out.println("\nTop " + n + " Cities in " + region + ":");
+        a.reportsHandler.displayCities(regionCities);
+
+        // display Top N Cities in a given district report
+        System.out.println("\nTop " + n + " Cities in " + district + ":");
+        a.reportsHandler.displayCities(districtCities);
+
+        // display Top N Cities in a given country report
+        System.out.println("\nTop " + n + " Cities in " + country + ":");
+        a.reportsHandler.displayCities(countryCities);
+        //endregion
 
 
         // Disconnect from database
