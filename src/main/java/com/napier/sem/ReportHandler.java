@@ -8,8 +8,8 @@ import java.util.ArrayList;
 public class ReportHandler {
 
     /**
-     * Displays the top N populated countries.
-     * @param countries A list of Country objects representing the top N populated countries.
+     * Displays countries.
+     * @param countries A list of Country objects representing countries.
      */
     public void displayCountries(ArrayList<Country> countries) {
         if (countries == null || countries.isEmpty()) {
@@ -28,6 +28,10 @@ public class ReportHandler {
         }
     }
 
+    /**
+     * Displays cities
+     * @param cities A list of City objects representing cities
+     */
     public void displayCities(ArrayList<City> cities) {
         if (cities == null || cities.isEmpty()) {
             System.out.println("No data available.");
