@@ -198,7 +198,7 @@ public class DatabaseHandler {
      */
     public ArrayList<City> getAllCities() {
         return getCities(
-                "Select Name, country.Name as Country, District, Population From city "
+                "Select city.Name, country.Name as Country, city.District, city.Population From city "
                         + "Inner Join country on city.CountryCode = country.Code "
                         + "ORDER BY city.Population DESC"
         );
