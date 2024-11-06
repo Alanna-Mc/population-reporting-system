@@ -261,6 +261,89 @@ public class DatabaseHandler {
     }
 
     /**
+     * Get the top N populated cities in the world
+     * @param n The number of top populated cities to retrieve
+     * @return An ArrayList of City objects representing the top N populated countries in the world
+     */
+    public ArrayList<City> getTopNPopulatedCities(int n) {
+        return getCities(
+                "SELECT city.Name, country.Name AS Country, city.District, city.Population " +
+                        "FROM city " +
+                        "INNER JOIN country ON city.CountryCode = country.Code " +
+                        "ORDER BY city.Population DESC " +
+                        "LIMIT " + n
+        );
+    }
+
+    /**
+     * Get the top N populated cities in a chosen continent
+     * @param n The number of top populated cities to retrieve
+     * @param continent The continent to filter countries by
+     * @return An ArrayList of City objects representing the top N populated cities in the specified continent
+     */
+    public ArrayList<City> getTopNPopulatedCitiesInContinent(int n, String continent) {
+        return getCities(
+                "SELECT city.Name, country.Name as Country, city.District, city.Population " +
+                        "FROM city " +
+                        "INNER JOIN country ON city.CountryCode = country.Code " +
+                        "WHERE country.Continent = '" + continent + "' " +
+                        "ORDER BY city.Population DESC " +
+                        "LIMIT " + n
+        );
+    }
+
+    /**
+     * Get the top N populated cities in a chosen region
+     * @param n The number of top populated cities to retrieve
+     * @param region The region to filter countries by
+     * @return An ArrayList of City objects representing the top N populated cities in the specified region
+     */
+    public ArrayList<City> getTopNPopulatedCitiesInRegion(int n, String region) {
+        return getCities(
+                "SELECT city.Name, country.Name as Country, city.District, city.Population " +
+                        "FROM city " +
+                        "INNER JOIN country ON city.CountryCode = country.Code " +
+                        "WHERE country.Region = '" + region + "' " +
+                        "ORDER BY city.Population DESC " +
+                        "LIMIT " + n
+        );
+    }
+
+    /**
+     * Get the top N populated cities in a chosen district
+     * @param n The number of top populated cities to retrieve
+     * @param district The district to filter countries by
+     * @return An ArrayList of City objects representing the top N populated cities in the specified district
+     */
+    public ArrayList<City> getTopNPopulatedCitiesInDistrict(int n, String district) {
+        return getCities(
+                "SELECT city.Name, country.Name as Country, city.District, city.Population " +
+                        "FROM city " +
+                        "INNER JOIN country ON city.CountryCode = country.Code " +
+                        "WHERE city.District = '" + district + "' " +
+                        "ORDER BY city.Population DESC " +
+                        "LIMIT " + n
+        );
+    }
+
+    /**
+     * Get the top N populated cities in a chosen country
+     * @param n The number of top populated cities to retrieve
+     * @param country The country to filter countries by
+     * @return An ArrayList of City objects representing the top N populated cities in the specified country
+     */
+    public ArrayList<City> getTopNPopulatedCitiesInCountry(int n, String country) {
+        return getCities(
+                "SELECT city.Name, country.Name as Country, city.District, city.Population " +
+                        "FROM city " +
+                        "INNER JOIN country ON city.CountryCode = country.Code " +
+                        "WHERE city.CountryCode = '" + country + "' " +
+                        "ORDER BY city.Population DESC " +
+                        "LIMIT " + n
+        );
+    }
+
+    /**
      * function to execute city queries and return results.
      * @param query The SQL query to execute for retrieving Cities.
      * @return An ArrayList of City objects based on the executed query.
