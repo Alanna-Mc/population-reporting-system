@@ -1,7 +1,7 @@
 @startuml
 'https://plantuml.com/use-case-diagram
 'create user and database
-User as User
+analyst as analyst
 Database as Database
 
 ' create a rectangle that represents the application
@@ -30,15 +30,15 @@ note right of UC8 : As an analyst I want to produce \na report detailing the tot
 note right of UC9 : As an analyst I want to produce \na report that details the number of people \n(including the percentage of global population they represent) \nthat speak Chinese, English, Hindi, Spanish and Arabic from \nlargest to smallest so that these statistics can be \nanalysed for marketing purposes.
 
 ' connects the user to the use cases
-User --> UC1
-User --> UC2
-User --> UC3
-User --> UC4
-User --> UC5
-User --> UC6
-User --> UC7
-User --> UC8
-User --> UC9
+analyst --> UC1
+analyst --> UC2
+analyst --> UC3
+analyst --> UC4
+analyst --> UC5
+analyst --> UC6
+analyst --> UC7
+analyst --> UC8
+analyst --> UC9
 ' connects the use case to the database
 UC1 ..> Database
 UC2 ..> Database
@@ -50,11 +50,5 @@ UC7 ..> Database
 UC8 ..> Database
 UC9 ..> Database
 }
-
-
-
-
-
-
 
 @enduml
