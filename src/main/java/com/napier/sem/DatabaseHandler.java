@@ -370,4 +370,78 @@ public class DatabaseHandler {
         }
     }
     //endregion
+
+    //region <CAPITAL CITY REGION>
+
+    /**
+     * Get all the capital cities in the world
+     * @return An ArrayList of Capital objects ordered by largest to smallest population
+     */
+    public ArrayList<Capital> getAllCapitalCities() {
+        return getCapitalCities(
+                "SELECT city.Name AS Name, country.Name AS Country, city.Population AS Population " +
+                        "FROM country " +
+                        "JOIN city on country.Capital = city.ID " +
+                        "ORDER BY city.Population DESC"
+        );
+    }
+
+    /**
+     * Get all the capital cities in a given continent
+     * @param continent to filter the capital cities by
+     * @return An ArrayList of Capital objects ordered by largest to smallest population
+     */
+    public ArrayList<Capital> getAllCapitalCitiesInContinent(String continent) {
+        return getCapitalCities(
+                "SELECT city.Name AS Name, country.Name AS Country, city.Population AS Population " +
+                        "FROM country " +
+                        "JOIN city on country.Capital = city.ID " +
+                        "WHERE Continent = '" + continent + "' " +
+                        "ORDER BY city.Population DESC"
+        );
+    }
+
+    /**
+     * Get all the capital cities in a given continent
+     * @param region to filter the capital cities by
+     * @return An ArrayList of Capital objects ordered by largest to smallest population
+     */
+    public ArrayList<Capital> getAllCapitalCitiesInRegion(String region) {
+        return getCapitalCities(
+                "SELECT city.Name AS Name, country.Name AS Country, city.Population AS Population " +
+                        "FROM country " +
+                        "JOIN city on country.Capital = city.ID " +
+                        "WHERE Region = '" + region + "' " +
+                        "ORDER BY city.Population DESC"
+        );
+    }
+
+    /**
+     * Helper function to execute capital city queries and return results.
+     * @param query The SQL query to execute for retrieving capital cities.
+     * @return An ArrayList of Capital objects based on the executed query.
+     */
+    private ArrayList<Capital> getCapitalCities(String query) {
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rset = stmt.executeQuery(query);
+            ArrayList<Capital> capitals = new ArrayList<>();
+
+            while (rset.next()) {
+                Capital capital = new Capital();
+                capital.name = rset.getString("Name");
+                capital.country = rset.getString("Country");
+                capital.population = rset.getInt("Population");
+
+                capitals.add(capital);
+            }
+            return capitals;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to retrieve capital cities.");
+            return null;
+        }
+    }
+
+    //endregion
 }
