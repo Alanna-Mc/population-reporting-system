@@ -131,16 +131,20 @@ public class App
 
         //region <CAPITAL CITY REPORTS>
 
+        // Get all the countries in the world, given continent or given region
         ArrayList<Capital> allGlobalCapitals = a.dbHandler.getAllCapitalCities();
         ArrayList<Capital> allContinentCapitals = a.dbHandler.getAllCapitalCitiesInContinent(continent);
         ArrayList<Capital> allRegionCapitals = a.dbHandler.getAllCapitalCitiesInRegion(region);
 
+        // Display all capital cities in the world
         System.out.println("\nAll Capitals in the world:");
         a.reportsHandler.displayCapitals(allGlobalCapitals);
 
+        // Display all capital cities in a given continent
         System.out.println("\nAll Capitals in " + continent + ":");
         a.reportsHandler.displayCapitals(allContinentCapitals);
 
+        // Display all capital cities in a given region
         System.out.println("\nAll Capitals in " + region + ":");
         a.reportsHandler.displayCapitals(allRegionCapitals);
 
