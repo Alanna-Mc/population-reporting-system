@@ -129,6 +129,22 @@ public class App
         a.reportsHandler.displayCities(countryCities);
         //endregion
 
+        //region <CAPITAL CITY REPORTS>
+
+        ArrayList<Capital> allGlobalCapitals = a.dbHandler.getAllCapitalCities();
+        ArrayList<Capital> allContinentCapitals = a.dbHandler.getAllCapitalCitiesInContinent(continent);
+        ArrayList<Capital> allRegionCapitals = a.dbHandler.getAllCapitalCitiesInRegion(region);
+
+        System.out.println("\nAll Capitals in the world:");
+        a.reportsHandler.displayCapitals(allGlobalCapitals);
+
+        System.out.println("\nAll Capitals in " + continent + ":");
+        a.reportsHandler.displayCapitals(allContinentCapitals);
+
+        System.out.println("\nAll Capitals in " + region + ":");
+        a.reportsHandler.displayCapitals(allRegionCapitals);
+
+        //endregion
 
         // Disconnect from database
         a.dbHandler.disconnect();
