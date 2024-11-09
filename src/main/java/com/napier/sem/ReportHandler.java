@@ -48,4 +48,25 @@ public class ReportHandler {
 
         }
     }
+
+    /**
+     * Display capital cities
+     * @param capitals A list of Capital objects representing capital cities
+     */
+    public void displayCapitals(ArrayList<Capital> capitals) {
+        if (capitals == null || capitals.isEmpty()) {
+            System.out.println("No data available.");
+            return;
+        }
+        System.out.printf("%-45s %-45s %-30s%n", "Name", "Country", "Population");
+
+        for (Capital capital : capitals) {
+            if (capital == null) continue;
+            String capital_string =
+                    String.format("%-45s %-45s %-30s",
+                            capital.name, capital.country, capital.population);
+            System.out.println(capital_string);
+
+        }
+    }
 }
