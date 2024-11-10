@@ -4,10 +4,10 @@
 FROM openjdk:latest
 
 # Copy the compiled JAR file from the target directory to /tmp in the container
-COPY ./target/population-reporting-system-0.1.0.2-jar-with-dependencies.jar /tmp
+COPY ./target/seMethods.jar /tmp
 
 # Set /tmp as the working directory
 WORKDIR /tmp
 
 # Run the JAR file when the container starts
-ENTRYPOINT ["java", "-jar", "population-reporting-system-0.1.0.2-jar-with-dependencies.jar"]
+ENTRYPOINT ["java", "-jar", "seMethods.jar", "db:3306", "10000"]
