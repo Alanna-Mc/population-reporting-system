@@ -37,7 +37,7 @@ public class DatabaseHandler {
                 }
 
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?useSSL=false", "root", "my-secret-pw");
+                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "my-secret-pw");
                 System.out.println("Successfully connected");
                 break;
             } catch (SQLException sqle) {
