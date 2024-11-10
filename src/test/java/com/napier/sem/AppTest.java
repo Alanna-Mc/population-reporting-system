@@ -12,7 +12,7 @@ class AppTest
         static void init() {
         // Initialise the ReportHandler instance
         reportHandler = new ReportHandler();
-    }
+        }
 
         // Country is null
         @Test
@@ -109,6 +109,49 @@ class AppTest
 
             reportHandler.displayCities(cities);
         }
+
+    @Test
+    void displayCapitalsTestNull() {
+        // Test handling of null input
+        reportHandler.displayCapitals(null);
+    }
+
+    // Capital list is Empty
+    @Test
+    void displayCapitalsTestEmpty() {
+        ArrayList<Capital> capitals = new ArrayList<>();
+        reportHandler.displayCapitals(capitals);
+    }
+
+    // Capital Contains null
+    @Test
+    void displayCapitalsTestContainsNull() {
+        ArrayList<Capital> capitals = new ArrayList<>();
+        capitals.add(null);
+        reportHandler.displayCapitals(capitals);
+    }
+
+    // Capital Contains All Non-null
+    @Test
+    void displayCapitalsTestNormal() {
+        ArrayList<Capital> capitals = new ArrayList<>();
+        // Create data
+        Capital capital1 = new Capital();
+        capital1.name = "Capital";
+        capital1.country = "Country";
+        capital1.population = 800000;
+
+        Capital capital2 = new Capital();
+        capital2.name = "Another_Capital";
+        capital2.country = "Another_Country";
+        capital2.population = 20000;
+
+        // Add to list
+        capitals.add(capital1);
+        capitals.add(capital2);
+
+        reportHandler.displayCapitals(capitals);
+    }
 
 
     }
