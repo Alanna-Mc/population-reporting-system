@@ -1,5 +1,7 @@
 name: A workflow for Population Reporting System
-on: push
+on:
+  push:
+
 jobs:
   UnitTests:
     name: Unit Tests
