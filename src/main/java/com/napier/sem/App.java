@@ -28,7 +28,11 @@ public class App
         App a = new App();
 
         // Connect to database
-        a.dbHandler.connect();
+        if (args.length < 1) {
+            a.dbHandler.connect("localhost:33060", 10000);
+        } else {
+            a.dbHandler.connect(args[0], Integer.parseInt(args[1]));
+        }
 
         // Hard coded values
         int n = 10;
