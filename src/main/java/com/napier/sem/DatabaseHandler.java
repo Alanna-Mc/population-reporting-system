@@ -17,32 +17,35 @@ public class DatabaseHandler {
      * This method attempts to load the MySQL driver and connect to the database.
      * If the connection fails it will retry the connection attempt 30 times.
      */
-    public void connect() {
+    public void connect(String location, int delay) {
         try {
-            // Load MySQL driver to connect to the database
+            // Load Database driver
             Class.forName("com.mysql.cj.jdbc.Driver");
-            System.out.println("Driver loaded successfully");
         } catch (ClassNotFoundException e) {
-            // If the driver class is not found, print error and exit the program
             System.out.println("Could not load SQL driver");
             System.exit(-1);
         }
 
-        int retries = 30; // Number of retries to connect to the database
+        int retries = 10;
+        boolean shouldWait = false;
         for (int i = 0; i < retries; ++i) {
             System.out.println("Connecting to database...");
             try {
-                // Wait for 30 seconds to give the database time to start up
-                Thread.sleep(30000);
-                // Attempt to connect to the database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "my-secret-pw");
+                if (shouldWait) {
+                    // Wait a bit for db to start
+                    Thread.sleep(delay);
+                }
+
+                // Connect to database
+                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?useSSL=false", "root", "my-secret-pw");
                 System.out.println("Successfully connected");
-                // Exit the loop once connection is successful
                 break;
             } catch (SQLException sqle) {
-                // If connection fails, print the attempt number and error message
-                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
+                System.out.println("Failed to connect to database attempt " + i);
                 System.out.println(sqle.getMessage());
+
+                // Let's wait before attempting to reconnect
+                shouldWait = true;
             } catch (InterruptedException ie) {
                 System.out.println("Thread interrupted? Should not happen.");
             }
