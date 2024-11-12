@@ -263,7 +263,7 @@ public class AppIntegrationTest
         @Test
         void getAllCapitalsInRegionTest()
         {
-            ArrayList<Capital> capitals = dbHandler.getAllCapitalCitiesInContinent("Europe");
+            ArrayList<Capital> capitals = dbHandler.getAllCapitalCitiesInRegion("Eastern Europe");
 
             assertFalse(capitals.isEmpty());
             assertNotNull(capitals.get(0).name);
