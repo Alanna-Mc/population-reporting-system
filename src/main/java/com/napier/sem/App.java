@@ -140,6 +140,10 @@ public class App
         ArrayList<Capital> allContinentCapitals = a.dbHandler.getAllCapitalCitiesInContinent(continent);
         ArrayList<Capital> allRegionCapitals = a.dbHandler.getAllCapitalCitiesInRegion(region);
 
+        ArrayList<Capital> NGlobalCapitals = a.dbHandler.getNCapitalCities(n);
+        ArrayList<Capital> NContinentCapitals = a.dbHandler.getTopNCapitalCitiesInContinent(n, continent);
+        ArrayList<Capital> NRegionCapitals = a.dbHandler.getTopNCapitalCitiesInRegion(n, region);
+
         // Display all capital cities in the world
         System.out.println("\nAll Capitals in the world:");
         a.reportsHandler.displayCapitals(allGlobalCapitals);
@@ -151,6 +155,15 @@ public class App
         // Display all capital cities in a given region
         System.out.println("\nAll Capitals in " + region + ":");
         a.reportsHandler.displayCapitals(allRegionCapitals);
+
+        System.out.println("\nTop " + n + " Capitals in the world:");
+        a.reportsHandler.displayCapitals(NGlobalCapitals);
+
+        System.out.println("\nTop " + n + " Capitals in " + continent + ":");
+        a.reportsHandler.displayCapitals(NContinentCapitals);
+
+        System.out.println("\nTop " + n + " Capitals in " + region + ":");
+        a.reportsHandler.displayCapitals(NRegionCapitals);
 
         //endregion
 
