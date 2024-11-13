@@ -42,6 +42,7 @@ public class App
         String district = "Scotland";
 
         //region <GENERATE COUNTRY REPORTS>
+
         // Get all the countries in the world, given continent or given region
         ArrayList<Country> allGlobalCountries = a.dbHandler.getAllCountries();
         ArrayList<Country> allContinentCountries = a.dbHandler.getAllCountriesInContinent(continent);
@@ -76,9 +77,11 @@ public class App
         // Get the top N populated countries by region
         System.out.println("\nTop " + n + " Countries in " + region + ":");
         a.reportsHandler.displayCountries(regionCountries);
+
         //endregion
 
         //region <GENERATE CITY REPORTS>
+
         // Get all the Cities in the world, given continent, region, country or district
         ArrayList<City> allGlobalCities = a.dbHandler.getAllCities();
         ArrayList<City> allContinentCities = a.dbHandler.getAllCityInContinent(continent);
@@ -131,15 +134,17 @@ public class App
         // display Top N Cities in a given country report
         System.out.println("\nTop " + n + " Cities in " + country + ":");
         a.reportsHandler.displayCities(countryCities);
+
         //endregion
 
         //region <CAPITAL CITY REPORTS>
 
-        // Get all the countries in the world, given continent or given region
+        // Get all the capital cities in the world, given continent or given region
         ArrayList<Capital> allGlobalCapitals = a.dbHandler.getAllCapitalCities();
         ArrayList<Capital> allContinentCapitals = a.dbHandler.getAllCapitalCitiesInContinent(continent);
         ArrayList<Capital> allRegionCapitals = a.dbHandler.getAllCapitalCitiesInRegion(region);
 
+        // Get top N capital cities in the world, given continent or region
         ArrayList<Capital> NGlobalCapitals = a.dbHandler.getNCapitalCities(n);
         ArrayList<Capital> NContinentCapitals = a.dbHandler.getTopNCapitalCitiesInContinent(n, continent);
         ArrayList<Capital> NRegionCapitals = a.dbHandler.getTopNCapitalCitiesInRegion(n, region);
@@ -156,12 +161,15 @@ public class App
         System.out.println("\nAll Capitals in " + region + ":");
         a.reportsHandler.displayCapitals(allRegionCapitals);
 
+        // Display top N capital cities in the world
         System.out.println("\nTop " + n + " Capitals in the world:");
         a.reportsHandler.displayCapitals(NGlobalCapitals);
 
+        // Display top N capital cities in given continent
         System.out.println("\nTop " + n + " Capitals in " + continent + ":");
         a.reportsHandler.displayCapitals(NContinentCapitals);
 
+        // Display top N capital cities in given region
         System.out.println("\nTop " + n + " Capitals in " + region + ":");
         a.reportsHandler.displayCapitals(NRegionCapitals);
 
