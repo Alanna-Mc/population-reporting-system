@@ -439,6 +439,17 @@ public class DatabaseHandler {
         );
     }
 
+    public ArrayList<Capital> getTopNCapitalCitiesInRegion(int n, String region) {
+        return getCapitalCities(
+                "SELECT city.Name AS Name, country.Name AS Country, city.Population AS Population " +
+                        "FROM country " +
+                        "JOIN city on country.Capital = city.ID " +
+                        "WHERE Region = '" + region + "' " +
+                        "ORDER BY city.Population DESC " +
+                        "LIMIT " + n
+        );
+    }
+
     /**
      * Helper function to execute capital city queries and return results.
      * @param query The SQL query to execute for retrieving capital cities.
