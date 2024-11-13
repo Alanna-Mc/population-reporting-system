@@ -428,6 +428,17 @@ public class DatabaseHandler {
         );
     }
 
+    public ArrayList<Capital> getTopNCapitalCitiesInContinent(int n, String continent) {
+        return getCapitalCities(
+                "SELECT city.Name AS Name, country.Name AS Country, city.Population AS Population " +
+                        "FROM country " +
+                        "JOIN city on country.Capital = city.ID " +
+                        "WHERE Continent = '" + continent + "' " +
+                        "ORDER BY city.Population DESC " +
+                        "LIMIT " + n
+        );
+    }
+
     /**
      * Helper function to execute capital city queries and return results.
      * @param query The SQL query to execute for retrieving capital cities.
