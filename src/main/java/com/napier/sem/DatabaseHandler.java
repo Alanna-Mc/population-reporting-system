@@ -418,6 +418,15 @@ public class DatabaseHandler {
                         "ORDER BY city.Population DESC"
         );
     }
+    public ArrayList<Capital> getNCapitalCities(int n) {
+        return getCapitalCities(
+                "SELECT city.Name AS Name, country.Name AS Country, city.Population AS Population " +
+                        "FROM country " +
+                        "JOIN city on country.Capital = city.ID " +
+                        "ORDER BY city.Population DESC " +
+                        "LIMIT " + n
+        );
+    }
 
     /**
      * Helper function to execute capital city queries and return results.
