@@ -96,4 +96,22 @@ public class ReportHandler {
                     country.name, country.cityPopulation, country.nonCityPopulation);
         }
     }
+
+    /**
+     * Display the calculated populations for each country.
+     */
+    public void displayContinentPopulationCityNonCity() {
+
+        // Retrieve continent population data from the database handler
+        ArrayList<Continent> continents = databaseHandler.getContinentCitiesAndNonCitiesPopulationTotals();
+
+        // Display headers for continent report
+        System.out.printf("%-45s %-15s %-15s%n", "Continent", "City Population", "Non-City Population");
+
+        // Iterate through each continent and display population data
+        for (Continent continent : continents) {
+            System.out.printf("%-45s %-15d %-15d%n",
+                    continent.name, continent.cityPopulation, continent.nonCityPopulation);
+        }
+    }
 }

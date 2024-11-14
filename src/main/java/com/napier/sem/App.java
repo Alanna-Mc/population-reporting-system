@@ -171,6 +171,8 @@ public class App
         // for each Country, Region, & Continent
         System.out.println("\nCountry city and non-city population total:");
         a.reportsHandler.displayCountryPopulationCityNonCity();
+        System.out.println("\nContinent city and non-city population total:");
+        a.reportsHandler.displayContinentPopulationCityNonCity();
 
         // Disconnect from database
         a.dbHandler.disconnect();
