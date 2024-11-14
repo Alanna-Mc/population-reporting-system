@@ -418,6 +418,12 @@ public class DatabaseHandler {
                         "ORDER BY city.Population DESC"
         );
     }
+
+    /**
+     * Get the top N capital cities in the world
+     * @param n The number of Top populated capitals to retrieve
+     * @return An ArrayList of Capital objects ordered by largest to smallest population
+     */
     public ArrayList<Capital> getNCapitalCities(int n) {
         return getCapitalCities(
                 "SELECT city.Name AS Name, country.Name AS Country, city.Population AS Population " +
@@ -428,6 +434,12 @@ public class DatabaseHandler {
         );
     }
 
+    /**
+     * Get Top N capital cities in the given continent
+     * @param n The number of Top populated capitals to retrieve
+     * @param continent the name of the continent to filter by
+     * @return An ArrayList of Capital objects ordered by largest to smallest population
+     */
     public ArrayList<Capital> getTopNCapitalCitiesInContinent(int n, String continent) {
         return getCapitalCities(
                 "SELECT city.Name AS Name, country.Name AS Country, city.Population AS Population " +
@@ -439,6 +451,12 @@ public class DatabaseHandler {
         );
     }
 
+    /**
+     * Get Top N capital cities in the given region
+     * @param n The number of Top populated capitals to retrieve
+     * @param region the name of the region to filter by
+     * @return An ArrayList of Capital objects ordered by largest to smallest population
+     */
     public ArrayList<Capital> getTopNCapitalCitiesInRegion(int n, String region) {
         return getCapitalCities(
                 "SELECT city.Name AS Name, country.Name AS Country, city.Population AS Population " +
