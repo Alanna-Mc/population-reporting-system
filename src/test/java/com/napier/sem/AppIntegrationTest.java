@@ -11,7 +11,6 @@ public class AppIntegrationTest
 {
     static App app;
     static DatabaseHandler dbHandler;
-    static ReportHandler reportHandler;
 
     /**
      *
