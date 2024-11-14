@@ -18,7 +18,7 @@ public class App
     public App() {
         // Initialise variables
         dbHandler = new DatabaseHandler();
-        reportsHandler = new ReportHandler();
+        reportsHandler = new ReportHandler(dbHandler);
     }
     /**
      * Main method to run the application.
@@ -166,6 +166,11 @@ public class App
         a.reportsHandler.displayCapitals(NRegionCapitals);
 
         //endregion
+
+        // Display the total population of people living in cities and not living in cities
+        // for each Country, Region, & Continent
+        System.out.println("\nCountry city and non-city population total:");
+        a.reportsHandler.displayCountryPopulationCityNonCity();
 
         // Disconnect from database
         a.dbHandler.disconnect();

@@ -79,7 +79,7 @@ public class DatabaseHandler {
         return getCountries(
                 "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name AS Capital " +
                         "FROM country " +
-                        "INNER JOIN city ON country.Capital = city.ID " +
+                        "LEFT JOIN city ON country.Capital = city.ID " +
                         "ORDER BY Population DESC"
         );
     }
@@ -183,6 +183,10 @@ public class DatabaseHandler {
                 country.population = rset.getInt("Population");
                 country.capital = rset.getString("Capital");
                 countries.add(country);
+
+                if (country.capital == null) {
+                    country.capital = "No capital";
+                }
             }
             return countries;
         } catch (Exception e) {
@@ -478,4 +482,37 @@ public class DatabaseHandler {
     }
 
     //endregion
+
+    /**
+     * Get the population total of people living in cities and those not living in cities for each Country.
+     * @return An ArrayList of Country objects, each containing city and non-city population totals.
+     */
+    public ArrayList<Country> getCountryCitiesAndNonCitiesPopulationTotals(){
+
+        // Get all Countries including their total populations
+        ArrayList<Country> countries = getAllCountries();
+
+        // For each iteration, country will hold one Country object from the countries list,
+        for (Country country : countries){
+            ArrayList<City> citiesInCountry = getAllCityInCountry(country.code);
+            int totalCityPopulation = 0;
+
+            // Calculate total city population for each country
+            for (City city : citiesInCountry) {
+                totalCityPopulation += city.population;
+            }
+
+            // Calculate non-city population, accounting for population inconsistencies in database
+            int nonCityPopulation = Math.max(country.population - totalCityPopulation, 0);
+
+
+            // Store the results in the country object
+            country.cityPopulation = totalCityPopulation;
+            country.nonCityPopulation = nonCityPopulation;
+        }
+
+        return countries;
+    }
+
+
 }

@@ -7,6 +7,18 @@ import java.util.ArrayList;
  */
 public class ReportHandler {
 
+    private DatabaseHandler databaseHandler = new DatabaseHandler();
+
+    // Constructors
+    // Initialise without a DatabaseHandler
+    public ReportHandler() {
+        this.databaseHandler = null;
+    }
+    // Accepts a DatabaseHandler instance
+    public ReportHandler(DatabaseHandler dbHandler) {
+        this.databaseHandler = dbHandler;
+    }
+
     /**
      * Displays countries.
      * @param countries A list of Country objects representing countries.
@@ -67,6 +79,21 @@ public class ReportHandler {
                             capital.name, capital.country, capital.population);
             System.out.println(capital_string);
 
+        }
+    }
+
+    /**
+     * Display the calculated populations for each country.
+     */
+    public void displayCountryPopulationCityNonCity() {
+
+        ArrayList<Country> countries = databaseHandler.getCountryCitiesAndNonCitiesPopulationTotals();
+
+        System.out.printf("%-45s %-15s %-15s%n", "Country", "City Population", "Non-City Population");
+
+        for (Country country : countries) {
+            System.out.printf("%-45s %-15d %-15d%n",
+                    country.name, country.cityPopulation, country.nonCityPopulation);
         }
     }
 }

@@ -34,4 +34,14 @@ public class Country
      * Country capital
      */
     public String capital;
+
+    /**
+     * Country total city population
+     */
+    public int cityPopulation;
+
+    /**
+     * Country total non-city population
+     */
+    public int nonCityPopulation;
 }
