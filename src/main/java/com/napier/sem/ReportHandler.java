@@ -82,17 +82,21 @@ public class ReportHandler {
         }
     }
 
+
     /**
      * Display the calculated populations for each country.
      */
     public void displayCountryPopulationCityNonCity() {
 
+        // Retrieve Country population data from the database handler
         ArrayList<Country> countries = databaseHandler.getCountryCitiesAndNonCitiesPopulationTotals();
 
-        System.out.printf("%-45s %-15s %-15s%n", "Country", "City Population", "Non-City Population");
+        // Display headers for continent report
+        System.out.printf("%-45s %-25s %-25s%n", "Country", "City Population", "Non-City Population");
 
+        // Iterate through each Country and display population data
         for (Country country : countries) {
-            System.out.printf("%-45s %-15d %-15d%n",
+            System.out.printf("%-45s %-25s %-25s%n",
                     country.name, country.cityPopulation, country.nonCityPopulation);
         }
     }
@@ -102,16 +106,30 @@ public class ReportHandler {
      */
     public void displayContinentPopulationCityNonCity() {
 
-        // Retrieve continent population data from the database handler
         ArrayList<Continent> continents = databaseHandler.getContinentCitiesAndNonCitiesPopulationTotals();
 
-        // Display headers for continent report
-        System.out.printf("%-45s %-15s %-15s%n", "Continent", "City Population", "Non-City Population");
+        System.out.printf("%-45s %-25s %-25s%n", "Continent", "City Population", "Non-City Population");
 
-        // Iterate through each continent and display population data
         for (Continent continent : continents) {
-            System.out.printf("%-45s %-15d %-15d%n",
+            System.out.printf("%-45s %-25s %-25s%n",
                     continent.name, continent.cityPopulation, continent.nonCityPopulation);
+        }
+    }
+
+    public void displayRegionPopulationCityNonCity() {
+
+        ArrayList<Region> regions = databaseHandler.getRegionCitiesAndNonCitiesPopulationTotals();
+
+        if (regions == null || regions.isEmpty()) {
+            System.out.println("No data available for regions.");
+            return;
+        }
+
+        System.out.printf("%-45s %-25s %-25s%n", "Region", "City Population", "Non-City Population");
+
+        for (Region region : regions) {
+            System.out.printf("%-45s %-25s %-25s%n",
+                    region.name, region.cityPopulation, region.nonCityPopulation);
         }
     }
 }

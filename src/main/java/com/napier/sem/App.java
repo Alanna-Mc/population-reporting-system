@@ -41,7 +41,8 @@ public class App
         String country = "USA";
         String district = "Scotland";
 
-        //region <GENERATE COUNTRY REPORTS>
+        // <GENERATE COUNTRY REPORTS>
+
         // Get all the countries in the world, given continent or given region
         ArrayList<Country> allGlobalCountries = a.dbHandler.getAllCountries();
         ArrayList<Country> allContinentCountries = a.dbHandler.getAllCountriesInContinent(continent);
@@ -57,7 +58,7 @@ public class App
         System.out.println("\nAll Countries in the world:");
         a.reportsHandler.displayCountries(allGlobalCountries);
 
-        // display all countries  in a given continent report
+        // display all countries in a given continent report
         System.out.println("\nAll Countries in " + continent + ":");
         a.reportsHandler.displayCountries(allContinentCountries);
 
@@ -76,9 +77,9 @@ public class App
         // Get the top N populated countries by region
         System.out.println("\nTop " + n + " Countries in " + region + ":");
         a.reportsHandler.displayCountries(regionCountries);
-        //endregion
 
-        //region <GENERATE CITY REPORTS>
+
+        //  <GENERATE CITY REPORTS>
         // Get all the Cities in the world, given continent, region, country or district
         ArrayList<City> allGlobalCities = a.dbHandler.getAllCities();
         ArrayList<City> allContinentCities = a.dbHandler.getAllCityInContinent(continent);
@@ -131,9 +132,9 @@ public class App
         // display Top N Cities in a given country report
         System.out.println("\nTop " + n + " Cities in " + country + ":");
         a.reportsHandler.displayCities(countryCities);
-        //endregion
 
-        //region <CAPITAL CITY REPORTS>
+
+        //  <CAPITAL CITY REPORTS>
 
         // Get all the countries in the world, given continent or given region
         ArrayList<Capital> allGlobalCapitals = a.dbHandler.getAllCapitalCities();
@@ -165,14 +166,20 @@ public class App
         System.out.println("\nTop " + n + " Capitals in " + region + ":");
         a.reportsHandler.displayCapitals(NRegionCapitals);
 
-        //endregion
+
+        // <POPULATION BY IN CITY & OUT CITY REPORTS>
 
         // Display the total population of people living in cities and not living in cities
         // for each Country, Region, & Continent
-        System.out.println("\nCountry city and non-city population total:");
+        System.out.println("\n\nCountry city and non-city population total:\n");
         a.reportsHandler.displayCountryPopulationCityNonCity();
-        System.out.println("\nContinent city and non-city population total:");
+
+        System.out.println("\n\nContinent city and non-city population total:\n");
         a.reportsHandler.displayContinentPopulationCityNonCity();
+
+        System.out.println("\n\nRegion city and non-city population total:\n");
+        a.reportsHandler.displayRegionPopulationCityNonCity();
+
 
         // Disconnect from database
         a.dbHandler.disconnect();

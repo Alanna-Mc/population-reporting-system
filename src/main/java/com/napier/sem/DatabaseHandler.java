@@ -557,8 +557,11 @@ public class DatabaseHandler {
                     "IFNULL(SUM(city.Population), 0) AS TotalCityPopulation " +
                     "FROM country LEFT JOIN city ON country.Code = city.CountryCode " +
                     "GROUP BY country.Code, country.Name, country.Continent, country.Population";
+
+            // Execute query and get the data
             ResultSet rset = stmt.executeQuery(query);
 
+            // Iterate over each row in the result set to process data.
             while (rset.next()) {
                 String countryCode = rset.getString("Code");
                 String countryName = rset.getString("Name");
@@ -587,6 +590,50 @@ public class DatabaseHandler {
 
         } catch (SQLException e) {
             System.out.println("Failed to retrieve continent populations: " + e.getMessage());
+            return null;
+        }
+    }
+
+
+    /**
+     * Get the population total of people living in cities and those not living in cities for each region.
+     * @return An ArrayList of Region objects, each containing city and non-city population totals.
+     */
+    public ArrayList<Region> getRegionCitiesAndNonCitiesPopulationTotals() {
+
+        // HashMap: Key - region names, Values - Region objects
+        Map<String, Region> regionMap = new HashMap<>();
+
+        try {
+            Statement stmt = con.createStatement();
+            String query = "SELECT country.Code, country.Name, country.Region, country.Population AS CountryPopulation, " +
+                    "IFNULL(SUM(city.Population), 0) AS TotalCityPopulation " +
+                    "FROM country LEFT JOIN city ON country.Code = city.CountryCode " +
+                    "GROUP BY country.Code, country.Name, country.Region, country.Population";
+
+            ResultSet rset = stmt.executeQuery(query);
+
+            while (rset.next()) {
+                String countryCode = rset.getString("Code");
+                String countryName = rset.getString("Name");
+                String regionName = rset.getString("Region");
+                long countryPopulation = rset.getLong("CountryPopulation");
+                long totalCityPopulation = rset.getLong("TotalCityPopulation");
+                long nonCityPopulation = countryPopulation - totalCityPopulation;
+
+                Region region = regionMap.getOrDefault(regionName, new Region(regionName));
+
+                region.totalPopulation += countryPopulation;
+                region.cityPopulation += totalCityPopulation;
+                region.nonCityPopulation += nonCityPopulation;
+
+                regionMap.put(regionName, region);
+            }
+
+            return new ArrayList<>(regionMap.values());
+
+        } catch (SQLException e) {
+            System.out.println("Failed to retrieve region populations: " + e.getMessage());
             return null;
         }
     }
