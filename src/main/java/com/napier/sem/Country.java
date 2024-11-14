@@ -38,10 +38,10 @@ public class Country
     /**
      * Country total city population
      */
-    public int cityPopulation;
+    public long cityPopulation;
 
     /**
      * Country total non-city population
      */
-    public int nonCityPopulation;
+    public long nonCityPopulation;
 }

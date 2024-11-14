@@ -517,10 +517,10 @@ public class DatabaseHandler {
         // Get all Countries including their total populations
         ArrayList<Country> countries = getAllCountries();
 
-        // For each iteration, country will hold one Country object from the countries list,
+        // For each iteration, country will hold one Country object from the countries list
         for (Country country : countries) {
             ArrayList<City> citiesInCountry = getAllCityInCountry(country.code);
-            int totalCityPopulation = 0;
+            long totalCityPopulation = 0;
 
             // Calculate total city population for each country
             for (City city : citiesInCountry) {
@@ -528,7 +528,7 @@ public class DatabaseHandler {
             }
 
             // Calculate non-city population, accounting for population inconsistencies in database
-            int nonCityPopulation = Math.max(country.population - totalCityPopulation, 0);
+            long nonCityPopulation = Math.max(country.population - totalCityPopulation, 0);
 
 
             // Store the results in the country object
@@ -546,37 +546,44 @@ public class DatabaseHandler {
      */
     public ArrayList<Continent> getContinentCitiesAndNonCitiesPopulationTotals() {
 
-        Map<String, Continent> continentCityPopMap = new HashMap<>();
+        // HashMap: Key - continent names, Values - Continent objects
+        Map<String, Continent> continentMap = new HashMap<>();
 
         try {
             Statement stmt = con.createStatement();
-            // Query to get country, city population, and continent information
-            String query = "SELECT country.Continent, country.Population AS CountryPopulation, " +
-                    "IFNULL(city.Population, 0) AS CityPopulation " +
-                    "FROM country LEFT JOIN city ON country.Code = city.CountryCode";
+            // SQL query to retrieve country and city population data, grouped by country
+            // Sums up the populations of cities in each country
+            String query = "SELECT country.Code, country.Name, country.Continent, country.Population AS CountryPopulation, " +
+                    "IFNULL(SUM(city.Population), 0) AS TotalCityPopulation " +
+                    "FROM country LEFT JOIN city ON country.Code = city.CountryCode " +
+                    "GROUP BY country.Code, country.Name, country.Continent, country.Population";
             ResultSet rset = stmt.executeQuery(query);
 
             while (rset.next()) {
+                String countryCode = rset.getString("Code");
+                String countryName = rset.getString("Name");
                 String continentName = rset.getString("Continent");
-                int countryPopulation = rset.getInt("CountryPopulation");
-                int cityPopulation = rset.getInt("CityPopulation");
+                long countryPopulation = rset.getLong("CountryPopulation");
+                long totalCityPopulation = rset.getLong("TotalCityPopulation");
+                // Calculate the non-city population by subtracting city population from country population
+                long nonCityPopulation = countryPopulation - totalCityPopulation;
 
                 // Get or create Continent object for this continent
-                Continent continent = continentCityPopMap.getOrDefault(continentName, new Continent(continentName));
+                Continent continent = continentMap.getOrDefault(continentName, new Continent(continentName));
 
-                // Update populations for this continent
+                // Update the total population of the continent by adding the country's population
                 continent.totalPopulation += countryPopulation;
-                continent.cityPopulation += cityPopulation;
+                // Update the total city population of the continent by adding the country's city population
+                continent.cityPopulation += totalCityPopulation;
+                // Update the total non-city population of the continent by adding the country's non-city population
+                continent.nonCityPopulation += nonCityPopulation;
 
-                // Calculate non-city population by subtracting city population from total
-                continent.nonCityPopulation = Math.max(continent.totalPopulation - continent.cityPopulation, 0);
-
-                // Update the map
-                continentCityPopMap.put(continentName, continent);
+                // Update the map with continent data
+                continentMap.put(continentName, continent);
             }
 
-            // Convert map values to a list and return
-            return new ArrayList<>(continentCityPopMap.values());
+            // Convert the values of the continentMap to a list and return it
+            return new ArrayList<>(continentMap.values());
 
         } catch (SQLException e) {
             System.out.println("Failed to retrieve continent populations: " + e.getMessage());

@@ -9,23 +9,23 @@ public class Continent {
     /**
      * Total population of the continent
      */
-    public int totalPopulation;
+    public long totalPopulation;
 
     /**
      * Total city population in the continent
      */
-    public int cityPopulation;
+    public long cityPopulation;
 
     /**
      * Total non-city population in the continent
      */
-    public int nonCityPopulation;
+    public long nonCityPopulation;
 
     // Constructor
     public Continent(String name) {
         this.name = name;
-        this.totalPopulation = 0;
-        this.cityPopulation = 0;
-        this.nonCityPopulation = 0;
+        this.totalPopulation = 0L;
+        this.cityPopulation = 0L;
+        this.nonCityPopulation = 0L;
     }
 }
