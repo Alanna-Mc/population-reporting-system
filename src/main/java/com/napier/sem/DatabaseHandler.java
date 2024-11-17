@@ -530,6 +530,16 @@ public class DatabaseHandler {
             // Calculate non-city population, accounting for population inconsistencies in database
             long nonCityPopulation = Math.max(country.population - totalCityPopulation, 0);
 
+            // Calculate percentages and store them in the country object
+            if (country.population > 0) {
+                country.cityPopulationPercentage = Math.round(((double) totalCityPopulation / country.population) * 100);
+                country.nonCityPopulationPercentage = Math.round(((double) nonCityPopulation / country.population) * 100);
+
+                // If non-city population is zero, ensure city percentage does not exceed 100
+                if (country.cityPopulationPercentage > 100) {
+                    country.cityPopulationPercentage = 100;
+                }
+            }
 
             // Store the results in the country object
             country.cityPopulation = totalCityPopulation;
@@ -581,6 +591,11 @@ public class DatabaseHandler {
                 // Update the total non-city population of the continent by adding the country's non-city population
                 continent.nonCityPopulation += nonCityPopulation;
 
+                // Calculate percentages and store them
+                if (continent.totalPopulation > 0) {
+                    continent.cityPercentage = Math.round(((double) continent.cityPopulation / continent.totalPopulation) * 100);
+                    continent.nonCityPercentage = Math.round(((double) continent.nonCityPopulation / continent.totalPopulation) * 100);
+                }
                 // Update the map with continent data
                 continentMap.put(continentName, continent);
             }
@@ -628,6 +643,12 @@ public class DatabaseHandler {
                 region.nonCityPopulation += nonCityPopulation;
 
                 regionMap.put(regionName, region);
+
+                // Calculate percentages and store them
+                if (region.totalPopulation > 0) {
+                    region.cityPercentage = Math.round(((double) region.cityPopulation / region.totalPopulation) * 100);
+                    region.nonCityPercentage = Math.round(((double) region.nonCityPopulation / region.totalPopulation) * 100);
+                }
             }
 
             return new ArrayList<>(regionMap.values());

@@ -44,4 +44,15 @@ public class Country
      * Country total non-city population
      */
     public long nonCityPopulation;
+
+    /**
+     * Country total city population
+     */
+    public long cityPopulationPercentage;
+
+    /**
+     * Country total non-city population
+     */
+    public long nonCityPopulationPercentage;
+
 }

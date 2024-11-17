@@ -92,12 +92,12 @@ public class ReportHandler {
         ArrayList<Country> countries = databaseHandler.getCountryCitiesAndNonCitiesPopulationTotals();
 
         // Display headers for continent report
-        System.out.printf("%-45s %-25s %-25s%n", "Country", "City Population", "Non-City Population");
+        System.out.printf("%-45s %-25s %-10s %-25s %-10s%n", "Region", "City Population", " % ", "Non-City Population", " % ");
 
         // Iterate through each Country and display population data
         for (Country country : countries) {
-            System.out.printf("%-45s %-25s %-25s%n",
-                    country.name, country.cityPopulation, country.nonCityPopulation);
+            System.out.printf("%-45s %-25s %-10s %-25s %-10s%n",
+                    country.name, country.cityPopulation, country.cityPopulationPercentage + "%", country.nonCityPopulation, country.nonCityPopulationPercentage + "%");
         }
     }
 
@@ -108,11 +108,11 @@ public class ReportHandler {
 
         ArrayList<Continent> continents = databaseHandler.getContinentCitiesAndNonCitiesPopulationTotals();
 
-        System.out.printf("%-45s %-25s %-25s%n", "Continent", "City Population", "Non-City Population");
+        System.out.printf("%-45s %-25s %-10s %-25s %-10s%n", "Region", "City Population", " % ", "Non-City Population", " % ");
 
         for (Continent continent : continents) {
-            System.out.printf("%-45s %-25s %-25s%n",
-                    continent.name, continent.cityPopulation, continent.nonCityPopulation);
+            System.out.printf("%-45s %-25s %-10s %-25s %-10s%n",
+                    continent.name, continent.cityPopulation, continent.cityPercentage + "%", continent.nonCityPopulation, continent.nonCityPercentage + "%");
         }
     }
 
@@ -125,11 +125,11 @@ public class ReportHandler {
             return;
         }
 
-        System.out.printf("%-45s %-25s %-25s%n", "Region", "City Population", "Non-City Population");
+        System.out.printf("%-45s %-25s %-10s %-25s %-10s%n", "Region", "City Population", " % ", "Non-City Population", " % ");
 
         for (Region region : regions) {
-            System.out.printf("%-45s %-25s %-25s%n",
-                    region.name, region.cityPopulation, region.nonCityPopulation);
+            System.out.printf("%-45s %-25s %-10s %-25s %-10s%n",
+                    region.name, region.cityPopulation, region.cityPercentage + "%", region.nonCityPopulation, region.nonCityPercentage + "%");
         }
     }
 }
