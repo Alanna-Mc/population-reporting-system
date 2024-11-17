@@ -7,6 +7,18 @@ import java.util.ArrayList;
  */
 public class ReportHandler {
 
+    private DatabaseHandler databaseHandler = new DatabaseHandler();
+
+    // Constructors
+    // Initialise without a DatabaseHandler
+    public ReportHandler() {
+        this.databaseHandler = null;
+    }
+    // Accepts a DatabaseHandler instance
+    public ReportHandler(DatabaseHandler dbHandler) {
+        this.databaseHandler = dbHandler;
+    }
+
     /**
      * Displays countries.
      * @param countries A list of Country objects representing countries.
@@ -67,6 +79,57 @@ public class ReportHandler {
                             capital.name, capital.country, capital.population);
             System.out.println(capital_string);
 
+        }
+    }
+
+
+    /**
+     * Display the calculated populations for each country.
+     */
+    public void displayCountryPopulationCityNonCity() {
+
+        // Retrieve Country population data from the database handler
+        ArrayList<Country> countries = databaseHandler.getCountryCitiesAndNonCitiesPopulationTotals();
+
+        // Display headers for continent report
+        System.out.printf("%-45s %-25s %-10s %-25s %-10s%n", "Region", "City Population", " % ", "Non-City Population", " % ");
+
+        // Iterate through each Country and display population data
+        for (Country country : countries) {
+            System.out.printf("%-45s %-25s %-10s %-25s %-10s%n",
+                    country.name, country.cityPopulation, country.cityPopulationPercentage + "%", country.nonCityPopulation, country.nonCityPopulationPercentage + "%");
+        }
+    }
+
+    /**
+     * Display the calculated populations for each country.
+     */
+    public void displayContinentPopulationCityNonCity() {
+
+        ArrayList<Continent> continents = databaseHandler.getContinentCitiesAndNonCitiesPopulationTotals();
+
+        System.out.printf("%-45s %-25s %-10s %-25s %-10s%n", "Region", "City Population", " % ", "Non-City Population", " % ");
+
+        for (Continent continent : continents) {
+            System.out.printf("%-45s %-25s %-10s %-25s %-10s%n",
+                    continent.name, continent.cityPopulation, continent.cityPercentage + "%", continent.nonCityPopulation, continent.nonCityPercentage + "%");
+        }
+    }
+
+    public void displayRegionPopulationCityNonCity() {
+
+        ArrayList<Region> regions = databaseHandler.getRegionCitiesAndNonCitiesPopulationTotals();
+
+        if (regions == null || regions.isEmpty()) {
+            System.out.println("No data available for regions.");
+            return;
+        }
+
+        System.out.printf("%-45s %-25s %-10s %-25s %-10s%n", "Region", "City Population", " % ", "Non-City Population", " % ");
+
+        for (Region region : regions) {
+            System.out.printf("%-45s %-25s %-10s %-25s %-10s%n",
+                    region.name, region.cityPopulation, region.cityPercentage + "%", region.nonCityPopulation, region.nonCityPercentage + "%");
         }
     }
 }

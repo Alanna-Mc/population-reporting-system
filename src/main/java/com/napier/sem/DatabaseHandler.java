@@ -1,7 +1,7 @@
 package com.napier.sem;
 
 import java.sql.*;
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Class for managing database connections and SQL statement.
@@ -54,7 +54,6 @@ public class DatabaseHandler {
 
     /**
      * Disconnects from the database.
-     *
      */
     public void disconnect() {
         if (con != null) {
@@ -71,21 +70,24 @@ public class DatabaseHandler {
     //endregion
 
     //region <COUNTRY REPORTS REGION>
+
     /**
      * Get all the countries in the world, ordered by population
+     *
      * @return An ArrayList of Country objects ordered by largest to smallest population
      */
     public ArrayList<Country> getAllCountries() {
         return getCountries(
                 "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name AS Capital " +
                         "FROM country " +
-                        "INNER JOIN city ON country.Capital = city.ID " +
+                        "LEFT JOIN city ON country.Capital = city.ID " +
                         "ORDER BY Population DESC"
         );
     }
 
     /**
      * Get all the countries in given continent
+     *
      * @param continent to filter the countries by
      * @return An ArrayList of Country objects ordered by largest to smallest population
      */
@@ -101,6 +103,7 @@ public class DatabaseHandler {
 
     /**
      * Get all countries in given region
+     *
      * @param region to filter countries by
      * @return An ArrayList of Country objects ordered by largest to smallest population
      */
@@ -116,55 +119,59 @@ public class DatabaseHandler {
 
     /**
      * Get the top N populated countries globally.
+     *
      * @param n The number of top populated countries to retrieve.
      * @return An ArrayList of Country objects representing the top N populated countries globally.
      */
     public ArrayList<Country> getTopNPopulatedCountries(int n) {
         return getCountries(
                 "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name AS Capital " +
-                "FROM country " +
+                        "FROM country " +
                         "INNER JOIN city ON country.Capital = city.ID " +
-                "ORDER BY Population DESC " +
-                "LIMIT " + n
+                        "ORDER BY Population DESC " +
+                        "LIMIT " + n
         );
     }
 
     /**
      * Get the top N populated countries in a chosen continent.
-     * @param n The number of top populated countries to retrieve.
+     *
+     * @param n         The number of top populated countries to retrieve.
      * @param continent The continent to filter countries by.
      * @return An ArrayList of Country objects representing the top N populated countries in the specified continent.
      */
     public ArrayList<Country> getTopNPopulatedCountriesInContinent(int n, String continent) {
         return getCountries(
                 "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name AS Capital " +
-                "FROM country " +
+                        "FROM country " +
                         "INNER JOIN city ON country.Capital = city.ID " +
-                "WHERE Continent = '" + continent + "' " +
-                "ORDER BY Population DESC " +
-                "LIMIT " + n
+                        "WHERE Continent = '" + continent + "' " +
+                        "ORDER BY Population DESC " +
+                        "LIMIT " + n
         );
     }
 
     /**
      * Get the top N populated countries in a chosen region.
-     * @param n The number of top populated countries to retrieve.
+     *
+     * @param n      The number of top populated countries to retrieve.
      * @param region The region to filter countries by.
      * @return An ArrayList of Country objects representing the top N populated countries in the specified region.
      */
     public ArrayList<Country> getTopNPopulatedCountriesInRegion(int n, String region) {
         return getCountries(
                 "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name AS Capital " +
-                "FROM country " +
+                        "FROM country " +
                         "INNER JOIN city ON country.Capital = city.ID " +
-                "WHERE Region = '" + region + "' " +
-                "ORDER BY Population DESC " +
-                "LIMIT " + n
+                        "WHERE Region = '" + region + "' " +
+                        "ORDER BY Population DESC " +
+                        "LIMIT " + n
         );
     }
 
     /**
      * Helper function to execute country queries and return results.
+     *
      * @param query The SQL query to execute for retrieving countries.
      * @return An ArrayList of Country objects based on the executed query.
      */
@@ -183,6 +190,10 @@ public class DatabaseHandler {
                 country.population = rset.getInt("Population");
                 country.capital = rset.getString("Capital");
                 countries.add(country);
+
+                if (country.capital == null) {
+                    country.capital = "No capital";
+                }
             }
             return countries;
         } catch (Exception e) {
@@ -195,8 +206,10 @@ public class DatabaseHandler {
     //endregion
 
     //region <CITY REPORT REGION>
+
     /**
      * Get all the cities in the world, ordered by population
+     *
      * @return An ArrayList of Country objects ordered by largest to smallest population
      */
     public ArrayList<City> getAllCities() {
@@ -209,6 +222,7 @@ public class DatabaseHandler {
 
     /**
      * get all cities a continent, ordered by population
+     *
      * @param continent to filter city by
      * @return An ArrayList of City objects ordered by largest to smallest population
      */
@@ -223,6 +237,7 @@ public class DatabaseHandler {
 
     /**
      * get all cities a continent, ordered by population
+     *
      * @param region to filter city by
      * @return An ArrayList of City objects ordered by largest to smallest population
      */
@@ -237,6 +252,7 @@ public class DatabaseHandler {
 
     /**
      * get all cities a continent, ordered by population
+     *
      * @param district to filter city by
      * @return An ArrayList of City objects ordered by largest to smallest population
      */
@@ -251,6 +267,7 @@ public class DatabaseHandler {
 
     /**
      * get all cities a continent, ordered by population
+     *
      * @param country to filter city by
      * @return An ArrayList of City objects ordered by largest to smallest population
      */
@@ -265,6 +282,7 @@ public class DatabaseHandler {
 
     /**
      * Get the top N populated cities in the world
+     *
      * @param n The number of top populated cities to retrieve
      * @return An ArrayList of City objects representing the top N populated countries in the world
      */
@@ -280,7 +298,8 @@ public class DatabaseHandler {
 
     /**
      * Get the top N populated cities in a chosen continent
-     * @param n The number of top populated cities to retrieve
+     *
+     * @param n         The number of top populated cities to retrieve
      * @param continent The continent to filter countries by
      * @return An ArrayList of City objects representing the top N populated cities in the specified continent
      */
@@ -297,7 +316,8 @@ public class DatabaseHandler {
 
     /**
      * Get the top N populated cities in a chosen region
-     * @param n The number of top populated cities to retrieve
+     *
+     * @param n      The number of top populated cities to retrieve
      * @param region The region to filter countries by
      * @return An ArrayList of City objects representing the top N populated cities in the specified region
      */
@@ -314,7 +334,8 @@ public class DatabaseHandler {
 
     /**
      * Get the top N populated cities in a chosen district
-     * @param n The number of top populated cities to retrieve
+     *
+     * @param n        The number of top populated cities to retrieve
      * @param district The district to filter countries by
      * @return An ArrayList of City objects representing the top N populated cities in the specified district
      */
@@ -331,6 +352,7 @@ public class DatabaseHandler {
 
     /**
      * Get the top N populated cities in a chosen country
+     *
      * @param n The number of top populated cities to retrieve
      * @param country The country to filter countries by
      * @return An ArrayList of City objects representing the top N populated cities in the specified country
@@ -348,6 +370,7 @@ public class DatabaseHandler {
 
     /**
      * function to execute city queries and return results.
+     *
      * @param query The SQL query to execute for retrieving Cities.
      * @return An ArrayList of City objects based on the executed query.
      */
@@ -378,6 +401,7 @@ public class DatabaseHandler {
 
     /**
      * Get all the capital cities in the world
+     *
      * @return An ArrayList of Capital objects ordered by largest to smallest population
      */
     public ArrayList<Capital> getAllCapitalCities() {
@@ -391,6 +415,7 @@ public class DatabaseHandler {
 
     /**
      * Get all the capital cities in a given continent
+     *
      * @param continent to filter the capital cities by
      * @return An ArrayList of Capital objects ordered by largest to smallest population
      */
@@ -406,6 +431,7 @@ public class DatabaseHandler {
 
     /**
      * Get all the capital cities in a given continent
+     *
      * @param region to filter the capital cities by
      * @return An ArrayList of Capital objects ordered by largest to smallest population
      */
@@ -418,6 +444,7 @@ public class DatabaseHandler {
                         "ORDER BY city.Population DESC"
         );
     }
+
 
     /**
      * Get the top N capital cities in the world
@@ -470,6 +497,7 @@ public class DatabaseHandler {
 
     /**
      * Helper function to execute capital city queries and return results.
+     *
      * @param query The SQL query to execute for retrieving capital cities.
      * @return An ArrayList of Capital objects based on the executed query.
      */
@@ -496,4 +524,157 @@ public class DatabaseHandler {
     }
 
     //endregion
+
+    /**
+     * Get the population total of people living in cities and those not living in cities for each Country.
+     *
+     * @return An ArrayList of Country objects, each containing city and non-city population totals.
+     */
+    public ArrayList<Country> getCountryCitiesAndNonCitiesPopulationTotals() {
+
+        // Get all Countries including their total populations
+        ArrayList<Country> countries = getAllCountries();
+
+        // For each iteration, country will hold one Country object from the countries list
+        for (Country country : countries) {
+            ArrayList<City> citiesInCountry = getAllCityInCountry(country.code);
+            long totalCityPopulation = 0;
+
+            // Calculate total city population for each country
+            for (City city : citiesInCountry) {
+                totalCityPopulation += city.population;
+            }
+
+            // Calculate non-city population, accounting for population inconsistencies in database
+            long nonCityPopulation = Math.max(country.population - totalCityPopulation, 0);
+
+            // Calculate percentages and store them in the country object
+            if (country.population > 0) {
+                country.cityPopulationPercentage = Math.round(((double) totalCityPopulation / country.population) * 100);
+                country.nonCityPopulationPercentage = Math.round(((double) nonCityPopulation / country.population) * 100);
+
+                // If non-city population is zero, ensure city percentage does not exceed 100
+                if (country.cityPopulationPercentage > 100) {
+                    country.cityPopulationPercentage = 100;
+                }
+            }
+
+            // Store the results in the country object
+            country.cityPopulation = totalCityPopulation;
+            country.nonCityPopulation = nonCityPopulation;
+        }
+
+        return countries;
+    }
+
+
+    /**
+     * Get the population total of people living in cities and those not living in cities for each continent.
+     * @return An ArrayList of Continent objects, each containing city and non-city population totals.
+     */
+    public ArrayList<Continent> getContinentCitiesAndNonCitiesPopulationTotals() {
+
+        // HashMap: Key - continent names, Values - Continent objects
+        Map<String, Continent> continentMap = new HashMap<>();
+
+        try {
+            Statement stmt = con.createStatement();
+            // SQL query to retrieve country and city population data, grouped by country
+            // Sums up the populations of cities in each country
+            String query = "SELECT country.Code, country.Name, country.Continent, country.Population AS CountryPopulation, " +
+                    "IFNULL(SUM(city.Population), 0) AS TotalCityPopulation " +
+                    "FROM country LEFT JOIN city ON country.Code = city.CountryCode " +
+                    "GROUP BY country.Code, country.Name, country.Continent, country.Population";
+
+            // Execute query and get the data
+            ResultSet rset = stmt.executeQuery(query);
+
+            // Iterate over each row in the result set to process data.
+            while (rset.next()) {
+                String countryCode = rset.getString("Code");
+                String countryName = rset.getString("Name");
+                String continentName = rset.getString("Continent");
+                long countryPopulation = rset.getLong("CountryPopulation");
+                long totalCityPopulation = rset.getLong("TotalCityPopulation");
+                // Calculate the non-city population by subtracting city population from country population
+                long nonCityPopulation = countryPopulation - totalCityPopulation;
+
+                // Get or create Continent object for this continent
+                Continent continent = continentMap.getOrDefault(continentName, new Continent(continentName));
+
+                // Update the total population of the continent by adding the country's population
+                continent.totalPopulation += countryPopulation;
+                // Update the total city population of the continent by adding the country's city population
+                continent.cityPopulation += totalCityPopulation;
+                // Update the total non-city population of the continent by adding the country's non-city population
+                continent.nonCityPopulation += nonCityPopulation;
+
+                // Calculate percentages and store them
+                if (continent.totalPopulation > 0) {
+                    continent.cityPercentage = Math.round(((double) continent.cityPopulation / continent.totalPopulation) * 100);
+                    continent.nonCityPercentage = Math.round(((double) continent.nonCityPopulation / continent.totalPopulation) * 100);
+                }
+                // Update the map with continent data
+                continentMap.put(continentName, continent);
+            }
+
+            // Convert the values of the continentMap to a list and return it
+            return new ArrayList<>(continentMap.values());
+
+        } catch (SQLException e) {
+            System.out.println("Failed to retrieve continent populations: " + e.getMessage());
+            return null;
+        }
+    }
+
+
+    /**
+     * Get the population total of people living in cities and those not living in cities for each region.
+     * @return An ArrayList of Region objects, each containing city and non-city population totals.
+     */
+    public ArrayList<Region> getRegionCitiesAndNonCitiesPopulationTotals() {
+
+        // HashMap: Key - region names, Values - Region objects
+        Map<String, Region> regionMap = new HashMap<>();
+
+        try {
+            Statement stmt = con.createStatement();
+            String query = "SELECT country.Code, country.Name, country.Region, country.Population AS CountryPopulation, " +
+                    "IFNULL(SUM(city.Population), 0) AS TotalCityPopulation " +
+                    "FROM country LEFT JOIN city ON country.Code = city.CountryCode " +
+                    "GROUP BY country.Code, country.Name, country.Region, country.Population";
+
+            ResultSet rset = stmt.executeQuery(query);
+
+            while (rset.next()) {
+                String countryCode = rset.getString("Code");
+                String countryName = rset.getString("Name");
+                String regionName = rset.getString("Region");
+                long countryPopulation = rset.getLong("CountryPopulation");
+                long totalCityPopulation = rset.getLong("TotalCityPopulation");
+                long nonCityPopulation = countryPopulation - totalCityPopulation;
+
+                Region region = regionMap.getOrDefault(regionName, new Region(regionName));
+
+                region.totalPopulation += countryPopulation;
+                region.cityPopulation += totalCityPopulation;
+                region.nonCityPopulation += nonCityPopulation;
+
+                regionMap.put(regionName, region);
+
+                // Calculate percentages and store them
+                if (region.totalPopulation > 0) {
+                    region.cityPercentage = Math.round(((double) region.cityPopulation / region.totalPopulation) * 100);
+                    region.nonCityPercentage = Math.round(((double) region.nonCityPopulation / region.totalPopulation) * 100);
+                }
+            }
+
+            return new ArrayList<>(regionMap.values());
+
+        } catch (SQLException e) {
+            System.out.println("Failed to retrieve region populations: " + e.getMessage());
+            return null;
+        }
+    }
+
 }
