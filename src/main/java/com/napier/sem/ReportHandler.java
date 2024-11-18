@@ -98,6 +98,12 @@ public class ReportHandler {
         // Retrieve Country population data from the database handler
         ArrayList<Country> countries = databaseHandler.getCountryCitiesAndNonCitiesPopulationTotals();
 
+        // Check for null or empty data
+        if (countries == null || countries.isEmpty()) {
+            System.out.println("No data available for country.");
+            return;
+        }
+
         // Display headers for continent report
         System.out.printf("%-45s %-25s %-10s %-25s %-10s%n", "Region", "City Population", " % ", "Non-City Population", " % ");
 
@@ -114,6 +120,11 @@ public class ReportHandler {
     public void displayContinentPopulationCityNonCity() {
 
         ArrayList<Continent> continents = databaseHandler.getContinentCitiesAndNonCitiesPopulationTotals();
+
+        if (continents == null || continents.isEmpty()) {
+            System.out.println("No data available for continents.");
+            return;
+        }
 
         System.out.printf("%-45s %-25s %-10s %-25s %-10s%n", "Region", "City Population", " % ", "Non-City Population", " % ");
 
