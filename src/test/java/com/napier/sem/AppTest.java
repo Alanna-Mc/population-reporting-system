@@ -3,6 +3,7 @@ package com.napier.sem;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
+import static org.mockito.Mockito.*;
 
 /**
  * Unit tests for methods that display country, city, capital, continent and region information.
@@ -10,14 +11,19 @@ import java.util.ArrayList;
 class AppTest
 {
         static ReportHandler reportHandler;
+        static DatabaseHandler mockDatabaseHandler;
 
         /**
-        * Before all tests initialise a ReportHandler instance.
+        * Before all tests initialise a ReportHandler instance with a mock DatabaseHandler.
         */
         @BeforeAll
         static void init() {
-        // Initialise the ReportHandler instance
-        reportHandler = new ReportHandler();
+            // Create a mock instance of DatabaseHandler
+            mockDatabaseHandler = mock(DatabaseHandler.class);
+
+            // Initialise the ReportHandler instance
+            reportHandler = new ReportHandler();
+            reportHandler.setDatabaseHandler(mockDatabaseHandler);
         }
 
 

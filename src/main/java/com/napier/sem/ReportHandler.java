@@ -19,6 +19,12 @@ public class ReportHandler {
         this.databaseHandler = dbHandler;
     }
 
+    // Setter method for testing
+    public void setDatabaseHandler(DatabaseHandler dbHandler) {
+        this.databaseHandler = dbHandler;
+    }
+
+
     /**
      * Displays countries.
      * @param countries A list of Country objects representing countries.
@@ -60,6 +66,7 @@ public class ReportHandler {
 
         }
     }
+
 
     /**
      * Display capital cities
