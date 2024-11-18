@@ -4,31 +4,45 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
+/**
+ * Unit tests for methods that display country, city, capital, continent and region information.
+ */
 class AppTest
 {
         static ReportHandler reportHandler;
 
+        /**
+        * Before all tests initialise a ReportHandler instance.
+        */
         @BeforeAll
         static void init() {
         // Initialise the ReportHandler instance
         reportHandler = new ReportHandler();
         }
 
-        // Country is null
+
+        /**
+        * Test for handling null input when displaying countries.
+        */
         @Test
         void displayCountriesTestNull() {
-            // Test handling of null input
             reportHandler.displayCountries(null);
         }
 
-        // Country list is Empty
+
+        /**
+        * Test for handling an empty list of countries when displaying countries.
+        */
         @Test
         void displayCountriesTestEmpty() {
             ArrayList<Country> countries = new ArrayList<>();
             reportHandler.displayCountries(countries);
         }
 
-        // Country Contains null
+
+        /**
+         * Test for handling a list of countries that contains a null element.
+         */
         @Test
         void displayCountriesTestContainsNull() {
             ArrayList<Country> countries = new ArrayList<>();
@@ -36,7 +50,10 @@ class AppTest
             reportHandler.displayCountries(countries);
         }
 
-        // Country Contains All Non-null
+
+        /**
+         * Test for displaying a list of countries with valid data.
+         */
         @Test
         void displayCountriesTestNormal() {
             ArrayList<Country> countries = new ArrayList<>();
@@ -64,21 +81,30 @@ class AppTest
             reportHandler.displayCountries(countries);
         }
 
-        //City is null
+
+        /**
+        * Test for handling null input when displaying cities.
+        */
         @Test
         void displayCitiesTestNull() {
             // Test handling of null input
             reportHandler.displayCities(null);
         }
 
-        //City list in empty
+
+        /**
+         * Test for handling an empty list of cities when displaying cities.
+         */
         @Test
         void displayCitiesTestEmpty() {
             ArrayList<City> city = new ArrayList<>();
             reportHandler.displayCities(city);
         }
 
-        // City Contains null
+
+       /**
+        * Test for handling a list of cities that contains a null element.
+        */
         @Test
         void displayCitiesTestContainsNull() {
             ArrayList<City> city = new ArrayList<>();
@@ -86,7 +112,10 @@ class AppTest
             reportHandler.displayCities(city);
         }
 
-        // City Contains All Non-null
+
+       /**
+        * Test for displaying a list of cities with valid data.
+        */
         @Test
         void displayCitiesTestNormal() {
             ArrayList<City> cities = new ArrayList<>();
@@ -110,50 +139,62 @@ class AppTest
             reportHandler.displayCities(cities);
         }
 
-    @Test
-    void displayCapitalsTestNull() {
-        // Test handling of null input
-        reportHandler.displayCapitals(null);
-    }
 
-    // Capital list is Empty
-    @Test
-    void displayCapitalsTestEmpty() {
-        ArrayList<Capital> capitals = new ArrayList<>();
-        reportHandler.displayCapitals(capitals);
-    }
-
-    // Capital Contains null
-    @Test
-    void displayCapitalsTestContainsNull() {
-        ArrayList<Capital> capitals = new ArrayList<>();
-        capitals.add(null);
-        reportHandler.displayCapitals(capitals);
-    }
-
-    // Capital Contains All Non-null
-    @Test
-    void displayCapitalsTestNormal() {
-        ArrayList<Capital> capitals = new ArrayList<>();
-        // Create data
-        Capital capital1 = new Capital();
-        capital1.name = "Capital";
-        capital1.country = "Country";
-        capital1.population = 800000;
-
-        Capital capital2 = new Capital();
-        capital2.name = "Another_Capital";
-        capital2.country = "Another_Country";
-        capital2.population = 20000;
-
-        // Add to list
-        capitals.add(capital1);
-        capitals.add(capital2);
-
-        reportHandler.displayCapitals(capitals);
-    }
+       /**
+        * Test for handling null input when displaying capital cities.
+        */
+        @Test
+        void displayCapitalsTestNull() {
+            reportHandler.displayCapitals(null);
+        }
 
 
-    }
+       /**
+        * Test for handling an empty list of capital cities when displaying capitals.
+        */
+        @Test
+        void displayCapitalsTestEmpty() {
+            ArrayList<Capital> capitals = new ArrayList<>();
+            reportHandler.displayCapitals(capitals);
+        }
+
+
+       /**
+        * Test for handling a list of capital cities that contains a null element.
+        */
+        @Test
+        void displayCapitalsTestContainsNull() {
+            ArrayList<Capital> capitals = new ArrayList<>();
+            capitals.add(null);
+            reportHandler.displayCapitals(capitals);
+        }
+
+
+       /**
+        * Test for displaying a list of capital cities with valid data.
+        */
+        @Test
+        void displayCapitalsTestNormal() {
+            ArrayList<Capital> capitals = new ArrayList<>();
+
+            // Create data
+            Capital capital1 = new Capital();
+            capital1.name = "Capital";
+            capital1.country = "Country";
+            capital1.population = 800000;
+
+            Capital capital2 = new Capital();
+            capital2.name = "Another_Capital";
+            capital2.country = "Another_Country";
+            capital2.population = 20000;
+
+            // Add to list
+            capitals.add(capital1);
+            capitals.add(capital2);
+
+            reportHandler.displayCapitals(capitals);
+        }
+
+}
 
 
