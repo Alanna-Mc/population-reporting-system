@@ -2,18 +2,20 @@ package com.napier.sem;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
 
+
+/**
+ * Integration testing for the population reporting system application methods.
+ */
 public class AppIntegrationTest
 {
     static App app;
     static DatabaseHandler dbHandler;
 
     /**
-     *
+     * Before tests run initialise an instance of App and DatabaseHandler and establish a database connection.
      */
     @BeforeAll
     static void init()
@@ -364,6 +366,7 @@ public class AppIntegrationTest
         assertEquals(capitals.get(0).population, 8389200,  "Population should be 8389200");
     }
 
+
     /**
      * Test that checks that getAllCapitalsInRegion method is returning an arraylist that is not empty.
      * Compares each of the object in index position 0's attributes to confirm they contain expected values
@@ -378,6 +381,7 @@ public class AppIntegrationTest
         assertEquals(capitals.get(0).country, "Russian Federation", "Country should be Russian Federation");
         assertEquals(capitals.get(0).population, 8389200,  "Population should be 8389200");
     }
+
 
     /**
      * Test that checks that getTopNCapitalCities method is returning an arraylist that's size is equal to N.
@@ -394,6 +398,7 @@ public class AppIntegrationTest
         assertEquals(capitals.get(0).population, 9981619,  "Population should be 9981619");
     }
 
+
     /**
      * Test that checks that getTopNCapitalCitiesInContinent method is returning an arraylist that's size is equal to N.
      * Compares each of the object in index position 0's attributes to confirm they contain expected values
@@ -409,6 +414,7 @@ public class AppIntegrationTest
         assertEquals(capitals.get(0).population, 8389200,  "Population should be 8389200");
     }
 
+
     /**
      * Test that checks that getAllCapitalsInRegion method is returning an arraylist that's size is equal to N.
      * Compares each of the object in index position 0's attributes to confirm they contain expected values
@@ -423,7 +429,59 @@ public class AppIntegrationTest
         assertEquals(capitals.get(0).country, "Russian Federation", "Country should be Russian Federation");
         assertEquals(capitals.get(0).population, 8389200,  "Population should be 8389200");
     }
-
     //endregion
+
+
+    // <GET POPULATION TESTS>
+
+    /**
+     * Test that checks that city and non-city populations by country are calculated and returned correctly.
+     */
+    @Test
+    void getCountryCityNonCityPopulationTest() {
+        ArrayList<Country> countries = dbHandler.getCountryCitiesAndNonCitiesPopulationTotals();
+        assertFalse(countries.isEmpty(), "countries ArrayList should not be empty");
+
+        Country country = countries.get(0);
+        assertNotNull(country.name, "Country name should not be null");
+        assertTrue(country.cityPopulation >= 0, "City population should be non-negative");
+        assertTrue(country.nonCityPopulation >= 0, "Non-city population should be non-negative");
+        assertEquals(100, country.cityPopulationPercentage + country.nonCityPopulationPercentage,
+                "Total percentage should equal 100");
+    }
+
+
+    /**
+     * Test that checks that city and non-city populations by continent are calculated and returned correctly.
+     */
+    @Test
+    void getContinentCityNonCityPopulationTest() {
+        ArrayList<Continent> continents = dbHandler.getContinentCitiesAndNonCitiesPopulationTotals();
+        assertFalse(continents.isEmpty(), "continents ArrayList should not be empty");
+
+        Continent continent = continents.get(0);
+        assertNotNull(continent.name, "Continent name should not be null");
+        assertTrue(continent.cityPopulation >= 0, "City population should be non-negative");
+        assertTrue(continent.nonCityPopulation >= 0, "Non-city population should be non-negative");
+        assertEquals(100, continent.cityPercentage + continent.nonCityPercentage,
+                "Total percentage should equal 100");
+    }
+
+
+    /**
+     * Test that checks that city and non-city populations by region are calculated and returned correctly.
+     */
+    @Test
+    void getRegionCityNonCityPopulationTest() {
+        ArrayList<Region> regions = dbHandler.getRegionCitiesAndNonCitiesPopulationTotals();
+        assertFalse(regions.isEmpty(), "regions ArrayList should not be empty");
+
+        Region region = regions.get(0);
+        assertNotNull(region.name, "Region name should not be null");
+        assertTrue(region.cityPopulation >= 0, "City population should be non-negative");
+        assertTrue(region.nonCityPopulation >= 0, "Non-city population should be non-negative");
+        assertEquals(100, region.cityPercentage + region.nonCityPercentage,
+                "Total percentage should equal 100");
+    }
 
 }

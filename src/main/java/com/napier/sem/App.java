@@ -20,12 +20,16 @@ public class App
         dbHandler = new DatabaseHandler();
         reportsHandler = new ReportHandler(dbHandler);
     }
+
+
+
     /**
      * Main method to run the application.
      */
     public static void main(String[] args)
     {
         App a = new App();
+
 
         // Connect to database
         if (args.length < 1) {
