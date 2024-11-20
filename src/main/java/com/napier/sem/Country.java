@@ -34,4 +34,25 @@ public class Country
      * Country capital
      */
     public String capital;
+
+    /**
+     * Country total city population
+     */
+    public long cityPopulation;
+
+    /**
+     * Country total non-city population
+     */
+    public long nonCityPopulation;
+
+    /**
+     * Country total city population
+     */
+    public long cityPopulationPercentage;
+
+    /**
+     * Country total non-city population
+     */
+    public long nonCityPopulationPercentage;
+
 }
