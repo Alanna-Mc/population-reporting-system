@@ -26,11 +26,12 @@ public class AppIntegrationTest
         reportHandler = new ReportHandler();
     }
 
-    //region <GET COUNTRIES TESTS>
+    //region <COUNTRY REPORT TESTS>
 
     /**
      * Test that checks that getAllCountries method is returning an arraylist that is not empty.
      * Test that checks the object at index position 0 is not null
+     * Tests that population is not a negative number
      */
     @Test
     void getAllCountriesTest()
@@ -44,6 +45,7 @@ public class AppIntegrationTest
     /**
      * Test that checks that getAllCountriesInContinent method is returning an arraylist that is not empty.
      * Test that checks the object at index position 0 is not null
+     * Tests that population is not a negative number
      */
     @Test
     void getAllCountriesInContinentTest()
@@ -57,6 +59,7 @@ public class AppIntegrationTest
     /**
      * Test that checks that getAllCountriesInRegion method is returning an arraylist that is not empty.
      * Test that checks the object at index position 0 is not null
+     * Tests that population is not a negative number
      */
     @Test
     void getAllCountriesInRegionTest()
@@ -70,6 +73,7 @@ public class AppIntegrationTest
     /**
      * Test that checks that getTopNPopulatedCountries method is returning an arraylist that's size is equal to N
      * Test that checks the object at index position 0 is not null
+     * Tests that population is not a negative number
      */
     @Test
     void getTopNCountriesTest() {
@@ -83,6 +87,7 @@ public class AppIntegrationTest
     /**
      * Test that checks that getTopNPopulatedCountriesInContinent method is returning an arraylist that's size is equal to N
      * Test that checks the object at index position 0 is not null
+     * Tests that population is not a negative number
      */
     @Test
     void getTopNCountriesInContinentTest() {
@@ -96,6 +101,7 @@ public class AppIntegrationTest
     /**
      * Test that checks that getTopNPopulatedCountriesInRegion method is returning an arraylist that's size is equal to N
      * Test that checks the object at index position 0 is not null
+     * Tests that population is not a negative number
      */
     @Test
     void getTopNCountriesInRegionTest() {
@@ -117,11 +123,12 @@ public class AppIntegrationTest
 
     //endregion
 
-    //region <GET CITIES TESTS>
+    //region <CITY REPORT TESTS>
 
     /**
      * Test that checks that getAllCities method is returning an arraylist that is not empty.
      * Test that checks the object at index position 0 is not null
+     * Tests that population is not a negative number
      */
     @Test
     void getAllCitiesTest()
@@ -135,6 +142,7 @@ public class AppIntegrationTest
     /**
      * Test that checks that getAllCitiesInContinent method is returning an arraylist that is not empty.
      * Test that checks the object at index position 0 is not null
+     * Tests that population is not a negative number
      */
     @Test
     void getAllCitiesInContinentTest()
@@ -148,6 +156,7 @@ public class AppIntegrationTest
     /**
      * Test that checks that getAllCitiesInRegion method is returning an arraylist that is not empty.
      * Test that checks the object at index position 0 is not null
+     * Tests that population is not a negative number
      */
     @Test
     void getAllCitiesInRegionTest()
@@ -161,6 +170,7 @@ public class AppIntegrationTest
     /**
      * Test that checks that getAllCitiesInDistrict method is returning an arraylist that is not empty.
      * Test that checks the object at index position 0 is not null
+     * Tests that population is not a negative number
      */
     @Test
     void getAllCitiesInDistrictTest()
@@ -174,6 +184,7 @@ public class AppIntegrationTest
     /**
      * Test that checks that getAllCitiesInCountry method is returning an arraylist that is not empty.
      * Test that checks the object at index position 0 is not null
+     * Tests that population is not a negative number
      */
     @Test
     void getAllCitiesInCountryTest()
@@ -187,6 +198,7 @@ public class AppIntegrationTest
     /**
      * Test that checks that getTopNPopulatedCities method is returning an arraylist that's size is equal to N.
      * Test that checks the object at index position 0 is not null
+     * Tests that population is not a negative number
      */
     @Test
     void getTopNPopulatedCitiesTest()
@@ -201,6 +213,7 @@ public class AppIntegrationTest
     /**
      * Test that checks that getTopNPopulatedCitiesInContinent method is returning an arraylist that's size is equal to N.
      * Test that checks the object at index position 0 is not null
+     * Tests that population is not a negative number
      */
     @Test
     void getTopNPopulatedCitiesInContinentTest()
@@ -215,6 +228,7 @@ public class AppIntegrationTest
     /**
      * Test that checks that getTopNPopulatedCitiesInRegion method is returning an arraylist that's size is equal to N.
      * Test that checks the object at index position 0 is not null
+     * Tests that population is not a negative number
      */
     @Test
     void getTopNPopulatedCitiesInRegionTest()
@@ -229,6 +243,7 @@ public class AppIntegrationTest
     /**
      * Test that checks that getTopNPopulatedCitiesInDistrict method is returning an arraylist that's equal to N.
      * Test that checks the object at index position 0 is not null
+     * Tests that population is not a negative number
      */
     @Test
     void getTopNPopulatedCitiesInDistrictTest()
@@ -243,6 +258,7 @@ public class AppIntegrationTest
     /**
      * Test that checks that getTopNPopulatedCitiesInCountry method is returning an arraylist that's size is equal to N.
      * Test that checks the object at index position 0 is not null
+     * Tests that population is not a negative number
      */
     @Test
     void getTopNPopulatedCitiesInCountryTest()
@@ -265,11 +281,12 @@ public class AppIntegrationTest
 
     //endregion
 
-    //region <GET CAPITAL CITIES TESTS>
+    //region <CAPITAL CITY REPORT TESTS>
 
     /**
      * Test that checks that getAllCapitals method is returning an arraylist that is not empty.
      * Test that checks the object at index position 0 is not null
+     * Tests that population is not a negative number
      */
     @Test
     void getAllCapitalsTest()
@@ -283,6 +300,7 @@ public class AppIntegrationTest
     /**
      * Test that checks that getAllCapitalsInContinent method is returning an arraylist that is not empty.
      * Test that checks the object at index position 0 is not null
+     * Tests that population is not a negative number
      */
     @Test
     void getAllCapitalsInContinentTest()
@@ -296,6 +314,7 @@ public class AppIntegrationTest
     /**
      * Test that checks that getAllCapitalsInRegion method is returning an arraylist that is not empty.
      * Test that checks the object at index position 0 is not null
+     * Tests that population is not a negative number
      */
     @Test
     void getAllCapitalsInRegionTest()
@@ -309,6 +328,7 @@ public class AppIntegrationTest
     /**
      * Test that checks that getTopNCapitalCities method is returning an arraylist that's size is equal to N.
      * Test that checks the object at index position 0 is not null
+     * Tests that population is not a negative number
      */
     @Test
     void getTopNPopulatedCapitalsTest()
@@ -323,6 +343,7 @@ public class AppIntegrationTest
     /**
      * Test that checks that getTopNCapitalCitiesInContinent method is returning an arraylist that's size is equal to N.
      * Test that checks the object at index position 0 is not null
+     * Tests that population is not a negative number
      */
     @Test
     void getTopNPopulatedCapitalsInContinentTest()
@@ -337,6 +358,7 @@ public class AppIntegrationTest
     /**
      * Test that checks that getAllCapitalsInRegion method is returning an arraylist that's size is equal to N.
      * Test that checks the object at index position 0 is not null
+     * Tests that population is not a negative number
      */
     @Test
     void getTopNPopulatedCapitalsInRegionTest()
@@ -359,7 +381,7 @@ public class AppIntegrationTest
 
     //endregion
 
-    //region <GET POPULATION TESTS>
+    //region <POPULATION REPORT TESTS>
 
     /**
      * Test that checks that city and non-city populations by country are calculated and returned correctly.
