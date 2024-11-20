@@ -337,7 +337,7 @@ public class AppIntegrationTest
 
     //endregion
 
-    // <GET POPULATION TESTS>
+    //region <GET POPULATION TESTS>
 
     /**
      * Test that checks that city and non-city populations by country are calculated and returned correctly.
@@ -388,5 +388,7 @@ public class AppIntegrationTest
         assertEquals(100, region.cityPercentage + region.nonCityPercentage,
                 "Total percentage should equal 100");
     }
+
+    //endregion
 
 }
