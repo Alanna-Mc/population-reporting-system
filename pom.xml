@@ -7,7 +7,7 @@
     <!-- Project group ID, artifact ID, and version -->
     <groupId>com.napier.sem</groupId>
     <artifactId>population-reporting-system</artifactId>
-    <version>0.1.0.3</version>
+    <version>0.1.0.4</version>
 
     <properties>
         <!-- Specify Java version for compilation -->
