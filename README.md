@@ -25,8 +25,8 @@ Continuous Integration (CI) workflows have been set up using GitHub Actions to e
 - Maven
 - Docker
 - Git/GitHub
-
-
+- CodeCov
+- 
 #### Master Build Status
 ![GitHub Workflow Status (master)](https://img.shields.io/github/actions/workflow/status/Alanna-Mc/population-reporting-system/main.yml?branch=master)
 
@@ -38,3 +38,6 @@ Continuous Integration (CI) workflows have been set up using GitHub Actions to e
 
 #### Release Status
 [![Releases](https://img.shields.io/github/release/Alanna-Mc/population-reporting-system/all.svg?style=flat-square)](https://github.com/Alanna-Mc/population-reporting-system/releases)
+
+#### Codecov Coverage
+[![codecov](http://codecov.io/Alanna-Mc/population-reporting-system/branch/master/graph/badge.svg)]
