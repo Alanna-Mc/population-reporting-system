@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Unit tests for methods that display country, city, capital, continent and region information.
@@ -405,6 +405,40 @@ class AppTest
         // Call the method and ensure it does not throw any exceptions
         assertDoesNotThrow(() -> reportHandler.displayRegionPopulationCityNonCity(),
                 "The method should display valid city and non city population data");
+    }
+
+
+    /**
+     * Test for verifying that the getWorldPopulation method returns the correct value.
+     */
+    @Test
+    void getWorldPopulationTestNormal() {
+
+        // Mock the database handler to return value for getWorldPopulation
+        when(mockDatabaseHandler.getWorldPopulation()).thenReturn(8000000000L);
+
+        // Set worldPopulation to mock value
+        Long worldPopulation = mockDatabaseHandler.getWorldPopulation();
+
+        // Assert that worldPopulation equals 8000000000
+        assertEquals(8000000000L, worldPopulation, "World population should be 8 billion in test");
+    }
+
+
+    /**
+     * Test for verifying that the getWorldPopulation handles null.
+     */
+    @Test
+    void getWorldPopulationTestNull() {
+
+        // Mock the database handler to return value for getWorldPopulation
+        when(mockDatabaseHandler.getWorldPopulation()).thenReturn(null);
+
+        // Set worldPopulation to mock value
+        Long worldPopulation = mockDatabaseHandler.getWorldPopulation();
+
+        // Assert that worldPopulation is null
+        assertNull(worldPopulation, "World population should be null");
     }
 
 }

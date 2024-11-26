@@ -526,16 +526,43 @@ public class DatabaseHandler {
     //endregion
 
     /**
+     * Get the total population of the world.
+     *
+     * @return The total population of the world as a long.
+     */
+    public Long getWorldPopulation() {
+        long worldPopulation = 0;
+
+        try {
+            // SQL query to get and calculate the total population of the world
+            String query = "SELECT SUM(Population) AS WorldPopulation FROM country";
+            Statement stmt = con.createStatement();
+            ResultSet rset = stmt.executeQuery(query);
+
+            // Retrieve the result
+            if (rset.next()) {
+                // Set worldPopulation as the result from the WorldPopulation SQL SUM
+                worldPopulation = rset.getLong("WorldPopulation");
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to retrieve world population: " + e.getMessage());
+        }
+
+        return worldPopulation;
+    }
+
+
+    /**
      * Get the population total of people living in cities and those not living in cities for each Country.
      *
      * @return An ArrayList of Country objects, each containing city and non-city population totals.
      */
     public ArrayList<Country> getCountryCitiesAndNonCitiesPopulationTotals() {
 
-        // Get all Countries including their total populations
+        // Array to get all countries from getAllCountries method
         ArrayList<Country> countries = getAllCountries();
 
-        // For each iteration, country will hold one Country object from the countries list
+        // Loop through each Country in the countries list
         for (Country country : countries) {
             ArrayList<City> citiesInCountry = getAllCityInCountry(country.code);
             long totalCityPopulation = 0;

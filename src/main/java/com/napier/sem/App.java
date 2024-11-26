@@ -186,6 +186,9 @@ public class App
         System.out.println("\n\nRegion city and non-city population total:\n");
         a.reportsHandler.displayRegionPopulationCityNonCity();
 
+        long worldPopulation = a.dbHandler.getWorldPopulation();
+        System.out.println("\nThe total population of the world is: " + worldPopulation);
+
 
         // Disconnect from database
         a.dbHandler.disconnect();
