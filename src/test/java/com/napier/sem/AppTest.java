@@ -9,8 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Unit tests for methods that display country, city, capital, continent and region information.
  */
-class AppTest
-{
+class AppTest {
     static ReportHandler reportHandler;
     static DatabaseHandler mockDatabaseHandler;
 
@@ -30,8 +29,8 @@ class AppTest
 
 
     /**
-    * Test for handling null input when displaying countries.
-    */
+     * Test for handling null input when displaying countries.
+     */
     @Test
     void displayCountriesTestNull() {
         reportHandler.displayCountries(null);
@@ -39,8 +38,8 @@ class AppTest
 
 
     /**
-    * Test for handling an empty list of countries when displaying countries.
-    */
+     * Test for handling an empty list of countries when displaying countries.
+     */
     @Test
     void displayCountriesTestEmpty() {
         ArrayList<Country> countries = new ArrayList<>();
@@ -49,8 +48,8 @@ class AppTest
 
 
     /**
-    * Test for handling a list of countries that contains a null element.
-    */
+     * Test for handling a list of countries that contains a null element.
+     */
     @Test
     void displayCountriesTestContainsNull() {
         ArrayList<Country> countries = new ArrayList<>();
@@ -60,8 +59,8 @@ class AppTest
 
 
     /**
-    * Test for displaying a list of countries with valid data.
-    */
+     * Test for displaying a list of countries with valid data.
+     */
     @Test
     void displayCountriesTestNormal() {
         ArrayList<Country> countries = new ArrayList<>();
@@ -92,8 +91,8 @@ class AppTest
 
 
     /**
-    * Test for handling null input when displaying cities.
-    */
+     * Test for handling null input when displaying cities.
+     */
     @Test
     void displayCitiesTestNull() {
         // Test handling of null input
@@ -102,8 +101,8 @@ class AppTest
 
 
     /**
-    * Test for handling an empty list of cities when displaying cities.
-    */
+     * Test for handling an empty list of cities when displaying cities.
+     */
     @Test
     void displayCitiesTestEmpty() {
         ArrayList<City> city = new ArrayList<>();
@@ -112,8 +111,8 @@ class AppTest
 
 
     /**
-    * Test for handling a list of cities that contains a null element.
-    */
+     * Test for handling a list of cities that contains a null element.
+     */
     @Test
     void displayCitiesTestContainsNull() {
         ArrayList<City> city = new ArrayList<>();
@@ -123,8 +122,8 @@ class AppTest
 
 
     /**
-    * Test for displaying a list of cities with valid data.
-    */
+     * Test for displaying a list of cities with valid data.
+     */
     @Test
     void displayCitiesTestNormal() {
         ArrayList<City> cities = new ArrayList<>();
@@ -151,8 +150,8 @@ class AppTest
 
 
     /**
-    * Test for handling null input when displaying capital cities.
-    */
+     * Test for handling null input when displaying capital cities.
+     */
     @Test
     void displayCapitalsTestNull() {
         reportHandler.displayCapitals(null);
@@ -160,8 +159,8 @@ class AppTest
 
 
     /**
-    * Test for handling an empty list of capital cities when displaying capitals.
-    */
+     * Test for handling an empty list of capital cities when displaying capitals.
+     */
     @Test
     void displayCapitalsTestEmpty() {
         ArrayList<Capital> capitals = new ArrayList<>();
@@ -170,8 +169,8 @@ class AppTest
 
 
     /**
-    * Test for handling a list of capital cities that contains a null element.
-    */
+     * Test for handling a list of capital cities that contains a null element.
+     */
     @Test
     void displayCapitalsTestContainsNull() {
         ArrayList<Capital> capitals = new ArrayList<>();
@@ -181,8 +180,8 @@ class AppTest
 
 
     /**
-    * Test for displaying a list of capital cities with valid data.
-    */
+     * Test for displaying a list of capital cities with valid data.
+     */
     @Test
     void displayCapitalsTestNormal() {
         ArrayList<Capital> capitals = new ArrayList<>();
@@ -441,6 +440,44 @@ class AppTest
         assertNull(worldPopulation, "World population should be null");
     }
 
+    /**
+     * Test for verifying that the getContinentPopulation method returns the correct value.
+     */
+    @Test
+    void getContinentPopulationTestNormal() {
+
+        String continentName = "Europe";
+
+        // Mock the database handler to return value for getContinentPopulation
+        when(mockDatabaseHandler.getContinentPopulation(continentName)).thenReturn(4000000000L);
+
+        // Set continentPopulation to mock value
+        Long continentPopulation = mockDatabaseHandler.getContinentPopulation(continentName);
+
+        // Assert that worldPopulation equals 8000000000
+        assertEquals(4000000000L, continentPopulation, "Continent population should be 4 billion in test");
+    }
+
+
+    /**
+     * Test for verifying that the getWorldPopulation handles null.
+     */
+    @Test
+    void getContinentPopulationTestNull() {
+
+        String continentName = "Europe";
+
+        // Mock the database handler to return value for getWorldPopulation
+        when(mockDatabaseHandler.getContinentPopulation(continentName)).thenReturn(null);
+
+        // Set continentPopulation to mock value
+        Long continentPopulation = mockDatabaseHandler.getContinentPopulation(continentName);
+
+        // Assert that continentPopulation is null
+        assertNull(continentPopulation, "Continent population should be null");
+    }
 }
+
+
 
 

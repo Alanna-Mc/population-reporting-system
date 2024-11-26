@@ -40,6 +40,7 @@ public class App
         String region = "Eastern Europe";
         String country = "USA";
         String district = "Scotland";
+        String continentTotalPop = "Asia";
 
 
         // <GENERATE COUNTRY REPORTS>
@@ -186,8 +187,13 @@ public class App
         System.out.println("\n\nRegion city and non-city population total:\n");
         a.reportsHandler.displayRegionPopulationCityNonCity();
 
+        // Total World Population Report
         long worldPopulation = a.dbHandler.getWorldPopulation();
         System.out.println("\nThe total population of the world is: " + worldPopulation);
+
+        // Total Chosen Continent Population Report
+        long chosenContinentPopulation = a.dbHandler.getContinentPopulation(continentTotalPop);
+        System.out.println("\nThe total population of " + continentTotalPop + " is: " + chosenContinentPopulation);
 
 
         // Disconnect from database

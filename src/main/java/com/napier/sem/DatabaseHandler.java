@@ -539,7 +539,7 @@ public class DatabaseHandler {
             Statement stmt = con.createStatement();
             ResultSet rset = stmt.executeQuery(query);
 
-            // Retrieve the result
+            // Retrieve result set
             if (rset.next()) {
                 // Set worldPopulation as the result from the WorldPopulation SQL SUM
                 worldPopulation = rset.getLong("WorldPopulation");
@@ -549,6 +549,33 @@ public class DatabaseHandler {
         }
 
         return worldPopulation;
+    }
+
+    /**
+     * Get the total population of a chosen continent.
+     *
+     * @param continentTotalPop The name of the continent.
+     * @return The total population of the continent.
+     */
+    public Long getContinentPopulation(String continentTotalPop) {
+        long continentPopulation = 0;
+
+        try {
+            // SQL query to get and calculate the total population of a continent
+            String query = "SELECT SUM(Population) AS ContinentPopulation FROM country WHERE Continent = '" + continentTotalPop + "'";
+            Statement stmt = con.createStatement();
+            ResultSet rset = stmt.executeQuery(query);
+
+            // Retrieve result set
+            if (rset.next()) {
+                // Set continentPopulation as the result from the ContinentPopulation SQL SUM
+                continentPopulation = rset.getLong("ContinentPopulation");
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to retrieve continent population: " + e.getMessage());
+        }
+
+        return continentPopulation;
     }
 
 
