@@ -614,7 +614,7 @@ public class DatabaseHandler {
 
         try {
             // SQL query to get and calculate the total population of a continent
-            String query = "SELECT Population AS DistrictPopulation FROM city WHERE District = '" + chosenDistrict + "'";
+            String query = "SELECT SUM(Population) AS DistrictPopulation FROM city WHERE District = '" + chosenDistrict + "'";
             Statement stmt = con.createStatement();
             ResultSet rset = stmt.executeQuery(query);
 
