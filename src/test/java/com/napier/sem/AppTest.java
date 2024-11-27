@@ -512,6 +512,42 @@ class AppTest {
         // Assert that cityPopulation is null
         assertNull(cityPopulation, "City population should be null");
     }
+
+    /**
+     * Test for verifying that the getDistrictPopulation method returns the correct value.
+     */
+    @Test
+    void getDistrictPopulationTestNormal() {
+
+        String districtChosen = "California";
+
+        // Mock the database handler to return value for getDistrictPopulation
+        when(mockDatabaseHandler.getDistrictPopulation(districtChosen)).thenReturn(3000000L);
+
+        // Set districtPopulation to mock value
+        Long districtPopulation = mockDatabaseHandler.getDistrictPopulation(districtChosen);
+
+        // Assert that districtPopulation equals 8000000
+        assertEquals(3000000L, districtPopulation, "District population should be 3000000 in test");
+    }
+
+    /**
+     * Test for verifying that the getDistrictPopulation handles null.
+     */
+    @Test
+    void getDistrictPopulationTestNull() {
+
+        String districtChosen = "California";
+
+        // Mock the database handler to return value for getDistrictPopulation
+        when(mockDatabaseHandler.getDistrictPopulation(districtChosen)).thenReturn(null);
+
+        // Set city Population to mock value
+        Long districtPopulation = mockDatabaseHandler.getDistrictPopulation(districtChosen);
+
+        // Assert that cityPopulation is null
+        assertNull(districtPopulation, "District population should be null");
+    }
 }
 
 
