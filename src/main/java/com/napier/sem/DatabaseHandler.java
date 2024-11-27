@@ -578,6 +578,32 @@ public class DatabaseHandler {
         return continentPopulation;
     }
 
+    /**
+     * Get the total population of a chosen city
+     * @param chosenCity The name of the city that's population is required
+     * @return The total population of the city passed in as a param
+     */
+    public Long getCityPopulation(String chosenCity) {
+        long cityPopulation = 0;
+
+        try {
+            // SQL query to get and calculate the total population of a continent
+            String query = "SELECT Population AS CityPopulation FROM city WHERE Name = '" + chosenCity + "'";
+            Statement stmt = con.createStatement();
+            ResultSet rset = stmt.executeQuery(query);
+
+            // Retrieve result set
+            if (rset.next()) {
+                // Set continentPopulation as the result from the ContinentPopulation SQL SUM
+                cityPopulation = rset.getLong("CityPopulation");
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to retrieve city population: " + e.getMessage());
+        }
+
+        return cityPopulation;
+    }
+
 
     /**
      * Get the population total of people living in cities and those not living in cities for each Country.
