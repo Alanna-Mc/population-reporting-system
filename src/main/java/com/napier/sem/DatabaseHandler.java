@@ -554,15 +554,15 @@ public class DatabaseHandler {
     /**
      * Get the total population of a chosen continent.
      *
-     * @param continentTotalPop The name of the continent.
+     * @param continentChosen The name of the continent.
      * @return The total population of the continent.
      */
-    public Long getContinentPopulation(String continentTotalPop) {
+    public Long getContinentPopulation(String continentChosen) {
         long continentPopulation = 0;
 
         try {
             // SQL query to get and calculate the total population of a continent
-            String query = "SELECT SUM(Population) AS ContinentPopulation FROM country WHERE Continent = '" + continentTotalPop + "'";
+            String query = "SELECT SUM(Population) AS ContinentPopulation FROM country WHERE Continent = '" + continentChosen + "'";
             Statement stmt = con.createStatement();
             ResultSet rset = stmt.executeQuery(query);
 

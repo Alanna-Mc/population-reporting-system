@@ -446,15 +446,15 @@ class AppTest {
     @Test
     void getContinentPopulationTestNormal() {
 
-        String continentName = "Europe";
+        String continentChosen = "Europe";
 
         // Mock the database handler to return value for getContinentPopulation
-        when(mockDatabaseHandler.getContinentPopulation(continentName)).thenReturn(4000000000L);
+        when(mockDatabaseHandler.getContinentPopulation(continentChosen)).thenReturn(4000000000L);
 
         // Set continentPopulation to mock value
-        Long continentPopulation = mockDatabaseHandler.getContinentPopulation(continentName);
+        Long continentPopulation = mockDatabaseHandler.getContinentPopulation(continentChosen);
 
-        // Assert that worldPopulation equals 8000000000
+        // Assert that continentPopulation equals 4000000000
         assertEquals(4000000000L, continentPopulation, "Continent population should be 4 billion in test");
     }
 
@@ -465,13 +465,13 @@ class AppTest {
     @Test
     void getContinentPopulationTestNull() {
 
-        String continentName = "Europe";
+        String continentChosen = "Europe";
 
         // Mock the database handler to return value for getWorldPopulation
-        when(mockDatabaseHandler.getContinentPopulation(continentName)).thenReturn(null);
+        when(mockDatabaseHandler.getContinentPopulation(continentChosen)).thenReturn(null);
 
         // Set continentPopulation to mock value
-        Long continentPopulation = mockDatabaseHandler.getContinentPopulation(continentName);
+        Long continentPopulation = mockDatabaseHandler.getContinentPopulation(continentChosen);
 
         // Assert that continentPopulation is null
         assertNull(continentPopulation, "Continent population should be null");
