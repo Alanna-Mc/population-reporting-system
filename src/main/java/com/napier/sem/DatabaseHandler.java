@@ -588,7 +588,7 @@ public class DatabaseHandler {
 
         try {
             // SQL query to get and calculate the total population of a continent
-            String query = "SELECT Population AS CityPopulation FROM city WHERE Name = '" + chosenCity + "'";
+            String query = "SELECT SUM(Population) AS CityPopulation FROM city WHERE Name = '" + chosenCity + "'";
             Statement stmt = con.createStatement();
             ResultSet rset = stmt.executeQuery(query);
 
@@ -602,6 +602,32 @@ public class DatabaseHandler {
         }
 
         return cityPopulation;
+    }
+
+    /**
+     * Get the total population of a chosen district
+     * @param chosenDistrict The name of the district that's population is required
+     * @return The total population of the district passed in as a param
+     */
+    public Long getDistrictPopulation(String chosenDistrict) {
+        long districtPopulation = 0;
+
+        try {
+            // SQL query to get and calculate the total population of a continent
+            String query = "SELECT Population AS DistrictPopulation FROM city WHERE District = '" + chosenDistrict + "'";
+            Statement stmt = con.createStatement();
+            ResultSet rset = stmt.executeQuery(query);
+
+            // Retrieve result set
+            if (rset.next()) {
+                // Set continentPopulation as the result from the ContinentPopulation SQL SUM
+                districtPopulation = rset.getLong("DistrictPopulation");
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to retrieve district population: " + e.getMessage());
+        }
+
+        return districtPopulation;
     }
 
 
