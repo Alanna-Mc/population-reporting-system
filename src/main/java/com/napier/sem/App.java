@@ -95,8 +95,9 @@ public class App
         ArrayList<City> globalCities = a.dbHandler.getTopNPopulatedCities(n);
         ArrayList<City> continentCities = a.dbHandler.getTopNPopulatedCitiesInContinent(n, continent);
         ArrayList<City> regionCities = a.dbHandler.getTopNPopulatedCitiesInRegion(n, region);
-        ArrayList<City> districtCities = a.dbHandler.getTopNPopulatedCitiesInDistrict(n, district);
         ArrayList<City> countryCities = a.dbHandler.getTopNPopulatedCitiesInCountry(n, country);
+        ArrayList<City> districtCities = a.dbHandler.getTopNPopulatedCitiesInDistrict(n, district);
+
 
         // display all the Cities in the world
         System.out.println("\nAll Cities in the world:");
