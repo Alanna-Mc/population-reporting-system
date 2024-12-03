@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Integration tests for the Population Reporting System application
  */
-public class AppIntegrationTest
+class AppIntegrationTest
 {
     static App app;
     static DatabaseHandler dbHandler;
@@ -92,7 +92,7 @@ public class AppIntegrationTest
     @Test
     void getTopNCountriesInContinentTest() {
         ArrayList<Country> countries = dbHandler.getTopNPopulatedCountriesInContinent(5, "Europe");
-        assertEquals(countries.size(), 5);
+        assertEquals(5, countries.size(), "countries size should be 5");
         assertFalse(countries.isEmpty(), "countries ArrayList should not be empty");
         assertNotNull(countries.get(0), "Object at index position of countries should not be null");
         assertTrue(countries.get(0).population >= 0, "population should not be a negative number");
@@ -106,7 +106,7 @@ public class AppIntegrationTest
     @Test
     void getTopNCountriesInRegionTest() {
         ArrayList<Country> countries = dbHandler.getTopNPopulatedCountriesInRegion(5, "Eastern Europe");
-        assertEquals(countries.size(), 5);
+        assertEquals(5, countries.size(), "countries size should be 5");
         assertFalse(countries.isEmpty(), "countries ArrayList should not be empty");
         assertNotNull(countries.get(0), "Object at index position of countries should not be null");
         assertTrue(countries.get(0).population >= 0, "population should not be a negative number");
