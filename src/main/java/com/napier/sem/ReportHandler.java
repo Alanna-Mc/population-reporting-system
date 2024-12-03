@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class ReportHandler {
 
-    private DatabaseHandler databaseHandler = new DatabaseHandler();
+    private DatabaseHandler databaseHandler;
 
     // Constructors
     // Initialise without a DatabaseHandler
