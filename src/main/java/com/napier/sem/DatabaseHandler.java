@@ -697,8 +697,6 @@ public class DatabaseHandler {
 
             // Iterate over each row in the result set to process data.
             while (rset.next()) {
-                String countryCode = rset.getString("Code");
-                String countryName = rset.getString("Name");
                 String continentName = rset.getString("Continent");
                 long countryPopulation = rset.getLong("CountryPopulation");
                 long totalCityPopulation = rset.getLong("TotalCityPopulation");
@@ -753,8 +751,6 @@ public class DatabaseHandler {
             ResultSet rset = stmt.executeQuery(query);
 
             while (rset.next()) {
-                String countryCode = rset.getString("Code");
-                String countryName = rset.getString("Name");
                 String regionName = rset.getString("Region");
                 long countryPopulation = rset.getLong("CountryPopulation");
                 long totalCityPopulation = rset.getLong("TotalCityPopulation");
