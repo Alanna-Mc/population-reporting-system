@@ -447,7 +447,7 @@ class AppIntegrationTest
     }
 
     /**
-     * Test that checks the world population is not a negative number
+     * Test that checks the chosen continents population is not a negative number
      */
     @Test
     void getContinentPopulationTest() {
@@ -456,7 +456,7 @@ class AppIntegrationTest
     }
 
     /**
-     * Test that checks the world population is not a negative number
+     * Test that checks the chosen cities population is not a negative number
      */
     @Test
     void getCityPopulationTest() {
@@ -465,7 +465,7 @@ class AppIntegrationTest
     }
 
     /**
-     * Test that checks the world population is not a negative number
+     * Test that checks the chosen districts population is not a negative number
      */
     @Test
     void getDistrictPopulationTest() {
@@ -474,7 +474,7 @@ class AppIntegrationTest
     }
 
     /**
-     * Test that checks the world population is not a negative number
+     * Test that checks the chosen countries population is not a negative number
      */
     @Test
     void getCountryPopulationTest() {
@@ -483,7 +483,7 @@ class AppIntegrationTest
     }
 
     /**
-     * Test that checks the world population is not a negative number
+     * Test that checks the chosen region's population is not a negative number
      */
     @Test
     void getRegionPopulationTest() {
