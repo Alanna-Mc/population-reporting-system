@@ -281,6 +281,16 @@ class AppIntegrationTest
 
     //endregion
 
+    //region <DATABASE CONNECTION TEST>
+    /**
+     * Test to test the connection in App class
+     */
+    @Test
+    void validConnectionTest() {
+        String[] connection = {"localhost:33060", "30000"};
+        App.main(connection);
+    }
+
     //region <CAPITAL CITY REPORT TESTS>
 
     /**
@@ -398,7 +408,6 @@ class AppIntegrationTest
         assertEquals(100, country.cityPopulationPercentage + country.nonCityPopulationPercentage,
                 "Total percentage should equal 100");
     }
-
 
     /**
      * Test that checks that city and non-city populations by continent are calculated and returned correctly.
