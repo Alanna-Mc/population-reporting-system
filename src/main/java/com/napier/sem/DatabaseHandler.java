@@ -589,14 +589,14 @@ public class DatabaseHandler {
         long cityPopulation = 0;
 
         try {
-            // SQL query to get and calculate the total population of a continent
+            // SQL query to get and calculate the total population of a City
             String query = "SELECT SUM(Population) AS CityPopulation FROM city WHERE Name = '" + chosenCity + "'";
             Statement stmt = con.createStatement();
             ResultSet rset = stmt.executeQuery(query);
 
             // Retrieve result set
             if (rset.next()) {
-                // Set continentPopulation as the result from the ContinentPopulation SQL SUM
+                // Set cityPopulation as the result from the CityPopulation SQL SUM
                 cityPopulation = rset.getLong("CityPopulation");
             }
         } catch (SQLException e) {
@@ -616,14 +616,14 @@ public class DatabaseHandler {
         long districtPopulation = 0;
 
         try {
-            // SQL query to get and calculate the total population of a continent
+            // SQL query to get and calculate the total population of a District
             String query = "SELECT SUM(Population) AS DistrictPopulation FROM city WHERE District = '" + chosenDistrict + "'";
             Statement stmt = con.createStatement();
             ResultSet rset = stmt.executeQuery(query);
 
             // Retrieve result set
             if (rset.next()) {
-                // Set continentPopulation as the result from the ContinentPopulation SQL SUM
+                // Set districtPopulation as the result from the DistrictPopulation SQL SUM
                 districtPopulation = rset.getLong("DistrictPopulation");
             }
         } catch (SQLException e) {
@@ -633,6 +633,11 @@ public class DatabaseHandler {
         return districtPopulation;
     }
 
+    /**
+     * get the population of selected country
+     * @param chosenCountry The name of the country that's population is required
+     * @return The total population of the country passed in as a param
+     */
     public Long getCountryPopulation(String chosenCountry) {
         long countryPopulation = 0;
 
