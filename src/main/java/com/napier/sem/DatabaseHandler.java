@@ -633,6 +633,26 @@ public class DatabaseHandler {
         return districtPopulation;
     }
 
+    public Long getCountryPopulation(String chosenCountry) {
+        long countryPopulation = 0;
+
+        try {
+            // SQL query to get the population of a chosen Country
+            String query = "SELECT SUM(Population) AS CountryPopulation FROM country " +
+                    "WHERE Name = '" + chosenCountry + "'";
+            Statement stmt = con.createStatement();
+            ResultSet rset = stmt.executeQuery(query);
+
+            // Get results for selected country population
+            if (rset.next()) {
+                //
+                countryPopulation = rset.getLong("CountryPopulation");
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to retrieve district population: " + e.getMessage());
+        }
+        return countryPopulation;
+    }
 
     //endregion
 
