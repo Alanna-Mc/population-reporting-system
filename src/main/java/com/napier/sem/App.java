@@ -210,7 +210,7 @@ public class App
 
         // Total Chosen Country Population Report
         long chosenCountryPopulation = a.dbHandler.getCountryPopulation(chosenCountry);
-        System.out.println("\nThe total population of " + chosenCity + " is: " + chosenCountryPopulation);
+        System.out.println("\nThe total population of " + chosenCountry + " is: " + chosenCountryPopulation);
 
         // Total Chosen Region Population Report
         Long chosenRegionPopulation = a.dbHandler.getRegionPopulation(region);
