@@ -44,7 +44,7 @@ public class App
         String chosenCity = "New York";
         String chosenDistrict = "California";
         String chosenCountry = "Germany";
-        String ChosenRegion = "Caribbean";
+        String chosenRegion = "Polynesia";
 
 
         // <GENERATE COUNTRY REPORTS>
@@ -213,8 +213,8 @@ public class App
         System.out.println("\nThe total population of " + chosenCountry + " is: " + chosenCountryPopulation);
 
         // Total Chosen Region Population Report
-        Long chosenRegionPopulation = a.dbHandler.getRegionPopulation(region);
-        System.out.println("\nThe total population of " + ChosenRegion + " is: " + chosenRegionPopulation);
+        long chosenRegionPopulation = a.dbHandler.getRegionPopulation(chosenRegion);
+        System.out.println("\nThe total population of " + chosenRegion + " is: " + chosenRegionPopulation);
 
         // Disconnect from database
         a.dbHandler.disconnect();
