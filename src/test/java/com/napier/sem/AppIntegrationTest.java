@@ -281,6 +281,16 @@ class AppIntegrationTest
 
     //endregion
 
+    //region <DATABASE CONNECTION TEST>
+    /**
+     * Test to test the connection in App class
+     */
+    @Test
+    void validConnectionTest() {
+        String[] connection = {"localhost:33060", "30000"};
+        App.main(connection);
+    }
+
     //region <CAPITAL CITY REPORT TESTS>
 
     /**
@@ -399,7 +409,6 @@ class AppIntegrationTest
                 "Total percentage should equal 100");
     }
 
-
     /**
      * Test that checks that city and non-city populations by continent are calculated and returned correctly.
      */
@@ -433,6 +442,63 @@ class AppIntegrationTest
                 "Total percentage should equal 100");
     }
 
+    //endregion
+
+    //region <POPULATION REPORT TESTS>
+
+    /**
+     * Test that checks the world population is not a negative number
+     */
+    @Test
+    void getWorldPopulationTest() {
+        long worldPopulation = dbHandler.getWorldPopulation();
+        assertTrue(worldPopulation >= 0, "worldPopulation should be non-negative");
+    }
+
+    /**
+     * Test that checks the chosen continents population is not a negative number
+     */
+    @Test
+    void getContinentPopulationTest() {
+        long continentPopulation = dbHandler.getContinentPopulation("Europe");
+        assertTrue(continentPopulation >= 0, "continentPopulation should be non-negative");
+    }
+
+    /**
+     * Test that checks the chosen cities population is not a negative number
+     */
+    @Test
+    void getCityPopulationTest() {
+        long cityPopulation = dbHandler.getCityPopulation("New York");
+        assertTrue(cityPopulation >= 0, "cityPopulation should be non-negative");
+    }
+
+    /**
+     * Test that checks the chosen districts population is not a negative number
+     */
+    @Test
+    void getDistrictPopulationTest() {
+        long districtPopulation = dbHandler.getDistrictPopulation("California");
+        assertTrue(districtPopulation >= 0, "districtPopulation should be non-negative");
+    }
+
+    /**
+     * Test that checks the chosen countries population is not a negative number
+     */
+    @Test
+    void getCountryPopulationTest() {
+        long countryPopulation = dbHandler.getCountryPopulation("France");
+        assertTrue(countryPopulation >= 0, "countryPopulation should be non-negative");
+    }
+
+    /**
+     * Test that checks the chosen region's population is not a negative number
+     */
+    @Test
+    void getRegionPopulationTest() {
+        long regionPopulation = dbHandler.getRegionPopulation("Polynesia");
+        assertTrue(regionPopulation >= 0, "regionPopulation should be non-negative");
+    }
     //endregion
 
 }
