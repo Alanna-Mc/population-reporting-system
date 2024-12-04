@@ -211,6 +211,10 @@ public class App
         long chosenCountryPopulation = a.dbHandler.getCountryPopulation(chosenCountry);
         System.out.println("\nThe total population of " + chosenCity + " is: " + chosenCountryPopulation);
 
+        // Total Chosen Region Population Report
+        Long chosenRegionPopulation = a.dbHandler.getRegionPopulation(region);
+        System.out.println("\nThe total population of " + region + " is: " + chosenRegionPopulation);
+
         // Disconnect from database
         a.dbHandler.disconnect();
 
