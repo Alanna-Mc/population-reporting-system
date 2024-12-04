@@ -654,9 +654,35 @@ public class DatabaseHandler {
                 countryPopulation = rset.getLong("CountryPopulation");
             }
         } catch (SQLException e) {
-            System.out.println("Failed to retrieve district population: " + e.getMessage());
+            System.out.println("Failed to retrieve country population: " + e.getMessage());
         }
         return countryPopulation;
+    }
+
+    /**
+     * get the population of selected Region
+     * @param chosenRegion The name of the Region that's population is required
+     * @return The total population of the Region passed in as a param
+     */
+    public Long getRegionPopulation(String chosenRegion) {
+        long regionPopulation = 0;
+
+        try {
+            // SQL query to get the population of a chosen Region
+            String query = "SELECT SUM(Population) AS RegionPopulation FROM country " +
+                    "WHERE region = '" + chosenRegion + "'";
+            Statement stmt = con.createStatement();
+            ResultSet rset = stmt.executeQuery(query);
+
+            // Get results for selected Region population
+            if (rset.next()) {
+                //
+                regionPopulation = rset.getLong("RegionPopulation");
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to retrieve region population: " + e.getMessage());
+        }
+        return regionPopulation;
     }
 
     //endregion
