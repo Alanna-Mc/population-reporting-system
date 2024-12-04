@@ -525,6 +525,8 @@ public class DatabaseHandler {
 
     //endregion
 
+
+    //region <POPULATION REPORT REGION>
     /**
      * Get the total population of the world.
      *
@@ -604,6 +606,7 @@ public class DatabaseHandler {
         return cityPopulation;
     }
 
+
     /**
      * Get the total population of a chosen district
      * @param chosenDistrict The name of the district that's population is required
@@ -630,6 +633,8 @@ public class DatabaseHandler {
         return districtPopulation;
     }
 
+
+    //endregion
 
     /**
      * Get the population total of people living in cities and those not living in cities for each Country.
