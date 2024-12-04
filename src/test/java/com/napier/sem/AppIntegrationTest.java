@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Integration tests for the Population Reporting System application
  */
-public class AppIntegrationTest
+class AppIntegrationTest
 {
     static App app;
     static DatabaseHandler dbHandler;
@@ -78,7 +78,7 @@ public class AppIntegrationTest
     @Test
     void getTopNCountriesTest() {
         ArrayList<Country> countries = dbHandler.getTopNPopulatedCountries(5);
-        assertEquals(countries.size(), 5, "countries size should be 5");
+        assertEquals(5, countries.size(), "countries size should be 5");
         assertFalse(countries.isEmpty(), "countries ArrayList should not be empty");
         assertNotNull(countries.get(0), "Object at index position of countries should not be null");
         assertTrue(countries.get(0).population >= 0, "population should not be a negative number");
@@ -92,7 +92,7 @@ public class AppIntegrationTest
     @Test
     void getTopNCountriesInContinentTest() {
         ArrayList<Country> countries = dbHandler.getTopNPopulatedCountriesInContinent(5, "Europe");
-        assertEquals(countries.size(), 5);
+        assertEquals(5, countries.size(), "countries size should be 5");
         assertFalse(countries.isEmpty(), "countries ArrayList should not be empty");
         assertNotNull(countries.get(0), "Object at index position of countries should not be null");
         assertTrue(countries.get(0).population >= 0, "population should not be a negative number");
@@ -106,7 +106,7 @@ public class AppIntegrationTest
     @Test
     void getTopNCountriesInRegionTest() {
         ArrayList<Country> countries = dbHandler.getTopNPopulatedCountriesInRegion(5, "Eastern Europe");
-        assertEquals(countries.size(), 5);
+        assertEquals(5, countries.size(), "countries size should be 5");
         assertFalse(countries.isEmpty(), "countries ArrayList should not be empty");
         assertNotNull(countries.get(0), "Object at index position of countries should not be null");
         assertTrue(countries.get(0).population >= 0, "population should not be a negative number");
@@ -204,7 +204,7 @@ public class AppIntegrationTest
     void getTopNPopulatedCitiesTest()
     {
         ArrayList<City> cities = dbHandler.getTopNPopulatedCities(3);
-        assertEquals(cities.size(), 3, "cities size should be 3");
+        assertEquals(3, cities.size(), "cities size should be 3");
         assertFalse(cities.isEmpty(), "cities array should not be empty");
         assertNotNull(cities.get(0), "Object at index position of cities should not be null");
         assertTrue(cities.get(0).population >= 0, "population should not be a negative number");
@@ -219,7 +219,7 @@ public class AppIntegrationTest
     void getTopNPopulatedCitiesInContinentTest()
     {
         ArrayList<City> cities = dbHandler.getTopNPopulatedCitiesInContinent(3,"Europe");
-        assertEquals(cities.size(), 3, "cities size should be 3");
+        assertEquals(3, cities.size(), "cities size should be 3");
         assertFalse(cities.isEmpty(), "cities array should not be empty");
         assertNotNull(cities.get(0), "Object at index position of cities should not be null");
         assertTrue(cities.get(0).population >= 0, "population should not be a negative number");
@@ -234,7 +234,7 @@ public class AppIntegrationTest
     void getTopNPopulatedCitiesInRegionTest()
     {
         ArrayList<City> cities = dbHandler.getTopNPopulatedCitiesInRegion(3, "Eastern Europe");
-        assertEquals(cities.size(), 3, "cities size should be 3");
+        assertEquals(3, cities.size(), "cities size should be 3");
         assertFalse(cities.isEmpty(), "cities array should not be empty");
         assertNotNull(cities.get(0), "Object at index position of cities should not be null");
         assertTrue(cities.get(0).population >= 0, "population should not be a negative number");
@@ -249,7 +249,7 @@ public class AppIntegrationTest
     void getTopNPopulatedCitiesInDistrictTest()
     {
         ArrayList<City> cities = dbHandler.getTopNPopulatedCitiesInDistrict(3, "Scotland");
-        assertEquals(cities.size(), 3, "cities size should be 3");
+        assertEquals(3, cities.size(), "cities size should be 3");
         assertFalse(cities.isEmpty(), "cities array should not be empty");
         assertNotNull(cities.get(0), "Object at index position of cities should not be null");
         assertTrue(cities.get(0).population >= 0, "population should not be a negative number");
@@ -264,7 +264,7 @@ public class AppIntegrationTest
     void getTopNPopulatedCitiesInCountryTest()
     {
         ArrayList<City> cities = dbHandler.getTopNPopulatedCitiesInCountry(3,"USA");
-        assertEquals(cities.size(), 3, "cities size should be 3");
+        assertEquals(3, cities.size(), "cities size should be 3");
         assertFalse(cities.isEmpty(), "cities array should not be empty");
         assertNotNull(cities.get(0), "Object at index position of cities should not be null");
         assertTrue(cities.get(0).population >= 0, "population should not be a negative number");
@@ -334,7 +334,7 @@ public class AppIntegrationTest
     void getTopNPopulatedCapitalsTest()
     {
         ArrayList<Capital> capitals = dbHandler.getNCapitalCities(3);
-        assertEquals(capitals.size(), 3,  "capitals size should be 3");
+        assertEquals(3, capitals.size(),  "capitals size should be 3");
         assertFalse(capitals.isEmpty(), "capitals should not be empty");
         assertNotNull(capitals.get(0), "Object at index position of capitals should not be null");
         assertTrue(capitals.get(0).population >= 0, "population should not be a negative number");
@@ -349,7 +349,7 @@ public class AppIntegrationTest
     void getTopNPopulatedCapitalsInContinentTest()
     {
         ArrayList<Capital> capitals = dbHandler.getTopNCapitalCitiesInContinent(3,"Europe");
-        assertEquals(capitals.size(), 3,  "capitals size should be 3");
+        assertEquals(3, capitals.size(),  "capitals size should be 3");
         assertFalse(capitals.isEmpty(), "capitals should not be empty");
         assertNotNull(capitals.get(0), "Object at index position of capitals should not be null");
         assertTrue(capitals.get(0).population >= 0, "population should not be a negative number");
@@ -364,7 +364,7 @@ public class AppIntegrationTest
     void getTopNPopulatedCapitalsInRegionTest()
     {
         ArrayList<Capital> capitals = dbHandler.getTopNCapitalCitiesInRegion(3,"Eastern Europe");
-        assertEquals(capitals.size(), 3,  "capitals size should be 3");
+        assertEquals(3, capitals.size(),  "capitals size should be 3");
         assertFalse(capitals.isEmpty(), "capitals should not be empty");
         assertNotNull(capitals.get(0), "Object at index position of capitals should not be null");
         assertTrue(capitals.get(0).population >= 0, "population should not be a negative number");

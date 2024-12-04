@@ -32,7 +32,7 @@ public class DatabaseHandler {
             System.out.println("Connecting to database...");
             try {
                 if (shouldWait) {
-                    // Wait a bit for db to start
+                    // Wait for db to start
                     Thread.sleep(delay);
                 }
 
@@ -44,7 +44,7 @@ public class DatabaseHandler {
                 System.out.println("Failed to connect to database attempt " + i);
                 System.out.println(sqle.getMessage());
 
-                // Let's wait before attempting to reconnect
+                // Wait before attempting to reconnect
                 shouldWait = true;
             } catch (InterruptedException ie) {
                 System.out.println("Thread interrupted? Should not happen.");
@@ -369,7 +369,7 @@ public class DatabaseHandler {
     }
 
     /**
-     * function to execute city queries and return results.
+     * Function to execute city queries and return results.
      *
      * @param query The SQL query to execute for retrieving Cities.
      * @return An ArrayList of City objects based on the executed query.
@@ -448,6 +448,7 @@ public class DatabaseHandler {
 
     /**
      * Get the top N capital cities in the world
+     *
      * @param n The number of Top populated capitals to retrieve
      * @return An ArrayList of Capital objects ordered by largest to smallest population
      */
@@ -463,6 +464,7 @@ public class DatabaseHandler {
 
     /**
      * Get Top N capital cities in the given continent
+     *
      * @param n The number of Top populated capitals to retrieve
      * @param continent the name of the continent to filter by
      * @return An ArrayList of Capital objects ordered by largest to smallest population
@@ -480,6 +482,7 @@ public class DatabaseHandler {
 
     /**
      * Get Top N capital cities in the given region
+     *
      * @param n The number of Top populated capitals to retrieve
      * @param region the name of the region to filter by
      * @return An ArrayList of Capital objects ordered by largest to smallest population
@@ -525,6 +528,169 @@ public class DatabaseHandler {
 
     //endregion
 
+
+    //region <POPULATION REPORT REGION>
+
+    /**
+     * Get the total population of the world.
+     *
+     * @return The total population of the world as a long.
+     */
+    public Long getWorldPopulation() {
+        long worldPopulation = 0;
+
+        try {
+            // SQL query to get and calculate the total population of the world
+            String query = "SELECT SUM(Population) AS WorldPopulation FROM country";
+            Statement stmt = con.createStatement();
+            ResultSet rset = stmt.executeQuery(query);
+
+            // Retrieve result set
+            if (rset.next()) {
+                // Set worldPopulation as the result from the WorldPopulation SQL SUM
+                worldPopulation = rset.getLong("WorldPopulation");
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to retrieve world population: " + e.getMessage());
+        }
+
+        return worldPopulation;
+    }
+
+    /**
+     * Get the total population of a chosen continent.
+     *
+     * @param continentChosen The name of the chosen continent.
+     * @return The total population of the continent.
+     */
+    public Long getContinentPopulation(String continentChosen) {
+        long continentPopulation = 0;
+
+        try {
+            // SQL query to get and calculate the total population of a continent
+            String query = "SELECT SUM(Population) AS ContinentPopulation FROM country WHERE Continent = '" + continentChosen + "'";
+            Statement stmt = con.createStatement();
+            ResultSet rset = stmt.executeQuery(query);
+
+            // Retrieve result set
+            if (rset.next()) {
+                // Set continentPopulation as the result from the ContinentPopulation SQL SUM
+                continentPopulation = rset.getLong("ContinentPopulation");
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to retrieve continent population: " + e.getMessage());
+        }
+
+        return continentPopulation;
+    }
+
+    /**
+     * Get the total population of a chosen city
+     *
+     * @param chosenCity The name of the city that's population is required
+     * @return The total population of the city passed in as a param
+     */
+    public Long getCityPopulation(String chosenCity) {
+        long cityPopulation = 0;
+
+        try {
+            // SQL query to get and calculate the total population of a City
+            String query = "SELECT SUM(Population) AS CityPopulation FROM city WHERE Name = '" + chosenCity + "'";
+            Statement stmt = con.createStatement();
+            ResultSet rset = stmt.executeQuery(query);
+
+            if (rset.next()) {
+                // Set cityPopulation as the result from the CityPopulation SQL SUM
+                cityPopulation = rset.getLong("CityPopulation");
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to retrieve city population: " + e.getMessage());
+        }
+
+        return cityPopulation;
+    }
+
+
+    /**
+     * Get the total population of a chosen district
+     *
+     * @param chosenDistrict The name of the district that's population is required
+     * @return The total population of the district passed in as a param
+     */
+    public Long getDistrictPopulation(String chosenDistrict) {
+        long districtPopulation = 0;
+
+        try {
+            // SQL query to get and calculate the total population of a District
+            String query = "SELECT SUM(Population) AS DistrictPopulation FROM city WHERE District = '" + chosenDistrict + "'";
+            Statement stmt = con.createStatement();
+            ResultSet rset = stmt.executeQuery(query);
+
+            if (rset.next()) {
+                // Set districtPopulation as the result from the DistrictPopulation SQL SUM
+                districtPopulation = rset.getLong("DistrictPopulation");
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to retrieve district population: " + e.getMessage());
+        }
+
+        return districtPopulation;
+    }
+
+
+    /**
+     * get the population of selected country
+     *
+     * @param chosenCountry The name of the country that's population is required
+     * @return The total population of the country passed in as a param
+     */
+    public Long getCountryPopulation(String chosenCountry) {
+        long countryPopulation = 0;
+
+        try {
+            // SQL query to get the population of a chosen Country
+            String query = "SELECT SUM(Population) AS CountryPopulation FROM country " + "WHERE Name = '" + chosenCountry + "'";
+            Statement stmt = con.createStatement();
+            ResultSet rset = stmt.executeQuery(query);
+
+            if (rset.next()) {
+                countryPopulation = rset.getLong("CountryPopulation");
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to retrieve country population: " + e.getMessage());
+        }
+
+        return countryPopulation;
+    }
+
+    /**
+     * get the population of selected Region
+     * @param chosenRegion The name of the Region that's population is required
+     * @return The total population of the Region passed in as a param
+     */
+    public Long getRegionPopulation(String chosenRegion) {
+        long regionPopulation = 0;
+
+        try {
+            // SQL query to get the population of a chosen Region
+            String query = "SELECT SUM(Population) AS RegionPopulation FROM country " +
+                    "WHERE region = '" + chosenRegion + "'";
+            Statement stmt = con.createStatement();
+            ResultSet rset = stmt.executeQuery(query);
+
+            // Get results for selected Region population
+            if (rset.next()) {
+                //
+                regionPopulation = rset.getLong("RegionPopulation");
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to retrieve region population: " + e.getMessage());
+        }
+        return regionPopulation;
+    }
+
+    //endregion
+
     /**
      * Get the population total of people living in cities and those not living in cities for each Country.
      *
@@ -532,10 +698,10 @@ public class DatabaseHandler {
      */
     public ArrayList<Country> getCountryCitiesAndNonCitiesPopulationTotals() {
 
-        // Get all Countries including their total populations
+        // Array to get all countries from getAllCountries method
         ArrayList<Country> countries = getAllCountries();
 
-        // For each iteration, country will hold one Country object from the countries list
+        // Loop through each Country in the countries list
         for (Country country : countries) {
             ArrayList<City> citiesInCountry = getAllCityInCountry(country.code);
             long totalCityPopulation = 0;
@@ -570,6 +736,7 @@ public class DatabaseHandler {
 
     /**
      * Get the population total of people living in cities and those not living in cities for each continent.
+     *
      * @return An ArrayList of Continent objects, each containing city and non-city population totals.
      */
     public ArrayList<Continent> getContinentCitiesAndNonCitiesPopulationTotals() {
@@ -591,8 +758,6 @@ public class DatabaseHandler {
 
             // Iterate over each row in the result set to process data.
             while (rset.next()) {
-                String countryCode = rset.getString("Code");
-                String countryName = rset.getString("Name");
                 String continentName = rset.getString("Continent");
                 long countryPopulation = rset.getLong("CountryPopulation");
                 long totalCityPopulation = rset.getLong("TotalCityPopulation");
@@ -630,6 +795,7 @@ public class DatabaseHandler {
 
     /**
      * Get the population total of people living in cities and those not living in cities for each region.
+     *
      * @return An ArrayList of Region objects, each containing city and non-city population totals.
      */
     public ArrayList<Region> getRegionCitiesAndNonCitiesPopulationTotals() {
@@ -647,8 +813,6 @@ public class DatabaseHandler {
             ResultSet rset = stmt.executeQuery(query);
 
             while (rset.next()) {
-                String countryCode = rset.getString("Code");
-                String countryName = rset.getString("Name");
                 String regionName = rset.getString("Region");
                 long countryPopulation = rset.getLong("CountryPopulation");
                 long totalCityPopulation = rset.getLong("TotalCityPopulation");

@@ -40,6 +40,11 @@ public class App
         String region = "Eastern Europe";
         String country = "USA";
         String district = "Scotland";
+        String continentChosen = "Asia";
+        String chosenCity = "New York";
+        String chosenDistrict = "California";
+        String chosenCountry = "Germany";
+        String chosenRegion = "Polynesia";
 
 
         // <GENERATE COUNTRY REPORTS>
@@ -92,8 +97,9 @@ public class App
         ArrayList<City> globalCities = a.dbHandler.getTopNPopulatedCities(n);
         ArrayList<City> continentCities = a.dbHandler.getTopNPopulatedCitiesInContinent(n, continent);
         ArrayList<City> regionCities = a.dbHandler.getTopNPopulatedCitiesInRegion(n, region);
-        ArrayList<City> districtCities = a.dbHandler.getTopNPopulatedCitiesInDistrict(n, district);
         ArrayList<City> countryCities = a.dbHandler.getTopNPopulatedCitiesInCountry(n, country);
+        ArrayList<City> districtCities = a.dbHandler.getTopNPopulatedCitiesInDistrict(n, district);
+
 
         // display all the Cities in the world
         System.out.println("\nAll Cities in the world:");
@@ -186,6 +192,29 @@ public class App
         System.out.println("\n\nRegion city and non-city population total:\n");
         a.reportsHandler.displayRegionPopulationCityNonCity();
 
+        // Total World Population Report
+        long worldPopulation = a.dbHandler.getWorldPopulation();
+        System.out.println("\nThe total population of the world is: " + worldPopulation);
+
+        // Total Chosen Continent Population Report
+        long chosenContinentPopulation = a.dbHandler.getContinentPopulation(continentChosen);
+        System.out.println("\nThe total population of " + continentChosen + " is: " + chosenContinentPopulation);
+
+        // Total Chosen City Population Report
+        long chosenCityPopulation = a.dbHandler.getCityPopulation(chosenCity);
+        System.out.println("\nThe total population of " + chosenCity + " is: " + chosenCityPopulation);
+
+        // Total Chosen District Population Report
+        long chosenDistrictPopulation = a.dbHandler.getDistrictPopulation(chosenDistrict);
+        System.out.println("\nThe total population of " + chosenDistrict + " is: " + chosenDistrictPopulation);
+
+        // Total Chosen Country Population Report
+        long chosenCountryPopulation = a.dbHandler.getCountryPopulation(chosenCountry);
+        System.out.println("\nThe total population of " + chosenCountry + " is: " + chosenCountryPopulation);
+
+        // Total Chosen Region Population Report
+        long chosenRegionPopulation = a.dbHandler.getRegionPopulation(chosenRegion);
+        System.out.println("\nThe total population of " + chosenRegion + " is: " + chosenRegionPopulation);
 
         // Disconnect from database
         a.dbHandler.disconnect();
