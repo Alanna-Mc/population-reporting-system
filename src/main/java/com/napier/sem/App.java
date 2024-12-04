@@ -203,7 +203,7 @@ public class App
         long chosenCityPopulation = a.dbHandler.getCityPopulation(chosenCity);
         System.out.println("\nThe total population of " + chosenCity + " is: " + chosenCityPopulation);
 
-        // Total Chosen City Population Report
+        // Total Chosen District Population Report
         long chosenDistrictPopulation = a.dbHandler.getDistrictPopulation(chosenDistrict);
         System.out.println("\nThe total population of " + chosenDistrict + " is: " + chosenDistrictPopulation);
 
