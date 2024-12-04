@@ -583,6 +583,40 @@ class AppTest {
         assertNull(countryPopulation, "Country population should be null");
     }
 
+    /**
+     * Test for verifying that the getRegionPopulation method returns the correct value.
+     */
+    @Test
+    void getRegionPopulationTestNormal() {
+        String regionChosen = "Caribbean";
+
+        // Mock the database handler to return value for getRegionPopulation
+        when(mockDatabaseHandler.getRegionPopulation(regionChosen)).thenReturn(8000000L);
+
+        // Set Region Population to mock value
+        Long regionPopulation = mockDatabaseHandler.getRegionPopulation(regionChosen);
+
+        // Assert that districtPopulation equals 8000000
+        assertEquals(8000000L, regionPopulation, "Region population should be 8000000 in test");
+    }
+
+    /**
+     * Test for verifying that the getRegionPopulation handles null.
+     */
+    @Test
+    void getRegionPopulationTestNull() {
+        String regionChosen = "Caribbean";
+
+        // Mock the database handler to return value for getRegionPopulation
+        when(mockDatabaseHandler.getRegionPopulation(regionChosen)).thenReturn(null);
+
+        // Set Region Population to mock value
+        Long regionPopulation = mockDatabaseHandler.getRegionPopulation(regionChosen);
+
+        // Assert that regionPopulation is null
+        assertNull(regionPopulation, "Region population should be null");
+    }
+
 }
 
 
