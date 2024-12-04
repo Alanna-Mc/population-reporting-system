@@ -435,4 +435,61 @@ class AppIntegrationTest
 
     //endregion
 
+    //region <POPULATION REPORT TESTS>
+
+    /**
+     * Test that checks the world population is not a negative number
+     */
+    @Test
+    void getWorldPopulationTest() {
+        long worldPopulation = dbHandler.getWorldPopulation();
+        assertTrue(worldPopulation >= 0, "worldPopulation should be non-negative");
+    }
+
+    /**
+     * Test that checks the world population is not a negative number
+     */
+    @Test
+    void getContinentPopulationTest() {
+        long continentPopulation = dbHandler.getContinentPopulation("Europe");
+        assertTrue(continentPopulation >= 0, "continentPopulation should be non-negative");
+    }
+
+    /**
+     * Test that checks the world population is not a negative number
+     */
+    @Test
+    void getCityPopulationTest() {
+        long cityPopulation = dbHandler.getCityPopulation("New York");
+        assertTrue(cityPopulation >= 0, "cityPopulation should be non-negative");
+    }
+
+    /**
+     * Test that checks the world population is not a negative number
+     */
+    @Test
+    void getDistrictPopulationTest() {
+        long districtPopulation = dbHandler.getDistrictPopulation("California");
+        assertTrue(districtPopulation >= 0, "districtPopulation should be non-negative");
+    }
+
+    /**
+     * Test that checks the world population is not a negative number
+     */
+    @Test
+    void getCountryPopulationTest() {
+        long countryPopulation = dbHandler.getCountryPopulation("France");
+        assertTrue(countryPopulation >= 0, "countryPopulation should be non-negative");
+    }
+
+    /**
+     * Test that checks the world population is not a negative number
+     */
+    @Test
+    void getRegionPopulationTest() {
+        long regionPopulation = dbHandler.getRegionPopulation("Polynesia");
+        assertTrue(regionPopulation >= 0, "regionPopulation should be non-negative");
+    }
+    //endregion
+
 }
