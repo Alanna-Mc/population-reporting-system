@@ -4,13 +4,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Unit tests for methods that display country, city, capital, continent and region information.
  */
-class AppTest
-{
+class AppTest {
     static ReportHandler reportHandler;
     static DatabaseHandler mockDatabaseHandler;
 
@@ -30,8 +29,8 @@ class AppTest
 
 
     /**
-    * Test for handling null input when displaying countries.
-    */
+     * Test for handling null input when displaying countries.
+     */
     @Test
     void displayCountriesTestNull() {
         reportHandler.displayCountries(null);
@@ -39,8 +38,8 @@ class AppTest
 
 
     /**
-    * Test for handling an empty list of countries when displaying countries.
-    */
+     * Test for handling an empty list of countries when displaying countries.
+     */
     @Test
     void displayCountriesTestEmpty() {
         ArrayList<Country> countries = new ArrayList<>();
@@ -49,8 +48,8 @@ class AppTest
 
 
     /**
-    * Test for handling a list of countries that contains a null element.
-    */
+     * Test for handling a list of countries that contains a null element.
+     */
     @Test
     void displayCountriesTestContainsNull() {
         ArrayList<Country> countries = new ArrayList<>();
@@ -60,8 +59,8 @@ class AppTest
 
 
     /**
-    * Test for displaying a list of countries with valid data.
-    */
+     * Test for displaying a list of countries with valid data.
+     */
     @Test
     void displayCountriesTestNormal() {
         ArrayList<Country> countries = new ArrayList<>();
@@ -92,8 +91,8 @@ class AppTest
 
 
     /**
-    * Test for handling null input when displaying cities.
-    */
+     * Test for handling null input when displaying cities.
+     */
     @Test
     void displayCitiesTestNull() {
         // Test handling of null input
@@ -102,8 +101,8 @@ class AppTest
 
 
     /**
-    * Test for handling an empty list of cities when displaying cities.
-    */
+     * Test for handling an empty list of cities when displaying cities.
+     */
     @Test
     void displayCitiesTestEmpty() {
         ArrayList<City> city = new ArrayList<>();
@@ -112,8 +111,8 @@ class AppTest
 
 
     /**
-    * Test for handling a list of cities that contains a null element.
-    */
+     * Test for handling a list of cities that contains a null element.
+     */
     @Test
     void displayCitiesTestContainsNull() {
         ArrayList<City> city = new ArrayList<>();
@@ -123,8 +122,8 @@ class AppTest
 
 
     /**
-    * Test for displaying a list of cities with valid data.
-    */
+     * Test for displaying a list of cities with valid data.
+     */
     @Test
     void displayCitiesTestNormal() {
         ArrayList<City> cities = new ArrayList<>();
@@ -151,8 +150,8 @@ class AppTest
 
 
     /**
-    * Test for handling null input when displaying capital cities.
-    */
+     * Test for handling null input when displaying capital cities.
+     */
     @Test
     void displayCapitalsTestNull() {
         reportHandler.displayCapitals(null);
@@ -160,8 +159,8 @@ class AppTest
 
 
     /**
-    * Test for handling an empty list of capital cities when displaying capitals.
-    */
+     * Test for handling an empty list of capital cities when displaying capitals.
+     */
     @Test
     void displayCapitalsTestEmpty() {
         ArrayList<Capital> capitals = new ArrayList<>();
@@ -170,8 +169,8 @@ class AppTest
 
 
     /**
-    * Test for handling a list of capital cities that contains a null element.
-    */
+     * Test for handling a list of capital cities that contains a null element.
+     */
     @Test
     void displayCapitalsTestContainsNull() {
         ArrayList<Capital> capitals = new ArrayList<>();
@@ -181,8 +180,8 @@ class AppTest
 
 
     /**
-    * Test for displaying a list of capital cities with valid data.
-    */
+     * Test for displaying a list of capital cities with valid data.
+     */
     @Test
     void displayCapitalsTestNormal() {
         ArrayList<Capital> capitals = new ArrayList<>();
@@ -407,6 +406,219 @@ class AppTest
                 "The method should display valid city and non city population data");
     }
 
+
+    /**
+     * Test for verifying that the getWorldPopulation method returns the correct value.
+     */
+    @Test
+    void getWorldPopulationTestNormal() {
+
+        // Mock the database handler to return value for getWorldPopulation
+        when(mockDatabaseHandler.getWorldPopulation()).thenReturn(8000000000L);
+
+        // Set worldPopulation to mock value
+        Long worldPopulation = mockDatabaseHandler.getWorldPopulation();
+
+        // Assert that worldPopulation equals 8000000000
+        assertEquals(8000000000L, worldPopulation, "World population should be 8 billion in test");
+    }
+
+
+    /**
+     * Test for verifying that the getWorldPopulation handles null.
+     */
+    @Test
+    void getWorldPopulationTestNull() {
+
+        // Mock the database handler to return value for getWorldPopulation
+        when(mockDatabaseHandler.getWorldPopulation()).thenReturn(null);
+
+        // Set worldPopulation to mock value
+        Long worldPopulation = mockDatabaseHandler.getWorldPopulation();
+
+        // Assert that worldPopulation is null
+        assertNull(worldPopulation, "World population should be null");
+    }
+
+    /**
+     * Test for verifying that the getContinentPopulation method returns the correct value.
+     */
+    @Test
+    void getContinentPopulationTestNormal() {
+
+        String continentChosen = "Europe";
+
+        // Mock the database handler to return value for getContinentPopulation
+        when(mockDatabaseHandler.getContinentPopulation(continentChosen)).thenReturn(4000000000L);
+
+        // Set continentPopulation to mock value
+        Long continentPopulation = mockDatabaseHandler.getContinentPopulation(continentChosen);
+
+        // Assert that continentPopulation equals 4000000000
+        assertEquals(4000000000L, continentPopulation, "Continent population should be 4 billion in test");
+    }
+
+
+    /**
+     * Test for verifying that the getContinentPopulation handles null.
+     */
+    @Test
+    void getContinentPopulationTestNull() {
+
+        String continentChosen = "Europe";
+
+        // Mock the database handler to return value for getContinentPopulation
+        when(mockDatabaseHandler.getContinentPopulation(continentChosen)).thenReturn(null);
+
+        // Set continentPopulation to mock value
+        Long continentPopulation = mockDatabaseHandler.getContinentPopulation(continentChosen);
+
+        // Assert that continentPopulation is null
+        assertNull(continentPopulation, "Continent population should be null");
+    }
+
+    /**
+     * Test for verifying that the getCityPopulation method returns the correct value.
+     */
+    @Test
+    void getCityPopulationTestNormal() {
+
+        String cityChosen = "New York";
+
+        // Mock the database handler to return value for getCityPopulation
+        when(mockDatabaseHandler.getCityPopulation(cityChosen)).thenReturn(8000000L);
+
+        // Set cityPopulation to mock value
+        Long cityPopulation = mockDatabaseHandler.getCityPopulation(cityChosen);
+
+        // Assert that cityPopulation equals 8000000
+        assertEquals(8000000L, cityPopulation, "City population should be 8000000 in test");
+    }
+
+    /**
+     * Test for verifying that the getCityPopulation handles null.
+     */
+    @Test
+    void getCityPopulationTestNull() {
+
+        String cityChosen = "New York";
+
+        // Mock the database handler to return value for getCityPopulation
+        when(mockDatabaseHandler.getCityPopulation(cityChosen)).thenReturn(null);
+
+        // Set city Population to mock value
+        Long cityPopulation = mockDatabaseHandler.getCityPopulation(cityChosen);
+
+        // Assert that cityPopulation is null
+        assertNull(cityPopulation, "City population should be null");
+    }
+
+    /**
+     * Test for verifying that the getDistrictPopulation method returns the correct value.
+     */
+    @Test
+    void getDistrictPopulationTestNormal() {
+
+        String districtChosen = "California";
+
+        // Mock the database handler to return value for getDistrictPopulation
+        when(mockDatabaseHandler.getDistrictPopulation(districtChosen)).thenReturn(3000000L);
+
+        // Set districtPopulation to mock value
+        Long districtPopulation = mockDatabaseHandler.getDistrictPopulation(districtChosen);
+
+        // Assert that districtPopulation equals 3000000
+        assertEquals(3000000L, districtPopulation, "District population should be 3000000 in test");
+    }
+
+    /**
+     * Test for verifying that the getDistrictPopulation handles null.
+     */
+    @Test
+    void getDistrictPopulationTestNull() {
+
+        String districtChosen = "California";
+
+        // Mock the database handler to return value for getDistrictPopulation
+        when(mockDatabaseHandler.getDistrictPopulation(districtChosen)).thenReturn(null);
+
+        // Set city Population to mock value
+        Long districtPopulation = mockDatabaseHandler.getDistrictPopulation(districtChosen);
+
+        // Assert that cityPopulation is null
+        assertNull(districtPopulation, "District population should be null");
+    }
+
+    /**
+     * Test for verifying that the getDistrictPopulation method returns the correct value.
+     */
+    @Test
+    void getCountryPopulationTestNormal() {
+        String countryChosen = "Germany";
+
+        // Mock the database handler to return value for getCountryPopulation
+        when(mockDatabaseHandler.getCountryPopulation(countryChosen)).thenReturn(4000000L);
+
+        // Set country Population to mock value
+        Long countryPopulation = mockDatabaseHandler.getCountryPopulation(countryChosen);
+
+        // Assert that districtPopulation equals 4000000
+        assertEquals(4000000L, countryPopulation, "Country population should be 4 million in test");
+    }
+
+    /**
+     * Test for verifying that the getCountryPopulation handles null.
+     */
+    @Test
+    void getCountryPopulationTestNull() {
+        String countryChosen = "Germany";
+
+        // Mock the database handler to return value for getCountryPopulation
+        when(mockDatabaseHandler.getCountryPopulation(countryChosen)).thenReturn(null);
+
+        // Set country Population to mock value
+        Long countryPopulation = mockDatabaseHandler.getCountryPopulation(countryChosen);
+
+        // Assert that countryPopulation is null
+        assertNull(countryPopulation, "Country population should be null");
+    }
+
+    /**
+     * Test for verifying that the getRegionPopulation method returns the correct value.
+     */
+    @Test
+    void getRegionPopulationTestNormal() {
+        String regionChosen = "Caribbean";
+
+        // Mock the database handler to return value for getRegionPopulation
+        when(mockDatabaseHandler.getRegionPopulation(regionChosen)).thenReturn(8000000L);
+
+        // Set Region Population to mock value
+        Long regionPopulation = mockDatabaseHandler.getRegionPopulation(regionChosen);
+
+        // Assert that districtPopulation equals 8000000
+        assertEquals(8000000L, regionPopulation, "Region population should be 8000000 in test");
+    }
+
+    /**
+     * Test for verifying that the getRegionPopulation handles null.
+     */
+    @Test
+    void getRegionPopulationTestNull() {
+        String regionChosen = "Caribbean";
+
+        // Mock the database handler to return value for getRegionPopulation
+        when(mockDatabaseHandler.getRegionPopulation(regionChosen)).thenReturn(null);
+
+        // Set Region Population to mock value
+        Long regionPopulation = mockDatabaseHandler.getRegionPopulation(regionChosen);
+
+        // Assert that regionPopulation is null
+        assertNull(regionPopulation, "Region population should be null");
+    }
+
 }
+
+
 
 

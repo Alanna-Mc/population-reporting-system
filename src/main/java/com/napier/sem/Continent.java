@@ -1,5 +1,8 @@
 package com.napier.sem;
 
+/**
+ * Represents a Continent
+ */
 public class Continent {
     /**
      * Continent name

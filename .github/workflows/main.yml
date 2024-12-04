@@ -1,7 +1,8 @@
-name: A workflow for Population Reporting System
+name: A workflow for the Population Reporting System
 on:
   push:
-
+    branches:
+      - master
 jobs:
   UnitTests:
     name: Unit Tests
@@ -62,4 +63,11 @@ jobs:
         run: |
           mvn package -DskipTests
           docker compose up --abort-on-container-exit
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          automatic_release_tag: "latest"
+          files: |
+            ./target/*.jar
 
