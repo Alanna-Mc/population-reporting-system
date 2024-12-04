@@ -527,7 +527,7 @@ class AppTest {
         // Set districtPopulation to mock value
         Long districtPopulation = mockDatabaseHandler.getDistrictPopulation(districtChosen);
 
-        // Assert that districtPopulation equals 8000000
+        // Assert that districtPopulation equals 3000000
         assertEquals(3000000L, districtPopulation, "District population should be 3000000 in test");
     }
 
