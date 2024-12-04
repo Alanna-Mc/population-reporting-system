@@ -27,6 +27,7 @@ public class ReportHandler {
 
     /**
      * Displays countries.
+     *
      * @param countries A list of Country objects representing countries.
      */
     public void displayCountries(ArrayList<Country> countries) {
@@ -48,6 +49,7 @@ public class ReportHandler {
 
     /**
      * Displays cities
+     *
      * @param cities A list of City objects representing cities
      */
     public void displayCities(ArrayList<City> cities) {
@@ -70,6 +72,7 @@ public class ReportHandler {
 
     /**
      * Display capital cities
+     *
      * @param capitals A list of Capital objects representing capital cities
      */
     public void displayCapitals(ArrayList<Capital> capitals) {
@@ -114,6 +117,7 @@ public class ReportHandler {
         }
     }
 
+
     /**
      * Display the calculated populations for each country.
      */
@@ -133,6 +137,7 @@ public class ReportHandler {
                     continent.name, continent.cityPopulation, continent.cityPercentage + "%", continent.nonCityPopulation, continent.nonCityPercentage + "%");
         }
     }
+
 
     public void displayRegionPopulationCityNonCity() {
 

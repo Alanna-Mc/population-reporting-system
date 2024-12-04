@@ -1,5 +1,8 @@
 package com.napier.sem;
 
+/**
+ * Represents a Region
+ */
 public class Region {
     /**
      * Region name
