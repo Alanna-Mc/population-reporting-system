@@ -28,7 +28,7 @@ This project aims to design and implement a system that allows access to populat
 [![Releases](https://img.shields.io/github/release/Alanna-Mc/population-reporting-system/all.svg?style=flat-square)](https://github.com/Alanna-Mc/population-reporting-system/releases)
 
 #### License Status
-[![LICENSE](https://img.shields.io/github/license/Alanna-Mc/population-reporting-system.svg?style=flat-square)](https://github.com/Alanna-Mc/population-reporting-system/blob/LICENSE)
+[![LICENSE](https://img.shields.io/github/license/Alanna-Mc/population-reporting-system.svg?style=flat-square)](https://github.com/Alanna-Mc/population-reporting-system/blob/feature-link-corrections/LICENSE)
 
 ## Requirements Met:
 
